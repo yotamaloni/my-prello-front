@@ -1,0 +1,59 @@
+.board-sub-header {
+  height: $sub-header-height;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  padding-inline-start: 20px;
+  padding-inline-end: 20px;
+  .left-menu,
+  .right-menu {
+    gap: 10px;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+  }
+  .sub-nav-btn {
+    background-color: rgba(0, 0, 0, 0.1);
+    &.board-title {
+      background: none;
+      font-size: 18px;
+    }
+    display: flex;
+    align-self: center;
+    align-items: center;
+    height: 32px;
+    width: auto;
+    border-radius: 3px;
+    padding: 6px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.15);
+    }
+    .txt-in-btn {
+      display: flex;
+      align-self: center;
+    }
+  }
+  .invite-btn {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    height: 32px;
+    padding: 6px;
+    position: relative;
+    width: auto;
+    border-radius: 3px;
+    background-color: #0079bf !important;
+    color: #fff;
+    &:hover {
+      background: lighten(#0079bf, 20%);
+    }
+    span {
+      margin-inline-start: 5px;
+    }
+  }
+}

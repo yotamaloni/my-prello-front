@@ -1,0 +1,54 @@
+.app-header {
+  height: $main-header-height;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline-start: 20px;
+  padding-inline-end: 20px;
+  color: $clr6;
+
+  &.board-details-class {
+    background-color: rgba(0, 0, 0, 0.45);
+  }
+  &.app-board-class {
+    background-color: $clr2;
+  }
+  .main-nav {
+    display: flex;
+    align-items: center;
+  }
+  .logo {
+    font-family: mochiy;
+    font-size: 1.3em;
+  }
+
+  .config {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+  .top-nav-btn {
+    display: flex;
+    align-self: center;
+    align-items: center;
+    height: 32px;
+    width: auto;
+    border-radius: 3px;
+    padding: 6px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+  .logo {
+    height: 100%;
+    font-family: mochiy;
+    margin: 6px 0;
+  }
+}

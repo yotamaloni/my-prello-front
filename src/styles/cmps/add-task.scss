@@ -1,0 +1,35 @@
+.add-task-form textarea{
+    box-sizing: border-box;
+    padding: 8px;
+    resize: none;
+    font-size: inherit;
+    color:$clr3;
+    font-family: inherit;
+    overflow: auto;
+    // max-height: 162px;
+    min-height: 72px;
+    line-height: 20px;
+    background-color: $clr7;
+    width: 256px;
+    height: 30px;
+    border:none;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 #091e4240;
+    margin-bottom: 0;
+    &:focus {
+        outline: none !important;
+        border:none;
+        border-radius: 3px;
+      }	
+}
+
+.add-task-btn-container{
+  display: flex;
+  justify-content: space-between;
+  .no-background{
+    margin-right:6px;
+  }
+}
+
+
+  

@@ -1,0 +1,46 @@
+.task-preview-info {
+  display: flex;
+  padding-bottom: 2px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  min-height: 28px;
+  gap: 5px;
+  .right-section,
+  .left-section {
+    height: 28px;
+    display: flex;
+    > * {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $clr4;
+    }
+
+    .due-date-container {
+      padding: 3px;
+      border-radius: 3px;
+      &.completed {
+        background-color: #61bd4f;
+        color: #fff;
+      }
+      &.not-completed {
+        background-color: #eb5a46;
+        color: #fff;
+      }
+      span {
+        padding-inline-end: 3px;
+      }
+    }
+
+    .description,
+    .comments,
+    .due-date {
+      padding: 3px;
+      border-radius: 3px;
+    }
+  }
+  .members {
+    display: flex;
+    gap: 2px;
+  }
+}

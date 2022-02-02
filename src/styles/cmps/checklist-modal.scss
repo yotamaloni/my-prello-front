@@ -1,0 +1,21 @@
+.task-modal {
+
+  .checklist-title {
+    margin-bottom: 4px;
+    margin-inline-start: 30px;
+    align-self: flex-start;
+    font-size: 0.75rem;
+    color: $clr4;
+  }
+
+  .close-modal-btn {
+    font-size: 1rem;
+    color: $clr4;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 2;
+    background: none;
+    border: none;
+  }
+}

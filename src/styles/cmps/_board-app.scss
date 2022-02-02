@@ -1,0 +1,52 @@
+.board-app {
+  height: 100vh;
+  h2,
+  h3 {
+    margin-inline-start: 30px;
+    color: $clr3;
+  }
+  .all-board-container,
+  .stared-board-container {
+    margin-bottom: 50px;
+    .board-list,
+    .stared-board-list {
+      margin: 10px 20px;
+      display: grid;
+      align-self: center;
+      // grid-template-columns: repeat(auto-fill, minmax(170px, 300px));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+      > * {
+        background-size: cover;
+        background-position: center;
+        height: 96px;
+        position: relative;
+        border-radius: 3px;
+
+        .star {
+          position: absolute;
+          bottom: 5px;
+          right: 5px;
+        }
+      }
+      .create-new-board {
+        position: relative;
+        background-color: #091e420a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        p {
+          margin: 0;
+          padding: 0;
+        }
+        &:hover {
+          background-color: #fafbfc;
+        }
+      }
+    }
+  }
+  .stared-board-container {
+    padding-bottom: 50px;
+  }
+}

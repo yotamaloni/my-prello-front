@@ -1,0 +1,50 @@
+// Setup
+@import 'setup/variables';
+@import 'setup/functions';
+@import 'setup/mixins';
+@import 'setup/typography';
+
+// Basics
+@import 'basics/helpers';
+@import 'basics/layout';
+@import 'basics/base';
+@import 'basics/buttons';
+
+// General Componentss
+@import 'cmps/_app-home.scss';
+@import 'cmps/_app-header.scss';
+@import 'cmps/_member-icon.scss';
+
+// Specific Components
+@import 'cmps/_login-signup.scss';
+@import 'cmps/_board-sub-header.scss';
+@import 'cmps/_board-app.scss';
+@import 'cmps/_board-filter.scss';
+@import 'cmps/_board-preview.scss';
+@import 'cmps/_board-details.scss';
+@import 'cmps/_board-group-list.scss';
+@import 'cmps/_board-group.scss';
+@import 'cmps/task-preview.scss';
+@import 'cmps/task-preview-info.scss';
+@import 'cmps/task-details.scss';
+@import 'cmps/task-cover.scss';
+@import 'cmps/side-menu.scss';
+@import 'cmps/text-input.scss';
+@import 'cmps/search-form.scss';
+@import 'cmps/_add-list.scss';
+@import 'cmps/add-task.scss';
+@import 'cmps/task-btns.scss';
+@import 'cmps/task-info.scss';
+@import 'cmps/add-task-options-menu.scss';
+@import 'cmps/list-actions-menu.scss';
+@import 'cmps/members-list.scss';
+@import 'cmps/_user-msg.scss';
+
+
+@import 'cmps/labels-modal.scss';
+@import 'cmps/checklist-modal.scss';
+@import 'cmps/cover-modal.scss';
+@import 'cmps/delete-modal.scss';
+@import 'cmps/create-board-modal.scss';
+@import 'cmps/members-modal.scss';
+@import 'cmps/users-modal.scss';

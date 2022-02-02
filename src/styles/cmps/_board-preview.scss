@@ -1,0 +1,17 @@
+.board-preview {
+  h4 {
+    margin: 0;
+    padding: 0;
+    // text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    //   1px 1px 0 #000;
+    // background-color: rgb(149, 160, 179,0.5);
+    // padding-inline-start: 5px;
+    // padding-inline-end: 5px;
+    // border-radius: 3px;
+  }
+  display: flex;
+  align-self: flex-start;
+  padding: 10px;
+  border-radius: 3px;
+  color: #fff;
+}

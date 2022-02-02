@@ -1,0 +1,54 @@
+.task-btns-container {
+  margin-inline-end: 20px;
+  .config-title {
+    margin-bottom: 4px;
+    margin-inline-start: 0;
+    align-self: flex-start;
+    font-size: 0.75rem;
+    color: $clr4;
+  }
+  .task-btn {
+    color: $clr4;
+    position: relative;
+    width: 168px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    > * {
+      margin-inline-start: 8px;
+    }
+    // .icon {
+    //   font-size: 10px;
+    //   display: flex;
+    //   align-items: center;
+    //   justify-content: center;
+    // }
+    justify-content: flex-start;
+    margin-bottom: 8px;
+    border: none;
+    border-radius: 3px;
+    background-color: #091e420a;
+    transition: 0.2s;
+    &.delete {
+      background-color: #b04632;
+      color: #fff;
+    }
+  }
+
+  .task-btn:hover {
+    background-color: #d4d4d4;
+  }
+  .task-btn.delete:hover {
+    background-color: #c06c6c;
+  }
+  .members {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    &::before {
+      font-family: icons;
+      content: '\e7ff';
+    }
+  }
+}

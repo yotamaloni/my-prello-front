@@ -1,0 +1,34 @@
+.board-details {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .group-container {
+  }
+}
+.overflow-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  display: flex;
+  flex: 1;
+}
+.list-composer {
+  display: flex;
+  align-items: center;
+  width: 272px;
+  text-align: left;
+  margin-top: 10px;
+  margin-right: 20px;
+  height: 40px;
+}
+
+.add-list-btn {
+  background: rgba(0, 0, 0, 0.1);
+  border: none;
+  color: #fff;
+  border-radius: 3px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+}

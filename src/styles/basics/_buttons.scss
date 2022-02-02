@@ -1,0 +1,60 @@
+button {
+  //   background-color: $clr6;
+  //   font-family: inherit;
+  //   border-radius: 1em;
+  cursor: pointer;
+  //   transition: background-color 0.3s;
+  //   font-size: 0.8em;
+  //   font-weight: bold;
+  //   &:hover {
+  //     background-color: lighten($clr6, 50%);
+  //   }
+}
+
+// button.primary-btn {
+//   background-color: $clr3;
+//   &:hover {
+//     background-color: lighten($clr3, 20%);
+//   }
+// }
+
+// button.secondary-btn {
+//   background-color: $clr6;
+//   &:hover {
+//     background-color: lighten($clr6, 20%);
+//   }
+// }
+
+
+button.no-background{
+  background: rgba(0,0,0,0);
+  border: none;
+  border-radius: 3px;
+  color: $clr3;
+  &:hover {
+        background-color: darken($clr1, 7%);
+      }
+}
+
+button.add-list{
+  &:hover {
+        background-color: $clr1;
+      }
+}
+
+button.add-btn{
+  // display: inline-flex;
+margin-right: 4px;
+ background-color:  #0079bf;
+ border: none;
+ box-shadow: none;
+ color: #fff;
+ border-radius: 3px;
+ padding: 6px 12px;
+ &:hover {
+  background-color: darken(#0079bf, 5%);
+}
+}
+
+
+

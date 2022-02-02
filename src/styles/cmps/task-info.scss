@@ -1,0 +1,201 @@
+.info {
+  .info-child {
+    margin-top: 0;
+    margin-inline-start: 60px;
+    position: relative;
+    .info-icon {
+      font-size: 20px;
+      position: absolute;
+      margin-inline-start: -40px;
+      top: 7px;
+      transform: scaleX(-1);
+    }
+    .activity-icon {
+      font-size: 20px;
+      position: absolute;
+      margin-inline-start: -40px;
+      top: 7px;
+    }
+  }
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin-inline-end: 10px;
+  h3 {
+    margin-bottom: 4px;
+    margin-inline-start: 0;
+    align-self: flex-start;
+    font-size: 0.75rem;
+    color: $clr4;
+  }
+
+  .members-display {
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+
+  .date-display {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    color: $clr4;
+    cursor: pointer;
+    input {
+      cursor: pointer;
+    }
+  }
+  .due-date-container {
+    padding-inline-start: 5px;
+    padding-inline-end: 5px;
+    margin-inline-start: 5px;
+    background-color: #091e420a;
+    border-radius: 3px;
+    display: inline-block;
+
+    &:hover {
+      background-color: #d4d4d4;
+    }
+    .completed-date,
+    .not-completed-date {
+      color: #fff;
+      padding-inline-start: 5px;
+      padding-inline-end: 5px;
+      border-radius: 3px;
+    }
+    .not-completed-date {
+      background-color: #eb5a46;
+    }
+    .completed-date {
+      background-color: #61bd4f;
+    }
+  }
+  .labels {
+    display: flex;
+    flex-direction: column;
+    .labels-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 0;
+      padding: 0;
+      > * {
+        color: $clr7;
+        cursor: pointer;
+        transition: 0.2s;
+        min-width: 40px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #091e420a;
+        font-size: 0.8rem;
+        border-radius: 3px;
+        padding: 5px;
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+      .add-label {
+        color: $clr4;
+        background-color: #d4d4d4;
+      }
+    }
+  }
+  .info-title {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Noto Sans,
+      Ubuntu, Droid Sans, Helvetica Neue, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+.add-desc-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px;
+  resize: none;
+  font-size: inherit;
+  color: $clr3;
+  font-family: inherit;
+  overflow: auto;
+  // max-height: 162px;
+  min-height: 72px;
+  line-height: 20px;
+  background-color: $clr7;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 #091e4240;
+  margin-bottom: 0;
+  padding-inline-end: 20px;
+  color: $clr3;
+  &:focus {
+    outline: none !important;
+    border: #0079bf 2px solid;
+    border-radius: 3px;
+  }
+}
+.activity-comment-container {
+  .add-comment {
+    width: 100%;
+    height: 30px;
+    border-radius: 3px;
+    border: none;
+    box-shadow: 0 1px 0 #091e4240;
+    color: $clr3;
+    padding-inline-start: 5px;
+    &:focus {
+      outline: none !important;
+      border: none;
+      border-radius: 3px;
+    }
+  }
+  .config-activity {
+    margin-top: 10px;
+  }
+}
+
+.activities-list-container {
+  ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 0px;
+    li {
+      position: relative;
+      margin-bottom: 10px;
+      .info-icon.activity {
+        font-size: 20px;
+        position: absolute;
+        margin-inline-start: -40px;
+        top: 5px;
+        transform: scaleX(-1);
+      }
+      .user-name {
+        margin-bottom: 5px;
+        font-size: 14px;
+        font-weight: 700;
+
+        span {
+          color: $clr4;
+          font-size: 12px;
+          font-weight: 400;
+        }
+      }
+      .txt {
+        width: 100%;
+        height: 30px;
+        border-radius: 3px;
+        box-shadow: 0 1px 0 #091e4240;
+        border: none;
+        color: $clr4;
+        background-color: $clr7;
+      }
+    }
+  }
+}

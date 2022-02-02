@@ -1,0 +1,26 @@
+.add-list-container {
+  display: flex;
+  align-items: center;
+  width: 272px;
+  background-color: $clr1;
+  margin-top: 42px;
+  margin-right: 20px;
+  padding: 4px;
+  border-radius: 3px;
+}
+
+.add-input {
+  width: 256px;
+  height: 30px;
+  border: #0079bf 2px solid;
+  border-radius: 3px;
+  &:focus {
+    outline: none !important;
+    border: #0079bf 2px solid;
+    border-radius: 3px;
+  }
+}
+
+.add-btn-container {
+  margin-top: 4px;
+}

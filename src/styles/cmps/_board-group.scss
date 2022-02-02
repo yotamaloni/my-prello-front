@@ -1,0 +1,90 @@
+.board-group {
+  > * {
+    padding: 0 0px;
+    margin-bottom: 0 0 0 0;
+  }
+
+  .list-header {
+    box-sizing: border-box;
+    display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    // margin: 0 4px;
+    height: 40px;
+    // width: 252px;
+    font-weight: bold;
+    .no-background {
+      margin: 4px 0;
+      width: 32px;
+      height: 32px;
+      padding: 6px;
+      margin-left: 2px;
+      svg {
+        height: 16px;
+        width: 16px;
+        color: #6b778c;
+      }
+    }
+  }
+
+  .task-list {
+    min-height: 1px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(100vh - 220px);
+  }
+
+
+  .group-title-container {
+    // height: auto;
+    // width: auto;
+    margin: 0;
+    padding: 0;
+
+    .title-input {
+      word-wrap: break-word;
+      word-break: break-all;
+      padding: 4px 8px;
+      margin: 5px 0;
+      width: 90%;
+      color: #172b4d;
+      font-family: inherit;
+      font-weight: 600;
+      width: 228px;
+      height: 28px;
+      line-height: 20px;
+      font-size: 14px;
+      border: none;
+      background-color: inherit;
+      transition: 0.1s;
+
+      &:focus {
+        outline: 2px solid #0079bf;
+        border-radius: 3px;
+      }
+    }
+    .no-background {
+      margin: 8px;
+    }
+  }
+
+  .group-title {
+    color: $clr4;
+
+    span {
+      text-decoration: underline;
+    }
+  }
+}
+
+.task-container {
+  border-radius: 3px;
+}
+
+.card-composer {
+  display: flex;
+  align-items: center;
+  width: 256px;
+  text-align: left;
+  height: 30px;
+}

@@ -1,0 +1,147 @@
+.task-preview {
+  display: inline-block;
+  background-color: $clr7;
+  margin-bottom: 8px;
+  width: 256px;
+  border-radius: 3px;
+  padding: 6px 8px;
+  box-shadow: 0 1px 0 #091e4240;
+
+  .background-color-container {
+    height: 32px;
+    border-radius: 3px 3px 0 0;
+    margin-bottom: 5px;
+    margin-top:-6px;
+    margin-left:-8px;
+    margin-right:-8px;
+  }
+
+  img {
+    margin-bottom: 0;
+    padding: 0;
+    border-radius: 3px 3px 0 0;
+  }
+
+  > * {
+    margin: 0;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .labels-container {
+    // gap: 5px;
+    // display: grid;
+    // grid-template-columns: repeat(auto-fill, 40px);
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 4px 4px 0;
+
+    // >* {
+    //   width: 40px;
+    //   height: 8px;
+    //   border-radius: 3px;
+    // }
+
+    .label {
+      margin: 0 4px 4px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+
+      transition: 0.8s;
+      &.small {
+        width: 40px;
+        height: 8px;
+        border-radius: 3px;
+      }
+
+      &.large {
+        display: flex;
+        padding-inline-start: 3px;
+        padding-inline-end: 3px;
+        align-items: center;
+        justify-content: center;
+        min-width: 56px;
+        height: 16px;
+        border-radius: 3px;
+        font-size: 0.85em;
+      }
+    }
+
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+
+  .notes {
+    margin-top: 10px;
+    color: $clr4;
+    gap: 5px;
+
+    > * {
+      height: 16px;
+      display: flex;
+      align-items: center;
+      align-self: center;
+    }
+
+    .comments {
+      height: 16px;
+
+      > * {
+        height: 16px;
+        display: flex;
+        align-self: center;
+        align-items: center;
+      }
+    }
+  }
+
+  &:hover {
+    background-color: lighten($clr1, 4%);
+  }
+
+  &:hover .edit-btn {
+    display: inline-block;
+  }
+
+  .img-container {
+    overflow: hidden;
+    // position:absolute;
+    height: auto;
+    // display: block;
+    margin-top:-6px;
+    margin-left:-8px;
+    margin-right:-8px;
+  }
+
+  // .btn-container{
+
+  // }
+  .edit-btn {
+    display: none;
+    // position:fixed;
+    // width: 18px;
+    // height: 18px;
+    // top: 4px;
+    // left: 220px;
+    // right: 0;
+    // bottom: 0;
+    background-color: #0000;
+    border: none;
+    background: rgba(0, 0, 0, 0);
+    border: none;
+    border-radius: 3px;
+    color: $clr3;
+  }
+
+  .title {
+    word-wrap: break-word;
+    line-height: 20px;
+    margin-bottom: 4px;
+  }
+}

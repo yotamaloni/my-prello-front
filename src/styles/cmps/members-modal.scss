@@ -1,0 +1,62 @@
+.members-modal-container {
+  display: flex;
+  flex-direction: column;
+  width: 304px;
+  min-height: 200px;
+  background-color: white;
+  position: absolute;
+  border: 0.5px solid #091e4240;
+  transform: translate(-10px, 120px);
+  border-radius: 3px;
+  padding-bottom: 6px;
+  z-index: 10;
+  h4 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .search-members-input {
+    margin: 12px 0 12px;
+    width: 280px;
+    height: 30px;
+    border: darken($clr1, 10%) 2px solid;
+    border-radius: 3px;
+    &:hover {
+      background-color: $clr1;
+    }
+    &:focus {
+      outline: none !important;
+      border: #0079bf 2px solid;
+      border-radius: 3px;
+      background-color: white;
+    }
+  }
+  .search-members {
+    align-self: center;
+  }
+  h4 {
+    color: #5e6c84;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    margin-left: 12px;
+  }
+  .board-members {
+    z-index: 10;
+    .members-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .member {
+        display: flex;
+        gap: 5px;
+        justify-content: space-between;
+        .vi {
+          margin-inline-end: 10px;
+        }
+      }
+    }
+  }
+}
+
+
