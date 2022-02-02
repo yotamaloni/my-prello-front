@@ -1,32 +1,29 @@
 
 import React from 'react'
-import DoneIcon from '@mui/icons-material/Done';
 
 import { connect } from 'react-redux'
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-
 
 import { updateBoard } from '../store/board.action.js'
 
+import DoneIcon from '@mui/icons-material/Done';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+
+
 class _CoverModal extends React.Component {
 
-    state = {
-    }
-
     setCoverColor = (color) => {
-        const { task } = this.props
+        const { task, board } = this.props
         if (!task.style) {
             task.style = { backgroundColor: color }
         } else {
             task.style.backgroundColor = color
         }
         task.style.imgUrl = null
-        this.updateTaskInBoard(task)
-        this.props.setTaskDetails(task)
+        this.props.updateBoard({ ...board })
     }
 
     setImgCover = async (ev) => {
-        const { task } = this.props
+        const { task, board } = this.props
         try {
             const imgUrl = await this.uploadImg(ev)
             if (!task.style) {
@@ -35,28 +32,17 @@ class _CoverModal extends React.Component {
                 task.style.imgUrl = imgUrl
             }
             task.style.backgroundColor = null
-            this.updateTaskInBoard(task)
-            this.props.setTaskDetails(task)
-
-
+            this.props.updateBoard({ ...board })
         } catch (err) {
             console.log('Cant get img', err);
         }
     }
     removeCover = () => {
-        const { task } = this.props
+        const { task, board } = this.props
         task.style = null
-        this.updateTaskInBoard(task)
-        this.props.setTaskDetails(task)
-    }
-
-    updateTaskInBoard = async (task) => {
-        const { board, groupId } = this.props
-        const group = board.groups.find(currGroup => currGroup.id === groupId)
-        const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
-        group.tasks[taskIdx] = task
         this.props.updateBoard({ ...board })
     }
+
 
     uploadImg = (ev) => {
         const CLOUD_NAME = 'dnft2vfvz'
@@ -73,8 +59,6 @@ class _CoverModal extends React.Component {
             .then(res => res.url)
             .catch(err => console.error(err))
     }
-
-
     render() {
         const colors = [
             '#61bd4f',

@@ -1,11 +1,6 @@
 import React from 'react'
-import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
+
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-
-
-import { connect } from 'react-redux'
-import { updateBoard } from '../store/board.action.js'
-
 
 
 const IMG1_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053148/samples/landscapes/landscape-panorama.jpg'
@@ -26,13 +21,11 @@ export class CreateBoardModal extends React.Component {
         imgUrl: null,
     }
 
-
     onHandleChange = ({ target }) => {
         const field = target.name
         const value = target.value
         this.setState((prevState) => ({ ...prevState, [field]: value }))
     }
-
 
     onSetCoverColor = (color) => {
         this.setState({ backgroundColor: color, imgUrl: null })
@@ -80,7 +73,6 @@ export class CreateBoardModal extends React.Component {
 
     render() {
         const { title, backgroundColor, imgUrl } = this.state
-        const chosenBackground = backgroundColor
         const colors = [
             '#7BC86C',
             '#F5DD29',
@@ -94,7 +86,7 @@ export class CreateBoardModal extends React.Component {
             '#172B4D',
         ]
 
-        const imgurls = [
+        const imgUrls = [
             IMG1_URL,
             IMG2_URL,
             IMG3_URL,
@@ -105,8 +97,8 @@ export class CreateBoardModal extends React.Component {
             IMG8_URL,
             IMG9_URL,
             IMG10_URL,
-
         ]
+
         return (
             <div className='board-cover'>
                 {/* <h3 className='delete-title'>Delete card?</h3> */}
@@ -153,7 +145,7 @@ export class CreateBoardModal extends React.Component {
                 <div className='cover-colors img'>
                     <h3 className='cover-title create-board-title'>Photos</h3>
                     <ul className='cover-color-list clean-list img-list'>
-                        {imgurls.map((url, index) => {
+                        {imgUrls.map((url, index) => {
                             return <li onClick={() => {
                                 this.onSetCoverImg(url)
                             }} key={index} style={{ backgroundImage: `url(${url})` }}></li>
@@ -174,8 +166,6 @@ export class CreateBoardModal extends React.Component {
                     <div className='create-btn' onClick={this.onSubmit}>Create</div>
                 )
                 }
-
-
             </div>
         )
     }

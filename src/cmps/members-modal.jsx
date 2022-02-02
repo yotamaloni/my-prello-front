@@ -1,16 +1,18 @@
 import React from 'react'
+
 import { connect } from 'react-redux'
-import { updateTask, updateBoard } from '../store/board.action.js'
+
+import { updateBoard } from '../store/board.action.js'
+
 import DoneIcon from '@mui/icons-material/Done';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 import { MemberIcon } from '../cmps/member-icon.jsx'
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 class _MembersModal extends React.Component {
     state = {
         membersToShow: [...this.props.board.members],
         txt: '',
-        task: { ...this.props.task },
     }
 
     handleChange = ({ target }) => {
@@ -34,8 +36,7 @@ class _MembersModal extends React.Component {
 
 
     toggleMemberToTask = (member) => {
-        const { groupId, board } = this.props
-        let { task } = this.state
+        const { board, task } = this.props
         let taskMembers = task.members
         const isMemberInTask = taskMembers?.find(taskMember => taskMember._id === member._id) ? true : false
         if (isMemberInTask) {
@@ -44,19 +45,13 @@ class _MembersModal extends React.Component {
             if (taskMembers) taskMembers.push(member)
             else taskMembers = [member]
         }
-        const updatedTask = { ...task, members: taskMembers }
-
-        this.setState({ task: updatedTask })
-        const group = board.groups.find(currGroup => currGroup.id === groupId)
-        const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
-        group.tasks[taskIdx] = updatedTask
+        task.members = taskMembers
         this.props.updateBoard({ ...board })
-        this.props.updateTaskInCmp(updatedTask)
     }
 
     render() {
-        const { closeModal, board } = this.props
-        const { task } = this.state
+        const { closeModal } = this.props
+        const { task } = this.props
         const { txt } = this.state
         const membersIds = task?.members?.map((member) => member._id) || []
         const { membersToShow } = this.state
@@ -75,13 +70,7 @@ class _MembersModal extends React.Component {
                             closeModal()
                         }} />
                     </div>
-                    {/* <div>
-                        <button onClick={(ev) => {
-                            ev.stopPropagation();
-                            closeModal()
-                        }}
-                            className='close-modal-btn'>x</button>
-                    </div> */}
+
                 </div>
                 <div className='search-members'>
                     <input className='search-members-input'
@@ -119,8 +108,6 @@ class _MembersModal extends React.Component {
 }
 
 
-
-
 function mapStateToProps({ boardModule }) {
     return {
         board: boardModule.board
@@ -128,7 +115,6 @@ function mapStateToProps({ boardModule }) {
 }
 
 const mapDispatchToProps = {
-    updateTask,
     updateBoard
 };
 

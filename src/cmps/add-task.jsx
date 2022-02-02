@@ -3,15 +3,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { updateBoard } from '../store/board.action.js'
-import { utilService } from '../services/util.service.js'
 
-
-
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import CloseIcon from '@mui/icons-material/Close';
-import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
-import { OptionsMenu } from './add-task-options-menu.jsx'
+
+import { utilService } from '../services/util.service.js'
 
 
 export class _AddTask extends React.Component {
@@ -59,7 +54,6 @@ export class _AddTask extends React.Component {
 
     render() {
         let { title, isOptionsMenuOpen } = this.state
-        // const { onToggleAddList, onAddGroup } = this.props
 
         return (
             <section >
@@ -75,14 +69,9 @@ export class _AddTask extends React.Component {
                             <button className='add-btn' type="submit" onClick={this.onSubmitNewTask}>Add card</button>
                             <button type='button' className='no-background' onClick={this.props.onToggleAddTask}><CloseIcon></CloseIcon></button>
                         </div>
-                        {/* <div><button type='button' onClick={this.onToggleOptionsMenu} className='no-background'><MoreHorizOutlinedIcon sx={{ color: '#172b4d' }}></MoreHorizOutlinedIcon></button></div> */}
                     </div>
                 </form>
-                {/* {isOptionsMenuOpen && (
-                    <React.Fragment>
-                        <OptionsMenu onToggleOptionsMenu={this.onToggleOptionsMenu} />
-                    </React.Fragment>
-                )} */}
+
             </section>
         );
     }

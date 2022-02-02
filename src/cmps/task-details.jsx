@@ -1,33 +1,26 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { TextInput } from './text-input.jsx'
 
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import { StaticDatePicker } from './task-dates.jsx'
-// import { TaskCover } from './task-cover.jsx'
+import { updateBoard } from '../store/board.action.js'
+
 import CallToActionOutlinedIcon from '@mui/icons-material/CallToActionOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-import { removeTask, updateTask, updateBoard } from '../store/board.action.js'
 import { boardService } from '../services/board.service.js'
-import { utilService } from '../services/util.service.js'
+
 import { TaskBtns } from './task-btns.jsx'
 import { TaskInfo } from './task-info.jsx'
-import { socketService } from '../services/socket.service.js'
+
 
 class _TaskDetails extends React.Component {
 
   state = {
-    taskId: null,
-    groupId: null,
     group: null,
     task: {
       title: ''
     },
     modal: '',
-    boardId: ''
   }
 
   async componentDidMount() {
@@ -35,14 +28,11 @@ class _TaskDetails extends React.Component {
   }
 
   setTask = async () => {
-    const { boardId, groupId, taskId } = this.props.match.params
-    this.setState({ taskId, groupId })
-    this.setState({ groupId: groupId, boardId })
-    const group = await boardService.getGroupById(boardId, groupId)
-    this.setState({ group })
-    boardService.getTaskById(boardId, groupId, taskId).then(task => {
-      this.setState({ task })
-    })
+    const { groupId, taskId } = this.props.match.params
+    const { board } = this.props
+    const group = board.groups.find((currGroup => currGroup.id === groupId))
+    const task = group.tasks.find((currTask => currTask.id === taskId))
+    this.setState({ group, task, boardId: board._id })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -59,21 +49,17 @@ class _TaskDetails extends React.Component {
     this.setState({ task: { ...task } })
   }
 
-
   onHandleChange = ({ target }) => {
     const field = target.name
     const value = target.value
-    this.setState((prevState) => ({ task: { ...prevState.task, [field]: value } }))
+    const { task } = this.state
+    task[field] = value
+    this.setState((prevState) => ({ task }))
   }
 
   onSubmitTitle = () => {
     if (!this.state.task.title) return
-
-    const { task, groupId } = this.state
     const { board } = this.props
-    const group = board.groups.find(currGroup => currGroup.id === groupId)
-    const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
-    group.tasks[taskIdx] = task
     this.props.updateBoard({ ...board })
   }
 
@@ -87,9 +73,9 @@ class _TaskDetails extends React.Component {
   render() {
     const loader = require('../img/loader.gif')
 
-    const { taskId, group, groupId, task, modal, boardId } = this.state
-    const { title, dueDate, isDone, style } = task
-    let cover = ''
+    const { group, task, boardId } = this.state
+    const { title, style } = task
+
     const bgCover = (style?.backgroundColor) ? style.backgroundColor : ''
     const imgCover = (style?.imgUrl) ? style.imgUrl : ''
 
@@ -130,10 +116,17 @@ class _TaskDetails extends React.Component {
             </div>
 
             <div className='info-and-btns-container'>
-              <TaskInfo groupId={groupId} board={this.props.board} updateBoard={this.props.updateBoard} boardId={boardId} task={task} taskId={taskId} bgCover={bgCover} imgCover={imgCover}
-                openModal={this.onOpenModal} setTaskDetails={this.onSetTaskDetails} />
+              <TaskInfo
+                group={group}
+                task={task}
+                openModal={this.onOpenModal}
+              />
 
-              <TaskBtns board={this.props.board} updateBoard={this.props.updateBoard} updateTaskInCmp={this.updateTaskInCmp} groupId={groupId} boardId={boardId} task={task} bgCover={bgCover} imgCover={imgCover}
+              <TaskBtns
+                group={group}
+                groupId={group.id}
+                task={task}
+                updateTaskInCmp={this.updateTaskInCmp}
                 setTaskDetails={this.onSetTaskDetails} />
             </div>
 
@@ -161,8 +154,6 @@ function mapStateToProps({ boardModule }) {
 }
 
 const mapDispatchToProps = {
-  removeTask,
-  updateTask,
   updateBoard
 };
 

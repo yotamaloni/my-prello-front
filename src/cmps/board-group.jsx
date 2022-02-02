@@ -1,10 +1,8 @@
-
-
 import React from 'react'
 
 import { Droppable, Draggable } from 'react-beautiful-dnd'
-import AddIcon from '@mui/icons-material/Add';
 
+import AddIcon from '@mui/icons-material/Add';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 
 import { TaskPreview } from './task-preview.jsx'
@@ -57,10 +55,14 @@ export class BoardGroup extends React.Component {
     }
 
     render() {
-        const { group, boardId, removeGroup, removeAllTasks, copyList, board, updateBoard } = this.props
+        const loader = require('../img/loader.gif')
+
+        const { group, board, updateBoard } = this.props
         const { tasks } = group
         const { isAddTaskOpen, isListActionsOpen, groupTitle } = this.state
-        if (!tasks) return <div>Loading...</div>
+
+        if (!tasks) return <div className='loader-page'><img className='loader' src={loader} /></div>
+
         return (
             <section className='board-group'>
                 <div className='list-header'>
@@ -73,7 +75,10 @@ export class BoardGroup extends React.Component {
                             onChange={this.onHandleChange} autoComplete='false' />
                     </div>
 
-                    <div><button onClick={this.onToggleListActions} className='no-background'><MoreHorizOutlinedIcon sx={{ color: '#172b4d' }}></MoreHorizOutlinedIcon></button></div>
+                    <div><button onClick={this.onToggleListActions} className='no-background'>
+                        <MoreHorizOutlinedIcon sx={{ color: '#172b4d' }} />
+                    </button>
+                    </div>
                 </div>
                 {isListActionsOpen && (
                     <React.Fragment>
@@ -82,11 +87,7 @@ export class BoardGroup extends React.Component {
                             updateBoard={updateBoard}
                             board={board}
                             group={group}
-                            boardId={boardId}
                             onToggleListActions={this.onToggleListActions}
-                            removeGroup={removeGroup}
-                            removeAllTasks={removeAllTasks}
-                            copyList={copyList}
                         />
                     </React.Fragment>
                 )}
@@ -101,7 +102,10 @@ export class BoardGroup extends React.Component {
                                             {(provided) => (
 
                                                 < li className='task-container' {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
-                                                    <TaskPreview board={board} onToggleAddTask={this.onToggleAddTask} group={group} key={task.id} task={task} groupId={group.id} boardId={boardId} removeTask={this.props.removeTask} />
+                                                    <TaskPreview board={board}
+                                                        onToggleAddTask={this.onToggleAddTask}
+                                                        group={group} key={task.id}
+                                                        task={task} />
                                                 </li>
                                             )}
 
@@ -132,7 +136,7 @@ export class BoardGroup extends React.Component {
                             :
                             <React.Fragment>
                                 <AddTask updateBoard={updateBoard}
-                                    board={board} onToggleAddTask={this.onToggleAddTask} group={group} boardId={boardId} />
+                                    board={board} onToggleAddTask={this.onToggleAddTask} group={group} />
                             </React.Fragment>
                     }
                 </div >

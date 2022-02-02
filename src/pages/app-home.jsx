@@ -2,19 +2,10 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-import { HomeHeader } from '../cmps/home-header.jsx'
-
-import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 
-// export default function BasicButtons() {
-//     return (
-//         <Stack spacing={2} direction="row">
-//             <Button variant="text">Text</Button>
-//             <Button variant="outlined">Outlined</Button>
-//         </Stack>
-//     );
-// }
+import { HomeHeader } from '../cmps/home-header.jsx'
+
 
 
 
@@ -36,11 +27,7 @@ export class AppHome extends React.Component {
                                     Try as a guest
                                 </NavLink>
                             </Button>
-                            {/* <Button sx={{ fontFamily: 'inherit', }} variant="contained">
-                                <NavLink className="clean-link" to='/login-signup'>
-                                    Sign up it's free
-                                </NavLink>
-                            </Button> */}
+
                         </div>
 
                     </div>

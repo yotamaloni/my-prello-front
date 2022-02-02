@@ -6,33 +6,26 @@ import StarRateIcon from '@mui/icons-material/StarRate';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 
-import { BoardFilter } from './board-filter';
-
 import { MembersList } from '../cmps/members-list.jsx'
 import { UsersModal } from '../cmps/users-modal.jsx'
 
-
-
-
-
 export class BoardSubHeader extends React.Component {
-
 
     state = {
         modal: null
     }
 
-
     onOpenModal = (type) => {
         this.setState({ modal: type })
     }
+
     closeModal = () => {
         this.setState({ modal: null })
     }
 
     render() {
 
-        const { toggleMenuModal, toggleFilterModal, isFilterModalOpen, board, onToggleBoardStar } = this.props
+        const { toggleFilterModal, board, onToggleBoardStar } = this.props
         const { modal } = this.state
         const starColor = board.isStarred ? 'gold' : '#FFF'
 
@@ -51,7 +44,6 @@ export class BoardSubHeader extends React.Component {
                             onClick={onToggleBoardStar}
                             style={{ color: starColor }} />
                     }
-                    {/* <StarBorderOutlinedIcon style={{ color: starColor }} onClick={onToggleBoardStar} */}
 
                     <MembersList />
                     <div className='invite-btn clickable' onClick={() => this.onOpenModal('invite')}>

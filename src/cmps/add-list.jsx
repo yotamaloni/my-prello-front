@@ -1,11 +1,12 @@
 import React from 'react'
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import CloseIcon from '@mui/icons-material/Close';
 import { connect } from 'react-redux'
-import { updateBoard } from '../store/board.action.js'
+
+import CloseIcon from '@mui/icons-material/Close';
 
 import { utilService } from '../services/util.service.js'
+
+import { updateBoard } from '../store/board.action.js'
+
 
 
 class _AddList extends React.Component {
@@ -15,7 +16,6 @@ class _AddList extends React.Component {
     }
 
     handleChange = ({ target }) => {
-        // const field = target.name;
         const value = target.value;
         this.setState((prevState) => ({
             ...prevState, title: value
@@ -43,7 +43,7 @@ class _AddList extends React.Component {
 
     render() {
         let { title } = this.state
-        const { onToggleAddList, onAddGroup } = this.props
+        const { onToggleAddList } = this.props
 
         return (
             <section className='add-list-container' >
@@ -58,7 +58,7 @@ class _AddList extends React.Component {
                     </div>
                     <div className='flex add-btn-container'>
                         <button className='add-btn' type="submit" onClick={this.onSubmitNewList}>Add list</button>
-                        <button className='no-background' onClick={onToggleAddList}><CloseIcon></CloseIcon></button>
+                        <button className='no-background' onClick={onToggleAddList}><CloseIcon /></button>
                     </div>
                 </form>
             </section>
@@ -66,7 +66,6 @@ class _AddList extends React.Component {
         );
     }
 }
-
 
 
 function mapStateToProps({ boardModule }) {

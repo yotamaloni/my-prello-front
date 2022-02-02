@@ -37,7 +37,11 @@ export function ListActionsMenu({ onToggleListActions, group, board, updateBoard
         <div className="actions-container">
             <div className='actions-header'>
                 <div className='actions-title'>List actions</div>
-                <div className='actions-title'><button className='close-actions-btn' onClick={onToggleListActions}><CloseIcon fontSize="small" sx={{ color: '#172b4d' }}></CloseIcon></button></div>
+                <div className='actions-title'>
+                    <button className='close-actions-btn' onClick={onToggleListActions}>
+                        <CloseIcon fontSize="small" sx={{ color: '#172b4d' }}></CloseIcon>
+                    </button>
+                </div>
             </div>
             <div className="actions">
                 <div>

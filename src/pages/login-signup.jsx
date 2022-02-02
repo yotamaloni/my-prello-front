@@ -1,10 +1,9 @@
-import { userService } from '../services/user.service.js'
-
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+
 import { onLogin, onSignup } from '../store/user.action.js'
 
+import { userService } from '../services/user.service.js'
 
 class _LoginSignup extends React.Component {
     state = {
@@ -47,7 +46,7 @@ class _LoginSignup extends React.Component {
     render() {
         const { fullname, username, password, isLogin } = this.state
         return (
-            <section  className='container'>
+            <section className='container'>
                 <h1 className='Header'>Prello</h1>
                 <div className='log-container'>
                     <form onSubmit={(ev) => {
@@ -94,9 +93,6 @@ class _LoginSignup extends React.Component {
                                 <button type='submit' className='main-button'>Sign up</button>
                             </section>
                         }
-
-
-                        {/* <button type='submit'>Submit</button> */}
                     </form >
                     <div className='toggle-login'>
                         <p>{!isLogin ? 'Already have an account?' : 'Don\'t have an account?'}

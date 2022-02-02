@@ -1,14 +1,10 @@
 import React from 'react'
 
-import MapsUgcOutlinedIcon from '@mui/icons-material/MapsUgcOutlined';
 import SubjectOutlinedIcon from '@mui/icons-material/SubjectOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
-import ChatBubbleOutlineOutlinedIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 
-import { TimeSince } from './time-since.jsx'
-import { MemberIcon } from '../cmps/member-icon.jsx'
-
+import { MemberIcon } from './member-icon.jsx'
 import { getDateString } from './task-info.jsx'
 
 
@@ -84,18 +80,3 @@ export class TaskPreviewInfo extends React.Component {
         )
     }
 }
-
-
-
-
-
-
-
-
-// <div className='notes flex default-gap'>
-//     <SubjectOutlinedIcon />
-//     <div className='comments'>
-//         <MapsUgcOutlinedIcon />
-//         <div>{comments.length}</div>
-//     </div>
-// </div>

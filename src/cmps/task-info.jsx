@@ -11,11 +11,11 @@ import SegmentOutlinedIcon from '@mui/icons-material/SegmentOutlined';
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 import TocOutlinedIcon from '@mui/icons-material/TocOutlined';
-// import { getDate } from 'date-fns';
-import { boardService } from '../services/board.service.js'
+
+import { utilService } from '../services/util.service'
+
 import { TimeSince } from './time-since.jsx'
 import { MemberIcon } from '../cmps/member-icon.jsx'
-import { utilService } from '../services/util.service.js'
 
 
 
@@ -31,28 +31,23 @@ class _TaskInfo extends React.Component {
         isDescriptionOpen: null,
         isActivityOpen: null
     }
-    guest = {
-        "_id": "guest123",
+    GUEST = {
+        "_id": utilService.makeId(),
         "username": "Guest",
         "password": "123",
         "fullname": "Guest",
         "color": "#00c2e0",
-        "initials": "G",
         "isAdmin": false,
     }
 
     async componentDidMount() {
-
         this.setTaskInfo()
     }
 
     setTaskInfo = async () => {
 
-        const { boardId, groupId, taskId } = this.props
-        const board = await boardService.getBoardById(this.props.boardId)
+        const { board, task } = this.props
         this.setState({ board })
-
-        const task = await boardService.getTaskById(boardId, groupId, taskId)
         this.setState({ task })
 
         const description = task.description
@@ -65,8 +60,6 @@ class _TaskInfo extends React.Component {
 
 
     componentDidUpdate(prevProps, prevState) {
-        // console.log('prevProps.task !== this.props.task:', prevProps.task !== this.props.task);
-
         if (prevProps.task !== this.props.task) {
             this.setTaskInfo()
         }
@@ -76,9 +69,9 @@ class _TaskInfo extends React.Component {
     onToggleDateCheckbox = () => {
         const isDateCheckbox = !(this.state.isDateCheckbox)
         this.setState({ isDateCheckbox })
-        const { task, } = this.props
+        const { task, board } = this.props
         task.dueDate.completed = isDateCheckbox
-        this.updateTaskInBoard(task)
+        this.props.updateBoard({ ...board })
     }
 
     onHandleChange = ({ target }) => {
@@ -88,18 +81,17 @@ class _TaskInfo extends React.Component {
     }
 
     submitDescription = (ev) => {
-        // ev.preventDefault()
-        const { task } = this.props
+        const { task, board } = this.props
         task.description = this.state.description
-        this.updateTaskInBoard(task)
-        this.props.setTaskDetails({ ...task })
+        this.props.updateBoard({ ...board })
         this.setState({ isDescriptionOpen: false })
     }
+
     submitActivity = (ev) => {
         ev.stopPropagation()
         const { task, board } = this.props
         const { user } = this.props
-        const byMember = user?.username ? user : this.guest
+        const byMember = user?.username ? user : this.GUEST
         const activity = {
             byMember,
             createdAt: Date.now(),
@@ -115,24 +107,19 @@ class _TaskInfo extends React.Component {
     onOpenModalField = (field) => {
         this.setState({ [field]: true })
     }
+
     onCloseModalField = (field) => {
         this.setState({ [field]: false })
     }
 
-    updateTaskInBoard = (task) => {
-        const { board, groupId } = this.props
-        const group = board.groups.find(currGroup => currGroup.id === groupId)
-        const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
-        group.tasks[taskIdx] = task
-        this.props.updateBoard({ ...board })
-    }
 
     render() {
         const { task, board } = this.props
         let { description, activity } = this.state
-        if (!board || !task) return <div>Loading...</div>
-        const activities = board.activities.filter((activity) => activity.taskId === task.id)
 
+        if (!board || !task) return <div>Loading...</div>
+
+        const activities = board.activities.filter((activity) => activity.taskId === task.id)
 
         if (description === null && this.state.task.description) description = this.state.task.description
         else if (description === null) description = ''
@@ -142,7 +129,6 @@ class _TaskInfo extends React.Component {
         if (task.dueDate) {
             isOverDue = !isDateCheckbox && task.dueDate.time < Date.now()
         }
-        const classNameDueDate = ''
 
         const labels = task.labels
         let taskLabelsIds = []
@@ -151,7 +137,8 @@ class _TaskInfo extends React.Component {
             taskLabelsIds = labels.map((currLabel => currLabel.id))
             labelsToDisplay = board.labels.filter((currLabel => taskLabelsIds.includes(currLabel.id)))
         }
-        const { checklists, dueDate } = task
+
+        const { dueDate } = task
         const date = dueDate?.time ? getDateString(dueDate.time) : ''
 
         const taskMembers = task.members || []
@@ -160,6 +147,7 @@ class _TaskInfo extends React.Component {
         return (
             <div className='info'>
 
+                {/******Members**************************************************************************************/}
 
                 {taskMembers?.length ?
                     <React.Fragment>
@@ -176,6 +164,10 @@ class _TaskInfo extends React.Component {
                     :
                     <React.Fragment></React.Fragment>
                 }
+
+
+                {/******Labels**************************************************************************************/}
+
                 <div className='labels sec-container info-child'>
                     <h3 className='config-title'>Labels</h3>
                     <ul className="labels-list clean-list">
@@ -190,6 +182,9 @@ class _TaskInfo extends React.Component {
                         </li>
                     </ul>
                 </div>
+
+                {/******Due Date**************************************************************************************/}
+
                 {
                     date &&
                     <React.Fragment>
@@ -209,6 +204,9 @@ class _TaskInfo extends React.Component {
                         </div>
                     </React.Fragment>
                 }
+
+                {/******Description**************************************************************************************/}
+
 
                 <div className='description sec-container info-child'>
                     <SegmentOutlinedIcon className='activity-icon info-icon' />
@@ -242,36 +240,7 @@ class _TaskInfo extends React.Component {
                     </div>
                 </div>
 
-
-                {/* <div className='check-list sec-container info-child'>
-                    <CheckBoxOutlinedIcon />
-                    <div className='check-list-input-container'>
-                        <div className='info-title'>CheckList</div>
-                        {isDescriptionOpen ?
-                            (<form className="add-desc-form">
-                                <textarea
-                                    placeholder='Add more detailed description...'
-                                    onChange={this.onHandleChange}
-                                    onBlur={this.submitDescription}
-                                    autoComplete='off'
-                                    name='description'
-                                    value={description} />
-                                <div className='config'>
-                                    <button onClick={this.submitDescription} className='add-btn' type="submit" >Save</button>
-                                    <button onClick={() => {
-                                        this.onCloseModalField('isDescriptionOpen')
-                                    }} className='add-btn' type="submit" >X</button>
-                                </div>
-                            </form>)
-                            :
-                            <div onClick={() => {
-                                this.onOpenModalField('isDescriptionOpen')
-                            }
-                            }>{description ? description : 'Add more detailed description...'}</div>
-
-                        }
-                    </div>
-                </div> */}
+                {/******Add Activity**************************************************************************************/}
 
                 <div className='activity sec-container info-child'>
                     <TocOutlinedIcon className='activity-icon info-icon' />
@@ -284,9 +253,7 @@ class _TaskInfo extends React.Component {
                             onFocus={() => {
                                 this.onOpenModalField('isActivityOpen')
                             }}
-                            // onBlur={() => {
-                            //     this.onCloseModalField('isActivityOpen')
-                            // }}
+
                             autoComplete='off'
                             name='activity'
                             value={activity} />
@@ -299,6 +266,8 @@ class _TaskInfo extends React.Component {
                         }
                     </div>
                 </div>
+
+                {/******Activities List**************************************************************************************/}
 
                 <div className='activities-list-container info-child'>
                     <ul className="activities-list clean-list">
@@ -321,17 +290,11 @@ class _TaskInfo extends React.Component {
     }
 }
 
-
-
-
-
 function mapStateToProps({ boardModule, userModule }) {
 
     return {
         board: boardModule.board,
         user: userModule.user,
-
-
     }
 }
 
@@ -341,38 +304,6 @@ const mapDispatchToProps = {
 
 
 export const TaskInfo = connect(mapStateToProps, mapDispatchToProps)(_TaskInfo)
-
-
-
-
-
-
-
-
-
-{/* {checklists &&
-                    <React.Fragment>
-                        <ul className="clean-list">
-                            {checklists.map((checklist => {
-                                return <li key={checklist.id} className='sec-container'>
-                                    <CheckBoxOutlinedIcon className='' />
-                                    <div>
-                                        <div className='info-title'>{checklist.title}</div>
-                                    </div>
-                                </li>
-                            }))}
-                        </ul>
-                    </React.Fragment>
-                } */}
-
-
-
-
-
-
-
-
-
 
 
 export function getDateString(dueDate) {

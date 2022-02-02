@@ -2,10 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
+
 import { updateBoard } from '../store/board.action.js'
 
 import { BoardGroup } from './board-group.jsx'
-import { Timer3SelectSharp } from '@mui/icons-material'
 
 class _BoardGroupList extends React.Component {
 
@@ -17,20 +17,19 @@ class _BoardGroupList extends React.Component {
         this.setGroups()
     }
 
-    componentDidUpdate(prevProps){
-        if(prevProps.board!==this.props.board){
-        this.setGroups()
+    componentDidUpdate(prevProps) {
+        if (prevProps.board !== this.props.board) {
+            this.setGroups()
         }
     }
 
-    setGroups=()=>{
+    setGroups = () => {
         const { board } = this.props
         const { groups } = board
         this.setState({ groups })
     }
 
     onDragEnd = (result) => {
-        const { groups } = this.state
         const { source, destination, type } = result
         if (!destination) return
         if (
@@ -77,9 +76,11 @@ class _BoardGroupList extends React.Component {
     }
 
     render() {
-        const { boardId, removeGroup, removeAllTasks, removeTask, copyList, board, updateBoard } = this.props
+        const { board, updateBoard } = this.props
         if (!board) return <div>Loading...</div>
+
         const groups = this.state.groups || board.groups
+
         if (!groups) return <div>Loading...</div>
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
@@ -103,11 +104,6 @@ class _BoardGroupList extends React.Component {
                                                     updateGroupInState={this.updateGroupInState}
                                                     updateBoard={updateBoard}
                                                     group={group}
-                                                    boardId={boardId}
-                                                    removeGroup={removeGroup}
-                                                    removeAllTasks={removeAllTasks}
-                                                    removeTask={removeTask}
-                                                    copyList={copyList}
                                                 />
                                             </li>
                                         )}

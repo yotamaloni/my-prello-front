@@ -1,12 +1,14 @@
 import React from 'react'
+
 import { connect } from 'react-redux'
-import { updateTask, updateBoard } from '../store/board.action.js'
+
 import { loadUsers, showMsg } from '../store/user.action.js'
+import { updateBoard } from '../store/board.action.js'
+
 import DoneIcon from '@mui/icons-material/Done';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 import { MemberIcon } from '../cmps/member-icon.jsx'
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-import { userService } from '../services/user.service.js';
 
 class _UsersModal extends React.Component {
     state = {
@@ -39,17 +41,6 @@ class _UsersModal extends React.Component {
         }));
         this.loadUsers({ txt: value })
     };
-
-    // submit = (value) => {
-    //     const txt = value
-    //     const membersToShow = this.props.board.members.filter((member) => {
-    //         return (member.fullname.toLowerCase().includes(txt.toLowerCase())
-    //             ||
-    //             member.username.toLowerCase().includes(txt.toLowerCase()))
-    //     })
-    //     this.setState({ membersToShow })
-    // };
-
 
     toggleMemberToTask = (member) => {
         const { board } = this.props

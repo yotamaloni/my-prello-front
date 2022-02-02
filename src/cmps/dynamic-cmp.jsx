@@ -21,6 +21,6 @@ export function DynamicCmp(props) {
       return <TaskCover {...props} />;
 
     default:
-      return <React.Fragment>NOT FOUNT 😐 </React.Fragment>;
+      return <React.Fragment>NOT FOUN 😐 </React.Fragment>;
   }
 }

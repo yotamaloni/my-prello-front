@@ -1,18 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 import { connect } from 'react-redux'
+
 import { onLogout } from '../store/user.action.js'
 
-
-import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNoneOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
 
-import { NavLink } from 'react-router-dom'
-
-import { userService } from '../services/user.service.js'
 import { SearchInput } from './search-input.jsx'
 import { MemberIcon } from '../cmps/member-icon.jsx'
 
@@ -23,7 +20,6 @@ class _AppHeader extends React.Component {
 
     onLogoutUser = () => {
         this.props.onLogout()
-        // this.props.history.push('/login-signup')
     }
 
     render() {

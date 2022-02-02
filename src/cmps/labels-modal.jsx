@@ -1,47 +1,36 @@
 
 import React from 'react'
-import DoneIcon from '@mui/icons-material/Done';
-import CloseIcon from '@mui/icons-material/Close';
-import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
-
-
 
 import { connect } from 'react-redux'
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-
-
 
 import { updateBoard } from '../store/board.action.js'
 
-
+import DoneIcon from '@mui/icons-material/Done';
+import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
+import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 class _LabelsModal extends React.Component {
     inputRef = React.createRef();
 
 
     state = {
-        labels: this.props.task?.labels || [],
+        // labels: this.props.task?.labels || [],
         isModalOpen: false,
         editLabel: null,
         txt: ''
     }
 
     onSetLabel = (chosenLabel) => {
-        let { labels } = this.state
+        let labels = this.props.task.labels || []
         const labelsIdx = labels.findIndex(label => label.id === chosenLabel.id)
         if (labelsIdx === -1) {
             labels.push(chosenLabel)
         } else {
             labels.splice(labelsIdx, 1)
         }
-        this.setState({ labels: [...labels] })
-        const { task, groupId, board } = this.props
-        task.labels = [...labels]
-        const group = board.groups.find(currGroup => currGroup.id === groupId)
-        const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
-        group.tasks[taskIdx] = task
+        const { task, board } = this.props
+        task.labels = labels
         this.props.updateBoard({ ...board })
-        this.props.setTaskDetails(task)
     }
 
     handleChange = ({ target }) => {
@@ -54,33 +43,16 @@ class _LabelsModal extends React.Component {
 
     onSaveLabelTxt = (ev) => {
         ev.preventDefault()
-        const { txt, editLabel, labels } = this.state
+        const { txt, editLabel } = this.state
         if (!editLabel) return
         editLabel.txt = txt
+        const { board, task } = this.props
+        const { labels } = board
         const updatedLabels = labels.map((label) => label.id === editLabel.id ? editLabel : label)
-        this.setState({ labels: [...updatedLabels] })
-        const { task, groupId, board } = this.props
-        task.labels = [...updatedLabels]
-        const group = board.groups.find(currGroup => currGroup.id === groupId)
-        const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
-        group.tasks[taskIdx] = task
-        const labelInBoardIdx = board.labels.findIndex(currLabel => currLabel.id === editLabel.id)
-        board.labels[labelInBoardIdx].txt = txt
+        board.labels = updatedLabels
         this.props.updateBoard({ ...board })
-        this.props.setTaskDetails(task)
         this.setState({ txt: '', editLabel: null })
     }
-
-    // updateTaskAndBoard = (updatedLabels) => {
-    //     this.setState({ labels: [...updatedLabels] })
-    //     const { task, groupId, board } = this.props
-    //     task.labels = [...updatedLabels]
-    //     const group = board.groups.find(currGroup => currGroup.id === groupId)
-    //     const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
-    //     group.tasks[taskIdx] = task
-    //     this.props.updateBoard({ ...board })
-    //     this.props.setTaskDetails(task)
-    // }
 
     onSetEditLabel = (chosenLabel) => {
         const editLabel = chosenLabel
@@ -89,10 +61,10 @@ class _LabelsModal extends React.Component {
     }
     render() {
         const { txt } = this.state
-        const { board } = this.props
+        const { board, task } = this.props
         const boardLabels = board.labels
-        const { labels } = this.state
-        const taskLabelsIds = labels.map((label => label.id))
+        const taskLabels = task.labels || []
+        const taskLabelsIds = taskLabels.map((label => label.id))
         return (
             <div className='task-modal'>
                 <div className='header-container'>
@@ -138,7 +110,6 @@ class _LabelsModal extends React.Component {
                                 ev.preventDefault()
                                 this.onSaveLabelTxt(ev)
                             }}>
-
                                 <input className='edit-input'
                                     ref={this.inputRef}
                                     placeholder='Edit...'
@@ -147,18 +118,10 @@ class _LabelsModal extends React.Component {
                                     name='txt'
                                     value={txt} />
                                 <div className='config-activity'>
-                                    {/* <button onClick={(ev) => {
-                                        ev.preventDefault()
-                                        this.onSaveLabelTxt(ev)
-                                    }} className='save-label-btn'>Save</button> */}
+
                                 </div>
                             </form>
-
                         </div>
-
-
-
-
                     </li>
                 </ul>
 

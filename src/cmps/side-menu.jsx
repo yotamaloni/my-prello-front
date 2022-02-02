@@ -1,18 +1,18 @@
 
-import React from 'react'
+// import React from 'react'
 
 
 
-export class SideMenu extends React.Component {
+// export class SideMenu extends React.Component {
 
-    render() {
+//     render() {
 
-        return (
-            <section>
-                <p>Side menu</p>
-                <button className='remove-btn' onClick={this.props.toggleMenuModal}>X</button>
+//         return (
+//             <section>
+//                 <p>Side menu</p>
+//                 <button className='remove-btn' onClick={this.props.toggleMenuModal}>X</button>
 
-            </section>
-        )
-    }
-}
+//             </section>
+//         )
+//     }
+// }

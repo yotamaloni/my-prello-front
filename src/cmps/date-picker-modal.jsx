@@ -4,10 +4,9 @@ import DoneIcon from '@mui/icons-material/Done';
 
 import { connect } from 'react-redux'
 
-
 import { updateBoard } from '../store/board.action.js'
 
-import { StaticDatePicker } from './task-dates.jsx'
+import { TaskDates } from './task-dates.jsx'
 
 
 
@@ -20,9 +19,10 @@ class _DatePickerModal extends React.Component {
         return (
             <div className='task-modal date-picker-modal'>
 
-                <StaticDatePicker boardId={this.props.boardId} groupId={this.props.groupId} task={this.props.task}
+                <TaskDates
+                    task={this.props.task}
                     closeModal={this.props.closeModal}
-                    setTaskDetails={this.props.setTaskDetails}
+
                 />
             </div >
         )

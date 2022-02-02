@@ -2,15 +2,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+
 import StarIcon from '@mui/icons-material/Star';
+import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
+
 import { boardService } from "../services/board.service.js"
 import { socketService } from "../services/socket.service.js"
 
-import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import { updateBoard, loadBoard } from '../store/board.action.js'
 
-// import loader from '../img/grid.svg'
 import { AppHeader } from '../cmps/app-header.jsx'
 import { BoardPreview } from '../cmps/board-preview.jsx'
 import { CreateBoardModal } from '../cmps/crate-board-modal.jsx'
@@ -25,15 +25,11 @@ class _BoardApp extends React.Component {
     async componentDidMount() {
         this.loadBoards()
         await this.props.loadBoard(null)
-
-
         const boards = "allBoards"
-
         socketService.emit('boards-watch', boards)
         socketService.on('boards-update', () => {
             this.loadBoards()
         })
-
     }
 
     componentDidUpdate(prevProps) {
@@ -44,7 +40,6 @@ class _BoardApp extends React.Component {
 
 
     componentWillUnmount() {
-        // socket.emit('taskChanged',task)
         socketService.off('boards-update')
     }
 
@@ -75,9 +70,11 @@ class _BoardApp extends React.Component {
         if (this.state.isCreateBoardModalOpen) return
         this.setState({ isCreateBoardModalOpen: true })
     }
+    
     onCloseCreateBoardModal = () => {
         this.setState({ isCreateBoardModalOpen: false })
     }
+
     onToggleBoardStar = (board) => {
         const isStarred = board.isStarred ? false : true
         board.isStarred = isStarred
