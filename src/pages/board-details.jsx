@@ -36,14 +36,6 @@ class _BoardDetails extends React.Component {
         })
     }
 
-    componentDidUpdate(prevProps) {
-        const { boardId } = this.props.match.params;
-        if (prevProps.filterBy !== this.props.filterBy) {
-            this.props.loadBoard(boardId)
-            console.log('updated')
-        }
-    }
-
     componentWillUnmount() {
         socketService.off('board-update')
     }
@@ -97,7 +89,6 @@ class _BoardDetails extends React.Component {
                         <BoardGroupList
                             groups={groups}
                             updateBoard={updateBoard}
-                            boardId={board._id}
                         />
 
                         {!isAddListOpen ?
@@ -117,7 +108,7 @@ class _BoardDetails extends React.Component {
                             :
                             <React.Fragment>
                                 <div className='list-composer'>
-                                    <AddList board={board} boardId={board._id} onToggleAddList={this.onToggleAddList} />
+                                    <AddList board={board} onToggleAddList={this.onToggleAddList} />
                                 </div>
                             </React.Fragment>
                         }

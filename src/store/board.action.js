@@ -30,16 +30,6 @@ export function updateBoard(board) {
     }
 }
 
-export function removeGroup(boardId, groupId) {
-    return async (dispatch) => {
-        try {
-            await boardService.removeGroup(boardId, groupId)
-            dispatch({ type: 'REMOVE_GROUP', groupId })
-        } catch (err) {
-            console.log('Cannot remove group', err)
-        }
-    }
-}
 
 export function setFilter(filterBy) {
     return (dispatch) => {

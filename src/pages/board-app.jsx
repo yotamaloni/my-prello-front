@@ -14,6 +14,7 @@ import { updateBoard, loadBoard } from '../store/board.action.js'
 import { AppHeader } from '../cmps/app-header.jsx'
 import { BoardPreview } from '../cmps/board-preview.jsx'
 import { CreateBoardModal } from '../cmps/crate-board-modal.jsx'
+import { filter } from 'lodash';
 
 
 
@@ -27,9 +28,24 @@ class _BoardApp extends React.Component {
         await this.props.loadBoard(null)
         const boards = "allBoards"
         socketService.emit('boards-watch', boards)
+        // socketService.setup();
         socketService.on('boards-update', () => {
             this.loadBoards()
         })
+        socketService.on('remove-board', (boardId) => {
+            let { boards } = this.state
+            boards = boards.filter(currBoard => {
+                return boardId !== currBoard._id
+            }
+            )
+            this.setState({ boards })
+        })
+
+
+
+        return () => {
+            socketService.terminate();
+        }
     }
 
     componentDidUpdate(prevProps) {
@@ -41,6 +57,7 @@ class _BoardApp extends React.Component {
 
     componentWillUnmount() {
         socketService.off('boards-update')
+        socketService.off('remove-board')
     }
 
 
@@ -48,7 +65,6 @@ class _BoardApp extends React.Component {
     onCreateBoard = async (board) => {
         try {
             await boardService.addBoard(board)
-            console.log('board:', board);
             socketService.emit('boards-update')
             this.loadBoards()
         } catch (err) {
@@ -70,17 +86,26 @@ class _BoardApp extends React.Component {
         if (this.state.isCreateBoardModalOpen) return
         this.setState({ isCreateBoardModalOpen: true })
     }
-    
+
     onCloseCreateBoardModal = () => {
         this.setState({ isCreateBoardModalOpen: false })
     }
 
-    onToggleBoardStar = (board) => {
+    onToggleBoardStar = (ev, board) => {
+        ev.preventDefault()
         const isStarred = board.isStarred ? false : true
         board.isStarred = isStarred
         this.props.updateBoard({ ...board })
     }
 
+    onRemoveBoard = async (ev, board) => {
+        ev.preventDefault()
+        try {
+            await boardService.removeBoard(board._id)
+        } catch (err) {
+            console.log('Cannot remove board ', err);
+        }
+    }
 
     render() {
         const { boards, isCreateBoardModalOpen } = this.state
@@ -121,6 +146,9 @@ class _BoardApp extends React.Component {
                                         <StarBorderOutlinedIcon
                                             onClick={(ev) => { this.onToggleBoardStar(ev, board) }}
                                             className="star" style={{ color: starColor }} />
+                                    }
+                                    {
+                                        <div className="remove-btn" onClick={(ev) => this.onRemoveBoard(ev, board)}>X</div>
                                     }
                                 </li>
                             </Link>

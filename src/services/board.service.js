@@ -13,7 +13,8 @@ export const boardService = {
     query,
     getBoardById,
     addBoard,
-    saveBoard
+    saveBoard,
+    removeBoard
 }
 
 const GUEST = {
@@ -63,4 +64,9 @@ async function saveBoard(board) {
     const savedBoard = await httpService.put(`board/${board._id}`, board)
     socketService.emit('board-update', board)
     return
+}
+
+
+async function removeBoard(boardId) {
+    return httpService.delete(`board/${boardId}`)
 }

@@ -16,7 +16,6 @@ function createSocketService() {
       socket = io(baseUrl)
     },
     on(eventName, cb) {
-
       socket.on(eventName, cb)
     },
     off(eventName, cb = null) {
