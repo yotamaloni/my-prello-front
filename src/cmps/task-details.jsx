@@ -124,10 +124,11 @@ class _TaskDetails extends React.Component {
 
               <TaskBtns
                 group={group}
-                groupId={group.id}
+                // groupId={group.id}
                 task={task}
-                updateTaskInCmp={this.updateTaskInCmp}
-                setTaskDetails={this.onSetTaskDetails} />
+                // updateTaskInCmp={this.updateTaskInCmp}
+                // setTaskDetails={this.onSetTaskDetails} 
+                />
             </div>
 
           </div>

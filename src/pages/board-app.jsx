@@ -28,24 +28,22 @@ class _BoardApp extends React.Component {
         await this.props.loadBoard(null)
         const boards = "allBoards"
         socketService.emit('boards-watch', boards)
-        // socketService.setup();
         socketService.on('boards-update', () => {
             this.loadBoards()
         })
-        socketService.on('remove-board', (boardId) => {
-            let { boards } = this.state
-            boards = boards.filter(currBoard => {
-                return boardId !== currBoard._id
-            }
-            )
-            this.setState({ boards })
-        })
-
-
-
-        return () => {
-            socketService.terminate();
-        }
+        // socketService.on('remove-board', (boardId) => {
+        //     let { boards } = this.state
+        //     boards = boards.filter(currBoard => {
+        //         return boardId !== currBoard._id
+        //     }
+        //     )
+        //     this.setState({ boards })
+        // })
+        // socketService.on('add-board', (board) => {
+        //     let { boards } = this.state
+        //     boards = [...boards, board]
+        //     this.setState({ boards })
+        // })
     }
 
     componentDidUpdate(prevProps) {
@@ -54,10 +52,10 @@ class _BoardApp extends React.Component {
         }
     }
 
-
     componentWillUnmount() {
         socketService.off('boards-update')
-        socketService.off('remove-board')
+        // socketService.off('remove-board')
+        // socketService.off('add-board')
     }
 
 
@@ -66,7 +64,8 @@ class _BoardApp extends React.Component {
         try {
             await boardService.addBoard(board)
             socketService.emit('boards-update')
-            this.loadBoards()
+            // socketService.emit('add-board')
+            // this.loadBoards()
         } catch (err) {
             console.log('Problem to add board', err);
         }
@@ -102,6 +101,7 @@ class _BoardApp extends React.Component {
         ev.preventDefault()
         try {
             await boardService.removeBoard(board._id)
+            socketService.emit('boards-update')
         } catch (err) {
             console.log('Cannot remove board ', err);
         }
@@ -148,7 +148,7 @@ class _BoardApp extends React.Component {
                                             className="star" style={{ color: starColor }} />
                                     }
                                     {
-                                        <div className="remove-btn" onClick={(ev) => this.onRemoveBoard(ev, board)}>X</div>
+                                        <div style={{ color: '#fff' }} className="remove-btn" onClick={(ev) => this.onRemoveBoard(ev, board)}>x</div>
                                     }
                                 </li>
                             </Link>

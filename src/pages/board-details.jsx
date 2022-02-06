@@ -38,6 +38,7 @@ class _BoardDetails extends React.Component {
 
     componentWillUnmount() {
         socketService.off('board-update')
+        socketService.off('board-watch')
     }
 
     onToggleMenuModal = () => {
