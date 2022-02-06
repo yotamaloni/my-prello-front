@@ -26,6 +26,8 @@ export class BoardGroup extends React.Component {
         this.setState({ groupTitle: title })
     }
 
+   
+
     onToggleAddTask = () => {
         const isAddTaskOpen = this.state.isAddTaskOpen ? '' : 'open'
         this.setState({ isAddTaskOpen })
@@ -47,16 +49,13 @@ export class BoardGroup extends React.Component {
 
     onSubmitTitle = (ev) => {
         ev.preventDefault()
-        const { group, board, updateBoard } = this.props
-        const groupToUpdate = { ...group, title: this.state.groupTitle }
-        const groupsToUpdate = board.groups.map((currGroup) => currGroup.id === groupToUpdate.id ? groupToUpdate : currGroup)
-        const boardToUpdate = { ...board, groups: groupsToUpdate }
-        updateBoard({ ...boardToUpdate })
+        const { group, board } = this.props
+        group.title = this.state.groupTitle
+        this.props.updateBoard({ ...board })
     }
 
     render() {
         const loader = require('../img/loader.gif')
-
         const { group, board, updateBoard } = this.props
         const { tasks } = group
         const { isAddTaskOpen, isListActionsOpen, groupTitle } = this.state

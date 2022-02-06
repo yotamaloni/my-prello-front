@@ -21,11 +21,12 @@ class _BoardGroupList extends React.Component {
         if (prevProps.board !== this.props.board) {
             this.setGroups()
         }
+
     }
 
     setGroups = () => {
         const { board } = this.props
-        const { groups } = board
+        const groups = [...board.groups]
         this.setState({ groups })
     }
 
@@ -76,12 +77,11 @@ class _BoardGroupList extends React.Component {
     }
 
     render() {
-        const { board, updateBoard } = this.props
+        const { board } = this.props
         if (!board) return <div>Loading...</div>
 
         const groups = this.state.groups || board.groups
 
-        if (!groups) return <div>Loading...</div>
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <Droppable
@@ -93,6 +93,8 @@ class _BoardGroupList extends React.Component {
                         <ul className='group-list clean-list' {...provided.droppableProps}
                             ref={provided.innerRef}>
                             {groups.map((group, index) => {
+                                console.log("🟡 ~ group", group)
+
                                 return (
                                     <Draggable key={group.id} draggableId={group.id} index={index}>
                                         {(provided) => (
@@ -102,7 +104,7 @@ class _BoardGroupList extends React.Component {
                                                 <BoardGroup
                                                     board={board}
                                                     updateGroupInState={this.updateGroupInState}
-                                                    updateBoard={updateBoard}
+                                                    updateBoard={this.props.updateBoard}
                                                     group={group}
                                                 />
                                             </li>
@@ -125,7 +127,6 @@ class _BoardGroupList extends React.Component {
 function mapStateToProps({ boardModule }) {
     return {
         board: boardModule.board
-
     }
 
 }

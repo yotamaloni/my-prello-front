@@ -31,14 +31,13 @@ class _BoardDetails extends React.Component {
         this.props.loadBoard(boardId)
 
         socketService.emit('board-watch', boardId)
-        socketService.on('board-update', board => {
-            this.props.loadBoard(board._id)
+        socketService.on('board-update', () => {
+            this.props.loadBoard(boardId)
         })
     }
 
     componentWillUnmount() {
         socketService.off('board-update')
-        socketService.off('board-watch')
     }
 
     onToggleMenuModal = () => {
@@ -66,11 +65,8 @@ class _BoardDetails extends React.Component {
     render() {
         const loader = require('../img/loader.gif')
         const { isMenuOpen, isAddListOpen, isFilterModalOpen } = this.state
-        const { board, updateBoard } = this.props
-        if (!board) return <div className='loader-page'><img className='loader' src={loader} /></div>
-        const { groups } = board
-
-        if (!board.title) return <div className='loader-page'><img className='loader' src={loader} /></div>
+        const { board } = this.props
+        if (!board || !board.title) return <div className='loader-page'><img className='loader' src={loader} /></div>
         const imgUrl = board.style.imgUrl || ''
         const backgroundColor = board.style.backgroundColor || '#29CCE5'
 
@@ -87,10 +83,7 @@ class _BoardDetails extends React.Component {
                 <div className='overflow-container'>
                     <div className='group-container flex default-gap'>
 
-                        <BoardGroupList
-                            groups={groups}
-                            updateBoard={updateBoard}
-                        />
+                        <BoardGroupList />
 
                         {!isAddListOpen ?
                             <React.Fragment>
@@ -141,7 +134,7 @@ function mapStateToProps({ boardModule }) {
 
 const mapDispatchToProps = {
     loadBoard,
-    updateBoard
+    updateBoard,
 };
 
 

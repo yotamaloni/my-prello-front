@@ -22,7 +22,7 @@ export function updateBoard(board) {
     return async (dispatch) => {
         try {
             await boardService.saveBoard(board)
-
+            console.log("🟡 IN updateBoard")
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
             console.log('Cannot update board', err)

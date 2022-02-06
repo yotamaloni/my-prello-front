@@ -5,7 +5,6 @@ const initialState = {
     filterBy: null
 
 }
-
 export function boardReducer(state = initialState, action) {
 
     let newState = state;

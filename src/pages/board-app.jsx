@@ -1,10 +1,6 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-
-import StarIcon from '@mui/icons-material/Star';
-import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 
 import { boardService } from "../services/board.service.js"
 import { socketService } from "../services/socket.service.js"
@@ -12,9 +8,8 @@ import { socketService } from "../services/socket.service.js"
 import { updateBoard, loadBoard } from '../store/board.action.js'
 
 import { AppHeader } from '../cmps/app-header.jsx'
-import { BoardPreview } from '../cmps/board-preview.jsx'
+import { BoardsList } from '../cmps/boards-list.jsx'
 import { CreateBoardModal } from '../cmps/crate-board-modal.jsx'
-import { filter } from 'lodash';
 
 
 
@@ -26,24 +21,19 @@ class _BoardApp extends React.Component {
     async componentDidMount() {
         this.loadBoards()
         await this.props.loadBoard(null)
-        const boards = "allBoards"
-        socketService.emit('boards-watch', boards)
-        socketService.on('boards-update', () => {
-            this.loadBoards()
+        socketService.on('remove-board', (boardId) => {
+            let { boards } = this.state
+            boards = boards.filter(currBoard => {
+                return boardId !== currBoard._id
+            }
+            )
+            this.setState({ boards })
         })
-        // socketService.on('remove-board', (boardId) => {
-        //     let { boards } = this.state
-        //     boards = boards.filter(currBoard => {
-        //         return boardId !== currBoard._id
-        //     }
-        //     )
-        //     this.setState({ boards })
-        // })
-        // socketService.on('add-board', (board) => {
-        //     let { boards } = this.state
-        //     boards = [...boards, board]
-        //     this.setState({ boards })
-        // })
+        socketService.on('add-board', (board) => {
+            let { boards } = this.state
+            boards = [...boards, board]
+            this.setState({ boards })
+        })
     }
 
     componentDidUpdate(prevProps) {
@@ -53,19 +43,14 @@ class _BoardApp extends React.Component {
     }
 
     componentWillUnmount() {
-        socketService.off('boards-update')
-        // socketService.off('remove-board')
-        // socketService.off('add-board')
+        socketService.off('remove-board')
+        socketService.off('add-board')
     }
-
-
 
     onCreateBoard = async (board) => {
         try {
             await boardService.addBoard(board)
-            socketService.emit('boards-update')
-            // socketService.emit('add-board')
-            // this.loadBoards()
+            socketService.emit('add-board')
         } catch (err) {
             console.log('Problem to add board', err);
         }
@@ -101,7 +86,7 @@ class _BoardApp extends React.Component {
         ev.preventDefault()
         try {
             await boardService.removeBoard(board._id)
-            socketService.emit('boards-update')
+            socketService.emit('remove-board')
         } catch (err) {
             console.log('Cannot remove board ', err);
         }
@@ -130,28 +115,10 @@ class _BoardApp extends React.Component {
                             }
                         </li>
                         {boards.reverse().map((board => {
-                            const starColor = board.isStarred ? 'gold' : '#95a0b3'
-                            const imgUrl = board.style.imgUrl || ''
-                            const backgroundColor = board.style.backgroundColor || '#29CCE5'
-                            return <Link className='board-link clean-link' to={`/board/${board._id}`}
-                                key={board._id}
-                                style={{ backgroundImage: `url(${imgUrl})`, backgroundColor: backgroundColor }} >
-                                <li>
-                                    <BoardPreview board={board} />
-                                    {board.isStarred ?
-                                        <StarIcon
-                                            onClick={(ev) => { this.onToggleBoardStar(ev, board) }}
-                                            className="star" style={{ color: 'gold', }} />
-                                        :
-                                        <StarBorderOutlinedIcon
-                                            onClick={(ev) => { this.onToggleBoardStar(ev, board) }}
-                                            className="star" style={{ color: starColor }} />
-                                    }
-                                    {
-                                        <div style={{ color: '#fff' }} className="remove-btn" onClick={(ev) => this.onRemoveBoard(ev, board)}>x</div>
-                                    }
-                                </li>
-                            </Link>
+                            return <BoardsList key={board._id} board={board}
+                                onToggleBoardStar={this.onToggleBoardStar}
+                                onRemoveBoard={this.onRemoveBoard}
+                            />
                         }))
 
                         }
@@ -161,26 +128,12 @@ class _BoardApp extends React.Component {
                 <div className='stared-board-container'>
                     <h3>Starred boards</h3>
                     <ul className='stared-board-list clean-list'>
-
                         {starredBoards.reverse().map((board => {
-                            const imgUrl = board.style.imgUrl || ''
-                            const backgroundColor = board.style.backgroundColor || '#29CCE5'
-                            return <Link className='board-link clean-link' to={`/board/${board._id}`}
-                                key={board._id}
-                                style={{ backgroundImage: `url(${imgUrl})`, backgroundColor: backgroundColor }} >
-                                <li>
-                                    <BoardPreview board={board} />
-                                    <StarIcon
-                                        onClick={(ev) => {
-                                            ev.preventDefault()
-                                            ev.stopPropagation()
-                                            this.onToggleBoardStar(board)
-                                        }}
-                                        className="star" style={{ color: 'gold', }} />
-                                </li>
-                            </Link>
+                            return <BoardsList key={board._id} board={board}
+                                onToggleBoardStar={this.onToggleBoardStar}
+                                onRemoveBoard={this.onRemoveBoard}
+                            />
                         }))
-
                         }
                     </ul>
                 </div>
@@ -189,15 +142,13 @@ class _BoardApp extends React.Component {
     }
 }
 
-function mapStateToProps({ boardModule, userModule }) {
+function mapStateToProps({ boardModule }) {
     return {
         board: boardModule.board,
-        user: userModule.user,
     }
 }
 
 const mapDispatchToProps = {
-
     updateBoard,
     loadBoard
 };
