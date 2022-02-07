@@ -121,14 +121,10 @@ class _TaskDetails extends React.Component {
                 task={task}
                 openModal={this.onOpenModal}
               />
-
               <TaskBtns
                 group={group}
-                // groupId={group.id}
                 task={task}
-                // updateTaskInCmp={this.updateTaskInCmp}
-                // setTaskDetails={this.onSetTaskDetails} 
-                />
+              />
             </div>
 
           </div>

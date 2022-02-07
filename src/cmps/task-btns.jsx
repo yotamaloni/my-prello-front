@@ -16,12 +16,7 @@ import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import HorizontalRuleOutlinedIcon from '@mui/icons-material/HorizontalRuleOutlined';
 
 
-import { LabelsModal } from './labels-modal.jsx'
-import { ChecklistModal } from './checklist-modal.jsx'
-import { DatePickerModal } from './date-picker-modal.jsx'
-import { CoverModal } from './cover-modal.jsx'
-import { DeleteModal } from './delete-modal.jsx'
-import { MembersModal } from './members-modal.jsx'
+import { DynamicModal } from './modal/dynamic-modal.jsx'
 
 
 class _TaskBtns extends React.Component {
@@ -42,19 +37,22 @@ class _TaskBtns extends React.Component {
     }
 
     render() {
-        const { task, groupId, group } = this.props
+        const MODAL_WIDTH = 304 + 'px'
+        const { task } = this.props
         const { modal, isArchiveOpen } = this.state
         return (
             <div className='flex column align-end task-btns-container'>
                 <h3 className='config-title'>Add to card</h3>
+
+
+                {/******MEMBERS**************************************************************************************/}
                 <div className='task-btn' onClick={() => this.onOpenModal('members')}>
                     <PersonOutlineOutlinedIcon sx={{ fontSize: '18px' }} />
-
-                    {/******MEMBERS**************************************************************************************/}
-
                     <div >Members</div>
                     {modal === 'members' && <React.Fragment>
-                        < MembersModal
+                        < DynamicModal
+                            width={MODAL_WIDTH}
+                            modal={modal}
                             task={task}
                             closeModal={this.closeModal}
                         />
@@ -67,7 +65,9 @@ class _TaskBtns extends React.Component {
                     <LabelOutlinedIcon sx={{ fontSize: '18px' }} />
                     <div >Labels</div>
                     {modal === 'labels' && <React.Fragment>
-                        <LabelsModal
+                        < DynamicModal
+                            width={MODAL_WIDTH}
+                            modal={modal}
                             task={task}
                             closeModal={this.closeModal}
                         />
@@ -76,13 +76,16 @@ class _TaskBtns extends React.Component {
 
                 {/******CheckList**************************************************************************************/}
 
-                <div className='task-btn' onClick={() => this.onOpenModal()}>
+                <div className='task-btn' onClick={() => this.onOpenModal('checklist')}>
                     <CheckBoxOutlinedIcon sx={{ fontSize: '18px' }} />
                     <div >CheckList</div>
                     {modal === 'checklist' && <React.Fragment>
-                        <ChecklistModal
+                        < DynamicModal
+                            width={MODAL_WIDTH}
+                            modal={modal}
                             task={task}
-                            closeModal={this.onCloseModal} />
+                            closeModal={this.closeModal}
+                        />
                     </React.Fragment>}
                 </div>
 
@@ -93,66 +96,75 @@ class _TaskBtns extends React.Component {
                 <div className='task-btn' onClick={() => this.onOpenModal('date')} >
                     <QueryBuilderOutlinedIcon sx={{ fontSize: '18px' }} />
                     <div >Dates</div>
-                    {modal === 'date' && <React.Fragment> <DatePickerModal
-                        task={task}
-                        closeModal={this.closeModal}
-                    /></React.Fragment>}
+                    {modal === 'date' &&
+                        <React.Fragment>
+                            < DynamicModal
+                                width={MODAL_WIDTH}
+                                modal={modal}
+                                task={task}
+                                closeModal={this.closeModal}
+                            />
+                        </React.Fragment>}
                 </div>
 
                 {/******Attachment**************************************************************************************/}
-
-
-                <div className='task-btn'>
+                <div className='task-btn' onClick={() => this.onOpenModal('attachment')}>
                     <AttachFileOutlinedIcon sx={{ fontSize: '18px' }} />
                     <div >Attachment</div>
+                    {modal === 'attachment' &&
+                        <React.Fragment>
+                            < DynamicModal
+                                width={MODAL_WIDTH}
+                                modal={modal}
+                                task={task}
+                                closeModal={this.closeModal}
+                            />
+                        </React.Fragment>}
                 </div>
-
                 {/******Cover**************************************************************************************/}
-
-
                 <div className='task-btn' onClick={() => this.onOpenModal('cover')}>
                     <PhotoSizeSelectActualOutlinedIcon sx={{ fontSize: '18px' }} />
                     <div >Cover</div>
-                    {modal === 'cover' && <React.Fragment> <CoverModal
-                        task={task}
-                        closeModal={this.closeModal}
-                    /></React.Fragment>}
+                    {modal === 'cover' &&
+                        <React.Fragment>
+                            < DynamicModal
+                                width={MODAL_WIDTH}
+                                modal={modal}
+                                task={task}
+                                closeModal={this.closeModal}
+                            />
+                        </React.Fragment>}
                 </div>
-
 
                 <h3 className='config-title'>Actions</h3>
 
                 {/******Archive**************************************************************************************/}
-
-
                 <div className='task-btn' onClick={this.onToggleDeleteModal}>
                     <Inventory2OutlinedIcon sx={{ fontSize: '18px' }} />
                     <div>Archive</div>
                 </div>
-
-
                 {isArchiveOpen && <React.Fragment>
-                    <div className='task-btn delete' onClick={() => this.onOpenModal('delete')}>
+                    <div className='task-btn delete' onClick={() => this.onOpenModal('remove')}>
                         <HorizontalRuleOutlinedIcon sx={{ fontSize: '18px' }} />
                         <div >Delete</div>
-                        {modal === 'delete' && <React.Fragment> <DeleteModal
-                            task={task}
-                            group={group}
-                            closeModal={this.closeModal}
-                        /></React.Fragment>}
+                        {modal === 'remove' &&
+                            <React.Fragment>
+                                < DynamicModal
+                                    width={MODAL_WIDTH}
+                                    modal={modal}
+                                    task={task}
+                                    closeModal={this.closeModal}
+                                />
+                            </React.Fragment>}
                     </div>
                 </React.Fragment>}
-
 
             </div >
         )
     }
 }
 
-
-
 function mapStateToProps({ boardModule }) {
-
     return {
         board: boardModule.board,
     }
@@ -161,6 +173,5 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
     updateBoard,
 };
-
 
 export const TaskBtns = connect(mapStateToProps, mapDispatchToProps)(_TaskBtns)

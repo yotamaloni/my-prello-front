@@ -3,10 +3,11 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { updateBoard } from '../store/board.action.js'
+import { updateBoard } from '../../store/board.action.js'
 
 import DoneIcon from '@mui/icons-material/Done';
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+
+import { ModalHeader } from './modal-header.jsx'
 
 
 class _CoverModal extends React.Component {
@@ -72,30 +73,18 @@ class _CoverModal extends React.Component {
             '#FF8ED4',
             '#344563',
         ]
-        const { task } = this.props
+        const { modal, closeModal, width } = this.props
         return (
-            <div className='cover-modal-container task-modal cover'>
-                <div className='header-container'>
-                    <div className='hidden'>
-                        <ClearOutlinedIcon />
-                    </div>
-                    <div className='title'>
-                        Cover
-                    </div>
-                    <div className='cancel'>
-                        <ClearOutlinedIcon onClick={(ev) => {
-                            ev.stopPropagation();
-                            this.props.closeModal()
-                        }} />
-                    </div>
+            <section className='modal cover-modal' style={{ width: width }}>
 
-                </div>
-                <div className='upper-section'>
-                    <div onClick={this.removeCover} className='cover-btn remove'>Remove Cover</div>
+                <ModalHeader modal={modal} closeModal={closeModal} />
+
+                <div onClick={this.removeCover} className='full-width-btn gray'>
+                    Remove Cover
                 </div>
 
                 <div className='cover-colors'>
-                    <h3 className='cover-title'>Colors</h3>
+                    <h4 className='cover-title'>Colors</h4>
                     <ul className='cover-color-list clean-list'>
                         {colors.map((color, index) => {
                             return <li onClick={() => {
@@ -104,16 +93,17 @@ class _CoverModal extends React.Component {
                         })}
                     </ul>
                 </div>
+
                 <div className='cover-input'>
-                    <h3 className='cover-title' >Attachment</h3>
+                    <h4 className='cover-title' >Attachment</h4>
                     <label htmlFor="upload" onChange={(ev) => {
                         this.setImgCover(ev)
-                    }} className='cover-btn upload'>Upload a cover image</label>
+                    }} className='full-width-btn gray'>Upload a cover image</label>
                     <input id="upload" className="file-input" type="file" onChange={(ev) => { this.setImgCover(ev) }} />
                 </div>
 
 
-            </div >
+            </section >
         )
     }
 }

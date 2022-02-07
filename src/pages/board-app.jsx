@@ -9,11 +9,13 @@ import { updateBoard, loadBoard } from '../store/board.action.js'
 
 import { AppHeader } from '../cmps/app-header.jsx'
 import { BoardsList } from '../cmps/boards-list.jsx'
-import { CreateBoardModal } from '../cmps/crate-board-modal.jsx'
+import { DynamicModal } from '../cmps/modal/dynamic-modal.jsx'
+
 
 
 
 class _BoardApp extends React.Component {
+
     state = {
         boards: null,
         isCreateBoardModalOpen: false
@@ -35,12 +37,6 @@ class _BoardApp extends React.Component {
             this.setState({ boards })
         })
     }
-
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps.boards !== this.props.boards) {
-    //         this.loadBoards()
-    //     }
-    // }
 
     componentWillUnmount() {
         socketService.off('remove-board')
@@ -71,7 +67,7 @@ class _BoardApp extends React.Component {
         this.setState({ isCreateBoardModalOpen: true })
     }
 
-    onCloseCreateBoardModal = () => {
+    closeCreateBoardModal = () => {
         this.setState({ isCreateBoardModalOpen: false })
     }
 
@@ -97,6 +93,7 @@ class _BoardApp extends React.Component {
         const loader = require('../img/loader.gif')
         if (!boards) return <div className='loader-page'><img className='loader' src={loader} /></div>
         const starredBoards = boards.filter((board) => board.isStarred)
+        const MODAL_WIDTH = 304 + 'px'
         return (
             <section className="board-app">
                 <AppHeader isBoardDetails={false} />
@@ -109,8 +106,12 @@ class _BoardApp extends React.Component {
                             <p>Create new board</p>
                             {isCreateBoardModalOpen &&
                                 <React.Fragment>
-                                    <CreateBoardModal addBoard={this.onCreateBoard}
-                                        onCloseModal={this.onCloseCreateBoardModal} />
+                                    < DynamicModal
+                                        width={MODAL_WIDTH}
+                                        modal={'create-board'}
+                                        addBoard={this.onCreateBoard}
+                                        closeModal={this.closeCreateBoardModal}
+                                    />
                                 </React.Fragment>
                             }
                         </li>

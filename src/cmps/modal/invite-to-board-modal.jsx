@@ -2,15 +2,17 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { loadUsers, showMsg } from '../store/user.action.js'
-import { updateBoard } from '../store/board.action.js'
+import { loadUsers, showMsg } from '../../store/user.action.js'
+import { updateBoard } from '../../store/board.action.js'
 
 import DoneIcon from '@mui/icons-material/Done';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
-import { MemberIcon } from '../cmps/member-icon.jsx'
+import { ModalHeader } from './modal-header.jsx'
+import { MemberIcon } from '../member-icon.jsx'
 
-class _UsersModal extends React.Component {
+class _InviteToBoardModal extends React.Component {
+    inputRef = React.createRef();
     state = {
         membersToShow: null,
         txt: '',
@@ -19,6 +21,7 @@ class _UsersModal extends React.Component {
 
     componentDidMount() {
         this.loadUsers()
+        this.inputRef.current.focus();
     }
 
     loadUsers = async (filterBy = null) => {
@@ -59,29 +62,18 @@ class _UsersModal extends React.Component {
     }
 
     render() {
-        const { closeModal, board } = this.props
+        const { closeModal, board, modal, width } = this.props
         const { txt, isShortedList } = this.state
         const membersIds = board.members.map((member) => member._id) || []
         const { membersToShow } = this.state
         return (
-            < section className='users-modal-container' >
-                <div className='header-container'>
-                    <div className='hidden'>
-                        <ClearOutlinedIcon />
-                    </div>
-                    <div className='title'>
-                        Members
-                    </div>
-                    <div className='cancel'>
-                        <ClearOutlinedIcon onClick={(ev) => {
-                            ev.stopPropagation();
-                            closeModal()
-                        }} />
-                    </div>
+            < section className='modal invite-to-board' style={{ width: width }} >
 
-                </div>
+                <ModalHeader modal={modal} closeModal={closeModal} />
+
                 <div className='search-members'>
                     <input className='search-members-input'
+                        ref={this.inputRef}
                         placeholder='Search members'
                         type='text'
                         onChange={this.handleChange}
@@ -89,9 +81,9 @@ class _UsersModal extends React.Component {
                         name='txt'
                         value={txt} />
                 </div>
-                <div>
-                    <h4>Prello users</h4>
-                </div>
+
+                <h4>Prello users</h4>
+
                 <div className='board-members'>
                     <ul className='members-list clean-list'>
                         {membersToShow?.map((member) => {
@@ -113,14 +105,11 @@ class _UsersModal extends React.Component {
                         }
                     </ul>
                 </div>
-            </ section >
 
+            </ section >
         )
     }
 }
-
-
-
 
 function mapStateToProps({ boardModule, userModule }) {
     return {
@@ -135,7 +124,6 @@ const mapDispatchToProps = {
     showMsg
 };
 
-
-export const UsersModal = connect(mapStateToProps, mapDispatchToProps)(_UsersModal)
+export const InviteToBoardModal = connect(mapStateToProps, mapDispatchToProps)(_InviteToBoardModal)
 
 

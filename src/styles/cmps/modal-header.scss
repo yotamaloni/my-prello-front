@@ -1,0 +1,19 @@
+.modal-header {
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid #091e4221;
+  margin-bottom: 10px;
+  > * {
+    color: $clr4;
+    font-size: 0.875rem;
+    text-transform: capitalize;
+  }
+  > div:first-child {
+    margin-right: auto;
+    visibility: hidden;
+  }
+  > div:last-child {
+    margin-left: auto;
+    cursor: pointer;
+  }
+}

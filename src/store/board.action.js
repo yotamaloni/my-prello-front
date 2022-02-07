@@ -1,5 +1,4 @@
 import { boardService } from "../services/board.service.js"
-import { socketService } from "../services/socket.service.js"
 
 
 export function loadBoard(boardId) {

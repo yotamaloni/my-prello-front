@@ -1,19 +1,7 @@
-.cover-modal-container {
-  padding: 12px;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-.task-modal {
-  .cover-colors,
-  .cover-input {
-    .cover-title {
-      align-self: flex-start;
-      font-size: 0.75rem;
-      color: $clr4;
-    }
+.cover-modal {
+  > * {
     .cover-color-list {
       display: grid;
-      width: 244px;
       grid-template-columns: repeat(5, 1fr);
       gap: 5px;
       padding: 0;
@@ -26,54 +14,13 @@
         color: #fff;
         display: flex;
         justify-content: flex-end;
-        padding-inline-end: 5px;
       }
     }
+    .file-input {
+      display: none;
+    }
   }
-
-  .close-modal-btn {
-    font-size: 1rem;
-    color: $clr4;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 2;
-    background: none;
-    border: none;
+  > *:not(:last-child) {
+    margin-bottom: 10px;
   }
-
-  .cover-input {
-    width: 244px;
-    margin-bottom: 15px;
-  }
-}
-
-.file {
-  padding-bottom: 12px;
-}
-.cover-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 32px;
-  cursor: pointer;
-  color: $clr3;
-  width: 100%;
-  transition: background-color 0.5s;
-  background-color: #091e420a;
-  border-radius: 3px;
-  &:hover {
-    background-color: #d4d4d4;
-  }
-  &.remove {
-    margin-top: 10px;
-  }
-}
-
-.upper-section {
-  width: 100%;
-}
-
-.file-input {
-  display: none;
 }

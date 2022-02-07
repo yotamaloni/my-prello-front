@@ -2,19 +2,19 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { updateBoard } from '../store/board.action.js'
+import { updateBoard } from '../../store/board.action.js'
 
 import DoneIcon from '@mui/icons-material/Done';
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
-import { MemberIcon } from '../cmps/member-icon.jsx'
+import { MemberIcon } from '../../cmps/member-icon.jsx'
+import { ModalHeader } from './modal-header.jsx'
+
 
 class _MembersModal extends React.Component {
     state = {
         membersToShow: [...this.props.board.members],
         txt: '',
     }
-
     handleChange = ({ target }) => {
         const field = target.name;
         const value = target.value;
@@ -50,28 +50,14 @@ class _MembersModal extends React.Component {
     }
 
     render() {
-        const { closeModal } = this.props
+        const { closeModal, modal, width } = this.props
         const { task } = this.props
         const { txt } = this.state
         const membersIds = task?.members?.map((member) => member._id) || []
         const { membersToShow } = this.state
         return (
-            < section className='members-modal-container' >
-                <div className='header-container'>
-                    <div className='hidden'>
-                        <ClearOutlinedIcon />
-                    </div>
-                    <div className='title'>
-                        Members
-                    </div>
-                    <div className='cancel'>
-                        <ClearOutlinedIcon onClick={(ev) => {
-                            ev.stopPropagation();
-                            closeModal()
-                        }} />
-                    </div>
-
-                </div>
+            < section className='modal members-modal' style={{ width: width }} >
+                <ModalHeader modal={modal} closeModal={closeModal} />
                 <div className='search-members'>
                     <input className='search-members-input'
                         placeholder='Search members'
@@ -81,9 +67,7 @@ class _MembersModal extends React.Component {
                         name='txt'
                         value={txt} />
                 </div>
-                <div>
-                    <h4>Board members</h4>
-                </div>
+                <h4>Board members</h4>
                 <div className='board-members'>
                     <ul className='members-list clean-list'>
                         {membersToShow.map((member) => {

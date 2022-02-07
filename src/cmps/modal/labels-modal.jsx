@@ -3,18 +3,19 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { updateBoard } from '../store/board.action.js'
+import { updateBoard } from '../../store/board.action.js'
 
 import DoneIcon from '@mui/icons-material/Done';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
+
+import { ModalHeader } from './modal-header.jsx'
+
 
 class _LabelsModal extends React.Component {
     inputRef = React.createRef();
 
 
     state = {
-        // labels: this.props.task?.labels || [],
         isModalOpen: false,
         editLabel: null,
         txt: ''
@@ -61,37 +62,24 @@ class _LabelsModal extends React.Component {
     }
     render() {
         const { txt } = this.state
-        const { board, task } = this.props
+        const { board, task, modal, closeModal, width } = this.props
         const boardLabels = board.labels
         const taskLabels = task.labels || []
         const taskLabelsIds = taskLabels.map((label => label.id))
         return (
-            <div className='task-modal'>
-                <div className='header-container'>
-                    <div className='hidden'>
-                        <ClearOutlinedIcon />
-                    </div>
-                    <div className='title'>
-                        Labels
-                    </div>
-                    <div className='cancel'>
-                        <ClearOutlinedIcon onClick={(ev) => {
-                            ev.stopPropagation();
-                            this.props.closeModal()
-                        }} />
-                    </div>
+            <section className='modal labels-modal' style={{ width: width }}>
 
-                </div>
+                <ModalHeader modal={modal} closeModal={closeModal} />
+
                 <ul className='labels-color-list clean-list'>
                     {boardLabels.map((boardLabel) => {
-                        return <li onClick={() => {
+                        return <li className='label-line' onClick={() => {
                             this.onSetLabel(boardLabel)
                         }} key={boardLabel.id} >
 
                             <div className='label-container' style={{ backgroundColor: boardLabel.color }}>
                                 <div className='label-txt'>  {boardLabel.txt}</div>
                                 <div className='vi'> {taskLabelsIds.includes(boardLabel.id) ? <DoneIcon /> : ''}</div>
-
                             </div>
 
                             <div className='edit'>
@@ -101,37 +89,28 @@ class _LabelsModal extends React.Component {
                                     this.onSetEditLabel(boardLabel)
                                 }} />
                             </div>
-
                         </li>
                     })}
-                    <li className='edit-all'>
-                        <div className='edit-input-container'>
-                            <form onSubmit={(ev) => {
-                                ev.preventDefault()
-                                this.onSaveLabelTxt(ev)
-                            }}>
-                                <input className='edit-input'
-                                    ref={this.inputRef}
-                                    placeholder='Edit...'
-                                    type='text'
-                                    onChange={this.handleChange}
-                                    name='txt'
-                                    value={txt} />
-                                <div className='config-activity'>
 
-                                </div>
-                            </form>
-                        </div>
+
+                    <li className='edit-label-txt-container'>
+                        <form className='edit-label-txt-input' onSubmit={(ev) => {
+                            ev.preventDefault()
+                            this.onSaveLabelTxt(ev)
+                        }}>
+                            <input className='edit-input'
+                                ref={this.inputRef}
+                                placeholder='Edit...'
+                                type='text'
+                                onChange={this.handleChange}
+                                name='txt'
+                                value={txt} />
+
+                        </form>
                     </li>
                 </ul>
 
-
-                <button onClick={(ev) => {
-                    ev.stopPropagation();
-                    this.props.closeModal()
-                }}
-                    className='close-modal-btn'></button>
-            </div >
+            </section >
         )
     }
 }
@@ -140,7 +119,6 @@ function mapStateToProps({ boardModule }) {
 
     return {
         board: boardModule.board
-
     }
 }
 

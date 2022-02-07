@@ -39,11 +39,13 @@
 @import 'cmps/members-list.scss';
 @import 'cmps/_user-msg.scss';
 
+@import 'cmps/modal-header.scss';
+@import 'cmps/dynamic-modal.scss';
 
 @import 'cmps/labels-modal.scss';
 @import 'cmps/checklist-modal.scss';
 @import 'cmps/cover-modal.scss';
-@import 'cmps/delete-modal.scss';
+@import 'cmps/remove-modal.scss';
 @import 'cmps/create-board-modal.scss';
 @import 'cmps/members-modal.scss';
-@import 'cmps/users-modal.scss';
+@import 'cmps/invite-to-board-modal.scss';

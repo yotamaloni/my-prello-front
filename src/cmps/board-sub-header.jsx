@@ -7,7 +7,7 @@ import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 
 import { MembersList } from '../cmps/members-list.jsx'
-import { UsersModal } from '../cmps/users-modal.jsx'
+import { DynamicModal } from '../cmps/modal/dynamic-modal.jsx'
 
 export class BoardSubHeader extends React.Component {
 
@@ -28,6 +28,7 @@ export class BoardSubHeader extends React.Component {
         const { toggleFilterModal, board, onToggleBoardStar } = this.props
         const { modal } = this.state
         const starColor = board.isStarred ? 'gold' : '#FFF'
+        const MODAL_WIDTH = 304 + 'px'
 
         return (
             <section className='board-sub-header'>
@@ -48,11 +49,13 @@ export class BoardSubHeader extends React.Component {
                     <MembersList />
                     <div className='invite-btn clickable' onClick={() => this.onOpenModal('invite')}>
                         <GroupAddOutlinedIcon /><span>Invite</span>
-                        {modal === 'invite'
-                            &&
-                            <React.Fragment>
-                                < UsersModal closeModal={this.closeModal} />
-                            </React.Fragment>}
+                        {modal === 'invite' && <React.Fragment>
+                            < DynamicModal
+                                width={MODAL_WIDTH}
+                                modal={'invite'}
+                                closeModal={this.closeModal}
+                            />
+                        </React.Fragment>}
                     </div>
 
                 </div>
