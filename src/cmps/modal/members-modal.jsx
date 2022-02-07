@@ -50,8 +50,8 @@ class _MembersModal extends React.Component {
     }
 
     render() {
-        const { closeModal, modal, width } = this.props
-        const { task } = this.props
+        const { task, modal, closeModal } = this.props
+        const { width } = modal
         const { txt } = this.state
         const membersIds = task?.members?.map((member) => member._id) || []
         const { membersToShow } = this.state
@@ -94,7 +94,8 @@ class _MembersModal extends React.Component {
 
 function mapStateToProps({ boardModule }) {
     return {
-        board: boardModule.board
+        board: boardModule.board,
+        modal: boardModule.modal
     }
 }
 

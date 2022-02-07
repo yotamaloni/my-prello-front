@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { boardService } from "../services/board.service.js"
 import { socketService } from "../services/socket.service.js"
 
-import { updateBoard, loadBoard } from '../store/board.action.js'
+import { updateBoard, loadBoard, setModal } from '../store/board.action.js'
 
 import { AppHeader } from '../cmps/app-header.jsx'
 import { BoardsList } from '../cmps/boards-list.jsx'
@@ -18,8 +18,8 @@ class _BoardApp extends React.Component {
 
     state = {
         boards: null,
-        isCreateBoardModalOpen: false
     }
+    
     async componentDidMount() {
         this.loadBoards()
         await this.props.loadBoard(null)
@@ -62,13 +62,8 @@ class _BoardApp extends React.Component {
 
     }
 
-    onOpenCreateBoardModal = () => {
-        if (this.state.isCreateBoardModalOpen) return
-        this.setState({ isCreateBoardModalOpen: true })
-    }
-
-    closeCreateBoardModal = () => {
-        this.setState({ isCreateBoardModalOpen: false })
+    onSetModal = (modalType) => {
+        this.props.setModal(modalType)
     }
 
     onToggleBoardStar = (ev, board) => {
@@ -89,11 +84,12 @@ class _BoardApp extends React.Component {
     }
 
     render() {
-        const { boards, isCreateBoardModalOpen } = this.state
+        const { boards } = this.state
         const loader = require('../img/loader.gif')
         if (!boards) return <div className='loader-page'><img className='loader' src={loader} /></div>
         const starredBoards = boards.filter((board) => board.isStarred)
         const MODAL_WIDTH = 304 + 'px'
+        const { modal } = this.props
         return (
             <section className="board-app">
                 <AppHeader isBoardDetails={false} />
@@ -102,15 +98,17 @@ class _BoardApp extends React.Component {
                     <h3>All boards</h3>
                     <ul className='board-list clean-list'>
 
-                        <li className='create-new-board' onClick={this.onOpenCreateBoardModal}>
+                        <li className='create-new-board'
+                            onClick={() =>
+                                this.onSetModal({ type: 'create-board', width: MODAL_WIDTH })}>
                             <p>Create new board</p>
-                            {isCreateBoardModalOpen &&
+                            {modal?.type &&
                                 <React.Fragment>
                                     < DynamicModal
                                         width={MODAL_WIDTH}
                                         modal={'create-board'}
                                         addBoard={this.onCreateBoard}
-                                        closeModal={this.closeCreateBoardModal}
+                                        closeModal={() => this.onSetModal(null)}
                                     />
                                 </React.Fragment>
                             }
@@ -146,12 +144,14 @@ class _BoardApp extends React.Component {
 function mapStateToProps({ boardModule }) {
     return {
         board: boardModule.board,
+        modal: boardModule.modal
     }
 }
 
 const mapDispatchToProps = {
     updateBoard,
-    loadBoard
+    loadBoard,
+    setModal
 };
 
 

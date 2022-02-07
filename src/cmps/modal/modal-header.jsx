@@ -7,7 +7,7 @@ export function ModalHeader({ modal, closeModal }) {
             <ClearOutlinedIcon />
         </div>
         <div className='title'>
-            {modal}
+            {modal.type}
         </div>
         <div className='cancel'>
             <ClearOutlinedIcon onClick={(ev) => {

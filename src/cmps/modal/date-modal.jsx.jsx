@@ -38,7 +38,8 @@ class _DateModal extends React.Component {
 
     render() {
         const { dueDate } = this.state
-        const { modal, closeModal, width } = this.props
+        const { modal, closeModal } = this.props
+        const { width } = modal
 
         return (
             <section className="modal date-modal" style={{ minWidth: width }} >

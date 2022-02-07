@@ -151,7 +151,7 @@ function mapStateToProps({ boardModule }) {
 }
 
 const mapDispatchToProps = {
-  updateBoard
+  updateBoard,
 };
 
 

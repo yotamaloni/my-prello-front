@@ -111,8 +111,8 @@ export class BoardGroup extends React.Component {
                                             index={index} >
                                             {(provided) => (
 
-                                                < li className='task-container' {...provided.draggableProps}
-                                                    {...provided.dragHandleProps} ref={provided.innerRef} >
+                                                < li className='task-container' {...provided.draggableProps} 
+                                                {...provided.dragHandleProps} ref={provided.innerRef} >
                                                     <TaskPreview
                                                         key={task.id}
                                                         board={board}

@@ -2,7 +2,7 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import { updateBoard } from '../store/board.action.js'
+import { updateBoard, setModal } from '../store/board.action.js'
 
 
 
@@ -25,66 +25,61 @@ class _TaskBtns extends React.Component {
         isArchiveOpen: false
     }
 
-    onOpenModal = (type) => {
-        this.setState({ modal: type })
-    }
-    closeModal = () => {
-        this.setState({ modal: null })
-    }
     onToggleDeleteModal = () => {
         const { isArchiveOpen } = this.state
         this.setState({ isArchiveOpen: !isArchiveOpen })
     }
 
+    onSetModal = (modalType) => {
+        this.props.setModal(modalType)
+    }
+
     render() {
         const MODAL_WIDTH = 304 + 'px'
-        const { task } = this.props
-        const { modal, isArchiveOpen } = this.state
+        const { task, modal } = this.props
+        const { isArchiveOpen } = this.state
         return (
             <div className='flex column align-end task-btns-container'>
                 <h3 className='config-title'>Add to card</h3>
 
 
                 {/******MEMBERS**************************************************************************************/}
-                <div className='task-btn' onClick={() => this.onOpenModal('members')}>
+                <div className='task-btn' onClick={() =>
+                    this.onSetModal({ type: 'members', width: MODAL_WIDTH })}>
                     <PersonOutlineOutlinedIcon sx={{ fontSize: '18px' }} />
                     <div >Members</div>
-                    {modal === 'members' && <React.Fragment>
+                    {modal?.type === 'members' && <React.Fragment>
                         < DynamicModal
-                            width={MODAL_WIDTH}
-                            modal={modal}
                             task={task}
-                            closeModal={this.closeModal}
+                            closeModal={() => this.onSetModal(null)}
                         />
                     </React.Fragment>}
                 </div>
 
                 {/******Labels**************************************************************************************/}
 
-                <div className='task-btn' onClick={() => this.onOpenModal('labels')}>
+                <div className='task-btn' onClick={() =>
+                    this.onSetModal({ type: 'labels', width: MODAL_WIDTH })}>
                     <LabelOutlinedIcon sx={{ fontSize: '18px' }} />
                     <div >Labels</div>
-                    {modal === 'labels' && <React.Fragment>
+                    {modal?.type === 'labels' && <React.Fragment>
                         < DynamicModal
-                            width={MODAL_WIDTH}
-                            modal={modal}
                             task={task}
-                            closeModal={this.closeModal}
+                            closeModal={() => this.onSetModal(null)}
                         />
                     </React.Fragment>}
                 </div>
 
                 {/******CheckList**************************************************************************************/}
 
-                <div className='task-btn' onClick={() => this.onOpenModal('checklist')}>
+                <div className='task-btn' onClick={() =>
+                    this.onSetModal({ type: 'checklist', width: MODAL_WIDTH })}>
                     <CheckBoxOutlinedIcon sx={{ fontSize: '18px' }} />
                     <div >CheckList</div>
-                    {modal === 'checklist' && <React.Fragment>
+                    {modal?.type === 'checklist' && <React.Fragment>
                         < DynamicModal
-                            width={MODAL_WIDTH}
-                            modal={modal}
                             task={task}
-                            closeModal={this.closeModal}
+                            closeModal={() => this.onSetModal(null)}
                         />
                     </React.Fragment>}
                 </div>
@@ -93,45 +88,42 @@ class _TaskBtns extends React.Component {
 
 
 
-                <div className='task-btn' onClick={() => this.onOpenModal('date')} >
+                <div className='task-btn' onClick={() =>
+                    this.onSetModal({ type: 'date', width: MODAL_WIDTH })} >
                     <QueryBuilderOutlinedIcon sx={{ fontSize: '18px' }} />
                     <div >Dates</div>
-                    {modal === 'date' &&
+                    {modal?.type === 'date' &&
                         <React.Fragment>
                             < DynamicModal
-                                width={MODAL_WIDTH}
-                                modal={modal}
                                 task={task}
-                                closeModal={this.closeModal}
+                                closeModal={() => this.onSetModal(null)}
                             />
                         </React.Fragment>}
                 </div>
 
                 {/******Attachment**************************************************************************************/}
-                <div className='task-btn' onClick={() => this.onOpenModal('attachment')}>
+                <div className='task-btn' onClick={() =>
+                    this.onSetModal({ type: 'attachment', width: MODAL_WIDTH })}>
                     <AttachFileOutlinedIcon sx={{ fontSize: '18px' }} />
                     <div >Attachment</div>
-                    {modal === 'attachment' &&
+                    {modal?.type === 'attachment' &&
                         <React.Fragment>
                             < DynamicModal
-                                width={MODAL_WIDTH}
-                                modal={modal}
                                 task={task}
-                                closeModal={this.closeModal}
+                                closeModal={() => this.onSetModal(null)}
                             />
                         </React.Fragment>}
                 </div>
                 {/******Cover**************************************************************************************/}
-                <div className='task-btn' onClick={() => this.onOpenModal('cover')}>
+                <div className='task-btn' onClick={() =>
+                    this.onSetModal({ type: 'cover', width: MODAL_WIDTH })}>
                     <PhotoSizeSelectActualOutlinedIcon sx={{ fontSize: '18px' }} />
                     <div >Cover</div>
-                    {modal === 'cover' &&
+                    {modal?.type === 'cover' &&
                         <React.Fragment>
                             < DynamicModal
-                                width={MODAL_WIDTH}
-                                modal={modal}
                                 task={task}
-                                closeModal={this.closeModal}
+                                closeModal={() => this.onSetModal(null)}
                             />
                         </React.Fragment>}
                 </div>
@@ -144,16 +136,15 @@ class _TaskBtns extends React.Component {
                     <div>Archive</div>
                 </div>
                 {isArchiveOpen && <React.Fragment>
-                    <div className='task-btn delete' onClick={() => this.onOpenModal('remove')}>
+                    <div className='task-btn delete' onClick={() =>
+                        this.onSetModal({ type: 'remove', width: MODAL_WIDTH })}>
                         <HorizontalRuleOutlinedIcon sx={{ fontSize: '18px' }} />
                         <div >Delete</div>
-                        {modal === 'remove' &&
+                        {modal?.type === 'remove' &&
                             <React.Fragment>
                                 < DynamicModal
-                                    width={MODAL_WIDTH}
-                                    modal={modal}
                                     task={task}
-                                    closeModal={this.closeModal}
+                                    closeModal={() => this.onSetModal(null)}
                                 />
                             </React.Fragment>}
                     </div>
@@ -167,11 +158,13 @@ class _TaskBtns extends React.Component {
 function mapStateToProps({ boardModule }) {
     return {
         board: boardModule.board,
+        modal: boardModule.modal,
     }
 }
 
 const mapDispatchToProps = {
     updateBoard,
+    setModal
 };
 
 export const TaskBtns = connect(mapStateToProps, mapDispatchToProps)(_TaskBtns)

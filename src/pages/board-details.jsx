@@ -21,7 +21,6 @@ class _BoardDetails extends React.Component {
         isMenuOpen: '',
         isAddListOpen: '',
         isFilterModalOpen: ''
-
     }
 
     componentDidMount() {
@@ -62,8 +61,8 @@ class _BoardDetails extends React.Component {
 
     render() {
         const loader = require('../img/loader.gif')
-        const { isMenuOpen, isAddListOpen, isFilterModalOpen } = this.state
-        const { board } = this.props
+        const { isAddListOpen } = this.state
+        const { board, modal } = this.props
         if (!board || !board.title) return <div className='loader-page'><img className='loader' src={loader} /></div>
         const imgUrl = board.style.imgUrl || ''
         const backgroundColor = board.style.backgroundColor || '#29CCE5'
@@ -105,16 +104,6 @@ class _BoardDetails extends React.Component {
                             </React.Fragment>
                         }
                     </div>
-                    {isMenuOpen &&
-                        <div className={`side-menu ${isMenuOpen}`} >
-                            <SideMenu toggleMenuModal={this.onToggleMenuModal} />
-                        </div>
-                    }
-                    {isFilterModalOpen &&
-                        <div className='filter-menu'>
-                            <BoardFilter toggleFilterModal={this.onToggleFilterModal} boardId={board._id} />
-                        </div>
-                    }
 
                     <Route path={`/board/:boardId/:groupId/:taskId`} component={TaskDetails} />
 
@@ -126,7 +115,7 @@ class _BoardDetails extends React.Component {
 
 function mapStateToProps({ boardModule }) {
     return {
-        board: boardModule.board
+        board: boardModule.board,
     }
 }
 

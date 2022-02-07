@@ -1,3 +1,8 @@
+import React from 'react'
+import { connect } from 'react-redux'
+
+import { setModal } from '../../store/board.action.js'
+
 import { MembersModal } from './members-modal.jsx'
 import { LabelsModal } from './labels-modal.jsx'
 import { ChecklistModal } from './checklist-modal.jsx'
@@ -8,10 +13,10 @@ import { RemoveModal } from './remove-modal.jsx'
 import { InviteToBoardModal } from './invite-to-board-modal.jsx'
 import { CreateBoardModal } from './crate-board-modal.jsx'
 
+function _DynamicModal(props) {
+    const { modal } = props
 
-export function DynamicModal(props) {
-
-    switch (props.modal) {
+    switch (modal.type) {
         case 'members':
             return <MembersModal className='dynamic-modal'
                 {...props}
@@ -48,3 +53,16 @@ export function DynamicModal(props) {
             return <div>NOT FOUND</div>;
     }
 }
+
+function mapStateToProps({ boardModule }) {
+    return {
+        modal: boardModule.modal
+    }
+}
+
+const mapDispatchToProps = {
+};
+
+
+export const DynamicModal = connect(mapStateToProps, mapDispatchToProps)(_DynamicModal)
+

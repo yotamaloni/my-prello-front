@@ -2,7 +2,6 @@ import React from 'react'
 
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
-import { ModalHeader } from './modal-header.jsx'
 
 const IMG1_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053148/samples/landscapes/landscape-panorama.jpg'
 const IMG2_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053146/samples/landscapes/nature-mountains.jpg'
@@ -16,16 +15,12 @@ const IMG9_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053147/
 const IMG10_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053141/samples/animals/three-dogs.jpg'
 
 export class CreateBoardModal extends React.Component {
-    inputRef = React.createRef();
-
     state = {
         title: '',
         backgroundColor: '#29CCE5',
         imgUrl: null,
     }
-    componentDidMount() {
-        this.inputRef.current.focus();
-    }
+
     onHandleChange = ({ target }) => {
         const field = target.name
         const value = target.value
@@ -42,11 +37,7 @@ export class CreateBoardModal extends React.Component {
 
     onSubmit = () => {
         const { title, imgUrl, backgroundColor } = this.state
-        const { closeModal } = this.props
-        if (!title) {
-            this.inputRef.current.focus();
-            return
-        }
+        if (!title) return
         const board = {
             title,
             style: {
@@ -55,7 +46,7 @@ export class CreateBoardModal extends React.Component {
             }
         }
         this.props.addBoard(board)
-        closeModal()
+        this.props.onCloseModal('close')
 
     }
 
@@ -82,9 +73,6 @@ export class CreateBoardModal extends React.Component {
 
     render() {
         const { title, backgroundColor, imgUrl } = this.state
-        const { modal, closeModal } = this.props
-        const { width } = modal
-        const creatBtnColor = title ? 'blue' : 'blur-text'
         const colors = [
             '#7BC86C',
             '#F5DD29',
@@ -112,28 +100,39 @@ export class CreateBoardModal extends React.Component {
         ]
 
         return (
-            <div className='modal create-board' style={{ width: width }}>
+            <div className='board-cover'>
+                {/* <h3 className='delete-title'>Delete card?</h3> */}
+                <div className='header-container'>
+                    <div className='hidden'>
+                        <ClearOutlinedIcon />
+                    </div>
+                    <div className='title'>
+                        Create board
+                    </div>
+                    <div className='cancel'>
+                        <ClearOutlinedIcon onClick={(ev) => {
+                            ev.stopPropagation();
+                            this.props.onCloseModal()
+                        }} />
+                    </div>
 
-                <ModalHeader modal={modal} closeModal={closeModal} />
+                </div>
+
 
                 <div className='chosen-background'
                     style={{ backgroundImage: `url(${imgUrl})`, backgroundColor: backgroundColor }}>
-                </div>
-
-                <div className='input-title'>
-                    <h4>Title</h4>
-                    <input ref={this.inputRef}
-                        type="text"
-                        name="title"
-                        value={title}
-                        onChange={(ev) => { this.onHandleChange(ev) }}
-                    />
-                    <h4 className='required-title'>Board title is required</h4>
 
                 </div>
 
-                <div className='cover-colors-container'>
-                    <h4 >Colors</h4>
+                <div className='cover-input-title'>
+                    <h3 className='cover-title create-board-title' >Title</h3>
+                    <input type="text" name="title" value={title} onChange={(ev) => { this.onHandleChange(ev) }} />
+                    <h3 className='required-title'>Board title is required</h3>
+                </div>
+
+
+                <div className='cover-colors'>
+                    <h3 className='cover-title create-board-title'>Colors</h3>
                     <ul className='cover-color-list clean-list'>
                         {colors.map((color, index) => {
                             return <li onClick={() => {
@@ -143,9 +142,9 @@ export class CreateBoardModal extends React.Component {
                     </ul>
                 </div>
 
-                <div className='cover-img-container'>
-                    <h4>Photos</h4>
-                    <ul className='cover-img-list clean-list img-list'>
+                <div className='cover-colors img'>
+                    <h3 className='cover-title create-board-title'>Photos</h3>
+                    <ul className='cover-color-list clean-list img-list'>
                         {imgUrls.map((url, index) => {
                             return <li onClick={() => {
                                 this.onSetCoverImg(url)
@@ -154,15 +153,19 @@ export class CreateBoardModal extends React.Component {
                     </ul>
                 </div>
 
-                <div className='upload-img-container'>
-                    <h4 >Attachment</h4>
+                <div className='cover-input-img'>
+                    <h3 className='cover-title create-board-title' >Attachment</h3>
                     <label htmlFor="upload" onChange={(ev) => {
                         this.uploadImgCover(ev)
-                    }} className='full-width-btn gray'>Upload a cover image</label>
+                    }} className='cover-btn upload'>Upload a cover image</label>
                     <input id="upload" className="file-input" type="file" onChange={(ev) => { this.uploadImgCover(ev) }} />
                 </div>
 
-                <div className={`full-width-btn ${creatBtnColor}`} onClick={this.onSubmit}>Create</div>
+
+                {(title &&
+                    <div className='create-btn' onClick={this.onSubmit}>Create</div>
+                )
+                }
             </div>
         )
     }
