@@ -9,7 +9,7 @@ export function ListActionsMenu({ onToggleListActions, group, board, updateBoard
     function onRemoveGroup() {
         const groups = board.groups.filter(currGroup => currGroup.id !== group.id)
         board.groups = groups
-        updateGroupInState([...board.groups])
+        // updateGroupInState([...board.groups])
         updateBoard({ ...board })
         onToggleListActions()
     }
@@ -17,7 +17,7 @@ export function ListActionsMenu({ onToggleListActions, group, board, updateBoard
     function onRemoveAllCards() {
         const idx = board.groups.findIndex((currGroup => currGroup.id === group.id))
         board.groups[idx].tasks = []
-        updateGroupInState([...board.groups])
+        // updateGroupInState([...board.groups])
         updateBoard({ ...board })
         onToggleListActions()
     }
@@ -27,7 +27,7 @@ export function ListActionsMenu({ onToggleListActions, group, board, updateBoard
         const newGroup = { ...board.groups[idx] }
         newGroup.id = utilService.makeId()
         board.groups.splice(idx, 0, newGroup)
-        updateGroupInState([...board.groups])
+        // updateGroupInState([...board.groups])
         updateBoard({ ...board })
         onToggleListActions()
     }

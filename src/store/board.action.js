@@ -3,6 +3,8 @@ import { socketService } from "../services/socket.service.js"
 
 
 export function loadBoard(boardId) {
+    console.log('IN LOAD BOARD')
+
     return async (dispatch, getState) => {
         const { boardModule: { filterBy } } = getState()
         try {
@@ -19,10 +21,10 @@ export function loadBoard(boardId) {
 }
 
 export function updateBoard(board) {
+    console.log('IN UPDATE BOARD')
     return async (dispatch) => {
         try {
             await boardService.saveBoard(board)
-            console.log("🟡 IN updateBoard")
             dispatch({ type: 'SET_BOARD', board })
         } catch (err) {
             console.log('Cannot update board', err)

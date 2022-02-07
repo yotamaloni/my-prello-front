@@ -36,11 +36,11 @@ class _BoardApp extends React.Component {
         })
     }
 
-    componentDidUpdate(prevProps) {
-        if (prevProps.boards !== this.props.boards) {
-            this.loadBoards()
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     if (prevProps.boards !== this.props.boards) {
+    //         this.loadBoards()
+    //     }
+    // }
 
     componentWillUnmount() {
         socketService.off('remove-board')

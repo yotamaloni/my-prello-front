@@ -72,15 +72,16 @@ class _BoardGroupList extends React.Component {
         this.props.updateBoard({ ...board })
     }
 
-    updateGroupInState = (groups) => {
-        this.setState({ groups })
-    }
+    // updateGroupInState = (groups) => {
+        // this.setState({ groups })
+    // }
 
     render() {
         const { board } = this.props
         if (!board) return <div>Loading...</div>
 
-        const groups = this.state.groups || board.groups
+        // const groups = this.state.groups || board.groups
+        const groups = board.groups
 
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
@@ -93,7 +94,6 @@ class _BoardGroupList extends React.Component {
                         <ul className='group-list clean-list' {...provided.droppableProps}
                             ref={provided.innerRef}>
                             {groups.map((group, index) => {
-                                console.log("🟡 ~ group", group)
 
                                 return (
                                     <Draggable key={group.id} draggableId={group.id} index={index}>
@@ -103,7 +103,7 @@ class _BoardGroupList extends React.Component {
                                                 ref={provided.innerRef}>
                                                 <BoardGroup
                                                     board={board}
-                                                    updateGroupInState={this.updateGroupInState}
+                                                    // updateGroupInState={this.updateGroupInState}
                                                     updateBoard={this.props.updateBoard}
                                                     group={group}
                                                 />

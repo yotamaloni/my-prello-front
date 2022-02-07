@@ -16,8 +16,6 @@ import { AddList } from '../cmps/add-list.jsx'
 import { BoardGroupList } from '../cmps/board-group-list.jsx'
 import { BoardFilter } from '../cmps/board-filter.jsx'
 
-
-
 class _BoardDetails extends React.Component {
     state = {
         isMenuOpen: '',

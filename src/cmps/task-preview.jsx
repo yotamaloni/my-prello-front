@@ -23,14 +23,6 @@ class _TaskPreview extends React.Component {
         this.setState({ isExpendedLabels })
     }
 
-    //WARNING! To be deprecated in React v17. Use componentDidUpdate instead.
-    componentWillUnmount() {
-        const { board } = this.props
-        board.isExpendedLabels = false
-        this.props.updateBoard({ ...board })
-    }
-
-
     onToggleLabelsSize = (ev) => {
         ev.preventDefault()
         const { board } = this.props

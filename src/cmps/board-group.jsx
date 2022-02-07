@@ -21,12 +21,20 @@ export class BoardGroup extends React.Component {
     }
 
     componentDidMount() {
+        this.updateTitleInGroup()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.board !== this.props.board) {
+            this.updateTitleInGroup()
+        }
+    }
+
+    updateTitleInGroup = () => {
         const { title, tasks } = this.props.group
         this.setState({ tasks })
         this.setState({ groupTitle: title })
     }
-
-   
 
     onToggleAddTask = () => {
         const isAddTaskOpen = this.state.isAddTaskOpen ? '' : 'open'
@@ -82,7 +90,7 @@ export class BoardGroup extends React.Component {
                 {isListActionsOpen && (
                     <React.Fragment>
                         <ListActionsMenu
-                            updateGroupInState={this.props.updateGroupInState}
+                            // updateGroupInState={this.props.updateGroupInState}
                             updateBoard={updateBoard}
                             board={board}
                             group={group}
@@ -97,13 +105,19 @@ export class BoardGroup extends React.Component {
 
                                 {tasks.map((task, index) => {
                                     return (
-                                        <Draggable key={task.id} draggableId={task.id} index={index} >
+                                        <Draggable
+                                            key={task.id}
+                                            draggableId={task.id}
+                                            index={index} >
                                             {(provided) => (
 
-                                                < li className='task-container' {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
-                                                    <TaskPreview board={board}
+                                                < li className='task-container' {...provided.draggableProps}
+                                                    {...provided.dragHandleProps} ref={provided.innerRef} >
+                                                    <TaskPreview
+                                                        key={task.id}
+                                                        board={board}
                                                         onToggleAddTask={this.onToggleAddTask}
-                                                        group={group} key={task.id}
+                                                        group={group}
                                                         task={task} />
                                                 </li>
                                             )}
