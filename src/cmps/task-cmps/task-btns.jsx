@@ -2,9 +2,9 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import { updateBoard, setModal } from '../store/board.action.js'
+import { updateBoard, setModal } from '../../store/board.action.js'
 
-import { DynamicModal } from './modal/dynamic-modal.jsx'
+import { DynamicModal } from '../modal/dynamic-modal.jsx'
 
 class _TaskBtns extends React.Component {
     state = {

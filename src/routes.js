@@ -3,7 +3,6 @@ import { AppHome } from './pages/app-home.jsx'
 import { BoardApp } from './pages/board-app.jsx'
 import { BoardDetails } from './pages/board-details.jsx'
 import { LoginSignup } from './pages/login-signup.jsx'
-import { TaskDetails } from './cmps/task-details.jsx'
 
 
 const routes = [

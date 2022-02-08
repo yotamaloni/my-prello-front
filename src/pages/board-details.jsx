@@ -10,7 +10,7 @@ import { socketService } from '../services/socket.service.js'
 
 import { AppHeader } from '../cmps/app-header.jsx'
 import { BoardSubHeader } from '../cmps/board-sub-header.jsx'
-import { TaskDetails } from '../cmps/task-details.jsx'
+import { TaskDetails } from '../cmps/task-cmps/task-details.jsx'
 import { SideMenu } from '../cmps/side-menu.jsx'
 import { AddList } from '../cmps/add-list.jsx'
 import { BoardGroupList } from '../cmps/board-group-list.jsx'

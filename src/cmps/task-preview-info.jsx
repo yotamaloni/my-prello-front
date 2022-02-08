@@ -4,13 +4,13 @@ import SubjectOutlinedIcon from '@mui/icons-material/SubjectOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
 
+import { utilService } from '../services/util.service.js';
+
 import { MemberIcon } from './member-icon.jsx'
-import { getDateString } from './task-info.jsx'
+import { getDateString } from './task-cmps/task-info.jsx'
 
 
 export class TaskPreviewInfo extends React.Component {
-    state = {
-    }
 
     render() {
         const { dueDate, comments, description, members } = this.props
@@ -18,7 +18,7 @@ export class TaskPreviewInfo extends React.Component {
         let date = ''
 
         if (dueDate) {
-            const dateArray = getDateString(dueDate.time).split(' ')
+            const dateArray = utilService.getDateString(dueDate.time).split(' ')
             date = dateArray[0] + ' ' + dateArray[1]
         }
         if (!dueDate?.completed && dueDate?.time < Date.now()) {

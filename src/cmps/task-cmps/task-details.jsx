@@ -2,12 +2,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { updateBoard } from '../store/board.action.js'
+import { updateBoard } from '../../store/board.action.js'
 
 import CallToActionOutlinedIcon from '@mui/icons-material/CallToActionOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
-
-import { boardService } from '../services/board.service.js'
 
 import { TaskBtns } from './task-btns.jsx'
 import { TaskInfo } from './task-info.jsx'
@@ -71,7 +69,7 @@ class _TaskDetails extends React.Component {
   }
 
   render() {
-    const loader = require('../img/loader.gif')
+    const loader = require('../../img/loader.gif')
 
     const { group, task, boardId } = this.state
     const { title, style } = task
@@ -91,15 +89,12 @@ class _TaskDetails extends React.Component {
         < section className="task-details" onClick={(ev) => ev.stopPropagation()}>
 
           {(bgCover || imgCover) &&
-            <React.Fragment>
-              <div className='task-cover' style={{ backgroundColor: bgCover }} >
-                {imgCover && <img src={imgCover} alt="Not found" />}
-
-              </div>
-            </React.Fragment>
+            <header className='task-cover' style={{ backgroundColor: bgCover }} >
+              {imgCover && <img src={imgCover} alt="Not found" />}
+            </header>
           }
 
-          <div className='task-main-container'>
+          <main className='task-main-container'>
 
             <div className='title-container'>
               <CallToActionOutlinedIcon className='info-icon title' />
@@ -111,15 +106,14 @@ class _TaskDetails extends React.Component {
                   onBlur={this.onSubmitTitle}
                   onChange={this.onHandleChange} />
               </div>
-              <div className='group-title'>In list <span>{group.title}</span>
-              </div>
+              <div className='group-title'>In list <span>{group.title}</span></div>
+
             </div>
 
             <div className='info-and-btns-container'>
               <TaskInfo
                 group={group}
                 task={task}
-                openModal={this.onOpenModal}
               />
               <TaskBtns
                 group={group}
@@ -127,14 +121,13 @@ class _TaskDetails extends React.Component {
               />
             </div>
 
-          </div>
+          </main>
 
           <button className='close-btn' onClick={() => {
             this.props.history.push(`/board/${boardId}`)
           }} ><CloseOutlinedIcon /></button>
 
         </section >
-        <div>footer</div>
       </section>
     )
   }

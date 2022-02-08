@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { setModal } from '../../store/board.action.js'
+import { } from '../../store/board.action.js'
 
 import { MembersModal } from './members-modal.jsx'
 import { LabelsModal } from './labels-modal.jsx'
@@ -18,39 +18,39 @@ function _DynamicModal(props) {
 
     switch (modal.type) {
         case 'members':
-            return <MembersModal className='dynamic-modal'
+            return <MembersModal
                 {...props}
             />;
         case 'labels':
-            return <LabelsModal className='dynamic-modal'
+            return <LabelsModal
                 {...props}
             />;
         case 'checklist':
-            return <ChecklistModal className='dynamic-modal'
+            return <ChecklistModal
                 {...props}
             />;
         case 'date':
-            return <DateModal className='dynamic-modal'
+            return <DateModal
                 {...props}
             />;
         case 'attachment':
-            return <AttachmentModal className='dynamic-modal'
+            return <AttachmentModal
                 {...props}
             />;
         case 'cover':
-            return <CoverModal className='dynamic-modal'
+            return <CoverModal
                 {...props}
             />;
         case 'remove':
-            return <RemoveModal className='dynamic-modal'
+            return <RemoveModal
                 {...props}
             />;
         case 'invite':
-            return <InviteToBoardModal className='dynamic-modal'
+            return <InviteToBoardModal
                 {...props}
             />;
         case 'create-board':
-            return <CreateBoardModal className='dynamic-modal'
+            return <CreateBoardModal
                 {...props}
             />;
         default:

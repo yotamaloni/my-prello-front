@@ -2,8 +2,7 @@
 import React from 'react'
 
 import { connect } from 'react-redux'
-import { updateBoard } from '../store/board.action.js'
-
+import { updateBoard } from '../../store/board.action.js'
 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
@@ -12,14 +11,10 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 import TocOutlinedIcon from '@mui/icons-material/TocOutlined';
 
-import { utilService } from '../services/util.service'
+import { utilService } from '../../services/util.service'
 
 import { TimeSince } from './time-since.jsx'
-import { MemberIcon } from '../cmps/member-icon.jsx'
-
-
-
-
+import { MemberIcon } from '../member-icon.jsx'
 
 class _TaskInfo extends React.Component {
 
@@ -45,26 +40,21 @@ class _TaskInfo extends React.Component {
     }
 
     setTaskInfo = async () => {
-
         const { board, task } = this.props
         this.setState({ board })
         this.setState({ task })
-
         const description = task.description
         this.setState({ description })
-
         const isDateCheckbox = this.props.task.dueDate?.completed
         this.setState({ isDateCheckbox })
 
     }
-
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.task !== this.props.task) {
             this.setTaskInfo()
         }
     }
-
 
     onToggleDateCheckbox = () => {
         const isDateCheckbox = !(this.state.isDateCheckbox)
@@ -139,14 +129,12 @@ class _TaskInfo extends React.Component {
         }
 
         const { dueDate } = task
-        const date = dueDate?.time ? getDateString(dueDate.time) : ''
+        const date = dueDate?.time ? utilService.getDateString(dueDate.time) : ''
 
         const taskMembers = task.members || []
 
-
         return (
             <div className='info'>
-
                 {/******Members**************************************************************************************/}
 
                 {taskMembers?.length ?
@@ -305,25 +293,3 @@ const mapDispatchToProps = {
 
 export const TaskInfo = connect(mapStateToProps, mapDispatchToProps)(_TaskInfo)
 
-
-export function getDateString(dueDate) {
-    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-    let newDate = new Date(dueDate)
-    let year = newDate.getFullYear()
-    if (new Date(Date.now()).getFullYear() === year) year = ''
-    const month = monthNames[newDate.getMonth()]
-    const day = newDate.getDate()
-    let hours = newDate.getHours()
-    let min = newDate.getMinutes()
-    if (min < 10) min = '0' + min
-    let partOfTheDay
-    if (hours > 12) {
-        hours -= 12
-        partOfTheDay = 'PM'
-    } else {
-        partOfTheDay = 'AM'
-    }
-
-    return `${month} ${day} ,${year} at ${hours}:${min} ${partOfTheDay} `
-}
