@@ -36,13 +36,57 @@
   .task-btn.delete:hover {
     background-color: #c06c6c;
   }
-  .members {
+
+  .txt {
+    color: $clr3;
     display: flex;
     align-self: center;
     justify-content: center;
+    text-transform: capitalize;
     &::before {
       font-family: icons;
-      content: '\e7ff';
+      margin-inline-end: 5px;
+    }
+    &.members {
+      &::before {
+        content: '\e7ff';
+      }
+    }
+    &.labels {
+      &::before {
+        content: '\e867';
+      }
+    }
+    &.checklist {
+      &::before {
+        content: '\e834';
+      }
+    }
+    &.date {
+      &::before {
+        content: '\e8b5';
+      }
+    }
+    &.attachment {
+      &::before {
+        content: '\e226';
+      }
+    }
+    &.cover {
+      &::before {
+        content: '\e40b';
+      }
+    }
+    &.archive {
+      &::before {
+        content: '\e1a1';
+      }
+    }
+    &.remove {
+      color: #fff;
+      &::before {
+        content: '\e15b';
+      }
     }
   }
 }

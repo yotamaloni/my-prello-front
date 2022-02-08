@@ -1,34 +1,31 @@
 import React from 'react'
 
+import { connect } from 'react-redux'
+
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 
+import { setModal } from '../store/board.action.js'
+
 import { MembersList } from '../cmps/members-list.jsx'
 import { DynamicModal } from '../cmps/modal/dynamic-modal.jsx'
 
-export class BoardSubHeader extends React.Component {
+class _BoardSubHeader extends React.Component {
 
-    state = {
-        modal: null
-    }
+    MODAL_WIDTH = 304 + 'px'
 
-    onOpenModal = (type) => {
-        this.setState({ modal: type })
-    }
-
-    closeModal = () => {
-        this.setState({ modal: null })
+    onSetModal = (modalType) => {
+        this.props.setModal(modalType)
     }
 
     render() {
 
         const { toggleFilterModal, board, onToggleBoardStar } = this.props
-        const { modal } = this.state
+        const { modal } = this.props
         const starColor = board.isStarred ? 'gold' : '#FFF'
-        const MODAL_WIDTH = 304 + 'px'
 
         return (
             <section className='board-sub-header'>
@@ -47,18 +44,19 @@ export class BoardSubHeader extends React.Component {
                     }
 
                     <MembersList />
-                    <div className='invite-btn clickable' onClick={() => this.onOpenModal('invite')}>
+                    <div className='invite-btn clickable' onClick={() =>
+                        this.onSetModal({ type: 'invite', width: this.MODAL_WIDTH })}>
                         <GroupAddOutlinedIcon /><span>Invite</span>
-                        {modal === 'invite' && <React.Fragment>
+                        {modal?.type === 'invite' && <React.Fragment>
                             < DynamicModal
-                                width={MODAL_WIDTH}
                                 modal={'invite'}
-                                closeModal={this.closeModal}
+                                closeModal={() => this.onSetModal(null)}
                             />
                         </React.Fragment>}
                     </div>
 
                 </div>
+
                 <div className='flex right-menu'>
                     <div className='flex default-gap sub-nav-btn' onClick={() => { toggleFilterModal() }}>
                         <FilterListOutlinedIcon />
@@ -69,7 +67,20 @@ export class BoardSubHeader extends React.Component {
                         <div className='txt-in-btn'>Show menu</div>
                     </div>
                 </div>
+
             </section>
         )
     }
 }
+
+function mapStateToProps({ boardModule }) {
+    return {
+        modal: boardModule.modal,
+    }
+}
+
+const mapDispatchToProps = {
+    setModal,
+};
+
+export const BoardSubHeader = connect(mapStateToProps, mapDispatchToProps)(_BoardSubHeader)

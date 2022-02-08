@@ -62,7 +62,7 @@ class _BoardDetails extends React.Component {
     render() {
         const loader = require('../img/loader.gif')
         const { isAddListOpen } = this.state
-        const { board, modal } = this.props
+        const { board } = this.props
         if (!board || !board.title) return <div className='loader-page'><img className='loader' src={loader} /></div>
         const imgUrl = board.style.imgUrl || ''
         const backgroundColor = board.style.backgroundColor || '#29CCE5'
@@ -74,7 +74,8 @@ class _BoardDetails extends React.Component {
                     backgroundColor: backgroundColor
                 }} >
                 <AppHeader isBoardDetails={true} />
-                <BoardSubHeader board={board} toggleMenuModal={this.onToggleMenuModal}
+                <BoardSubHeader board={board}
+                    toggleMenuModal={this.onToggleMenuModal}
                     toggleFilterModal={this.onToggleFilterModal}
                     onToggleBoardStar={this.onToggleBoardStar} />
                 <div className='overflow-container'>

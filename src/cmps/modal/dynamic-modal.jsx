@@ -26,13 +26,17 @@ function _DynamicModal(props) {
                 {...props}
             />;
         case 'checklist':
-            return <div>IN BUILD</div>
+            return <ChecklistModal className='dynamic-modal'
+                {...props}
+            />;
         case 'date':
             return <DateModal className='dynamic-modal'
                 {...props}
             />;
         case 'attachment':
-            return <div>IN BUILD</div>
+            return <AttachmentModal className='dynamic-modal'
+                {...props}
+            />;
         case 'cover':
             return <CoverModal className='dynamic-modal'
                 {...props}

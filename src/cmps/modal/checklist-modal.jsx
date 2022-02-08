@@ -1,3 +1,37 @@
+import React from 'react'
+
+import { connect } from 'react-redux'
+
+import { updateBoard } from '../../store/board.action.js'
+
+import { ModalHeader } from './modal-header.jsx'
+
+class _ChecklistModal extends React.Component {
+
+    render() {
+        const { board, task, modal, closeModal } = this.props
+        const { width } = modal
+        return (
+            <section className='modal checklist-modal' style={{ width: width }}>
+                <ModalHeader modal={modal} closeModal={closeModal} />
+            </section >
+        )
+    }
+}
+
+function mapStateToProps({ boardModule }) {
+
+    return {
+        board: boardModule.board
+    }
+}
+
+const mapDispatchToProps = {
+    updateBoard,
+};
+
+
+export const ChecklistModal = connect(mapStateToProps, mapDispatchToProps)(_ChecklistModal)
 
 // import React from 'react'
 // import DoneIcon from '@mui/icons-material/Done';
