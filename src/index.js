@@ -17,8 +17,8 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router>
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <RootCmp />
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <RootCmp />
         </MuiPickersUtilsProvider>
       </Router>
     </Provider>

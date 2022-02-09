@@ -15,6 +15,8 @@ import { SideMenu } from '../cmps/side-menu.jsx'
 import { AddList } from '../cmps/add-list.jsx'
 import { BoardGroupList } from '../cmps/board-group-list.jsx'
 import { BoardFilter } from '../cmps/board-filter.jsx'
+import { CircularIndeterminate } from '../cmps/loader.jsx'
+
 
 class _BoardDetails extends React.Component {
     state = {
@@ -60,10 +62,9 @@ class _BoardDetails extends React.Component {
     }
 
     render() {
-        const loader = require('../img/loader.gif')
         const { isAddListOpen } = this.state
         const { board } = this.props
-        if (!board || !board.title) return <div className='loader-page'><img className='loader' src={loader} /></div>
+        if (!board || !board.title) return <div className='loader-page'><CircularIndeterminate /></div>
         const imgUrl = board.style.imgUrl || ''
         const backgroundColor = board.style.backgroundColor || '#29CCE5'
 

@@ -1,0 +1,36 @@
+.txt-form {
+  &.task-title {
+    input {
+      width: 90%;
+      padding-inline-start: 0;
+      color: #172b4d;
+      font-family: inherit;
+      font-weight: 600;
+      min-height: 33px;
+      font-size: 1.25rem;
+      border: none;
+      background-color: inherit;
+      transition: 0.1s;
+      &:focus {
+        outline: 2px solid #0079bf;
+        border-radius: 3px;
+      }
+    }
+  }
+  &.add-comment {
+    input {
+      width: 100%;
+      height: 30px;
+      border-radius: 3px;
+      border: none;
+      box-shadow: 0 1px 0 #091e4240;
+      color: $clr3;
+      padding-inline-start: 5px;
+      &:focus {
+        outline: 2px solid #0079bf;
+        border: none;
+        border-radius: 3px;
+      }
+    }
+  }
+}

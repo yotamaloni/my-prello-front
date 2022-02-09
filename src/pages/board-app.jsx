@@ -2,6 +2,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+
+
 import { boardService } from "../services/board.service.js"
 import { socketService } from "../services/socket.service.js"
 
@@ -10,6 +12,7 @@ import { updateBoard, loadBoard, setModal } from '../store/board.action.js'
 import { AppHeader } from '../cmps/app-header.jsx'
 import { BoardsList } from '../cmps/boards-list.jsx'
 import { DynamicModal } from '../cmps/modal/dynamic-modal.jsx'
+import { CircularIndeterminate } from '../cmps/loader.jsx'
 
 
 
@@ -19,7 +22,7 @@ class _BoardApp extends React.Component {
     state = {
         boards: null,
     }
-    
+
     async componentDidMount() {
         this.loadBoards()
         await this.props.loadBoard(null)
@@ -85,8 +88,7 @@ class _BoardApp extends React.Component {
 
     render() {
         const { boards } = this.state
-        const loader = require('../img/loader.gif')
-        if (!boards) return <div className='loader-page'><img className='loader' src={loader} /></div>
+        if (!boards) return <div className='loader-page'><CircularIndeterminate /></div>
         const starredBoards = boards.filter((board) => board.isStarred)
         const MODAL_WIDTH = 304 + 'px'
         const { modal } = this.props

@@ -11,41 +11,41 @@
 @import 'basics/buttons';
 
 // General Componentss
-@import 'cmps/_app-home.scss';
-@import 'cmps/_app-header.scss';
-@import 'cmps/_member-icon.scss';
+@import 'cmps/app-home';
+@import 'cmps/app-header';
+@import 'cmps/member-icon';
 
 // Specific Components
-@import 'cmps/_login-signup.scss';
-@import 'cmps/_board-sub-header.scss';
-@import 'cmps/_board-app.scss';
-@import 'cmps/_board-filter.scss';
-@import 'cmps/_board-preview.scss';
-@import 'cmps/_board-details.scss';
-@import 'cmps/_board-group-list.scss';
-@import 'cmps/_board-group.scss';
-@import 'cmps/task-preview.scss';
-@import 'cmps/task-preview-info.scss';
-@import 'cmps/task-details.scss';
-@import 'cmps/task-cover.scss';
-@import 'cmps/side-menu.scss';
-@import 'cmps/text-input.scss';
-@import 'cmps/search-form.scss';
-@import 'cmps/_add-list.scss';
-@import 'cmps/add-task.scss';
-@import 'cmps/task-btns.scss';
-@import 'cmps/task-info.scss';
-@import 'cmps/list-actions-menu.scss';
-@import 'cmps/members-list.scss';
-@import 'cmps/_user-msg.scss';
+@import 'cmps/login-signup';
+@import 'cmps/board-sub-header';
+@import 'cmps/board-app';
+@import 'cmps/board-filter';
+@import 'cmps/board-preview';
+@import 'cmps/board-details';
+@import 'cmps/board-group-list';
+@import 'cmps/board-group';
+@import 'cmps/task-preview';
+@import 'cmps/task-preview-info';
+@import 'cmps/task-details';
+@import 'cmps/task-cover';
+@import 'cmps/side-menu';
+@import 'cmps/txt-input';
+@import 'cmps/search-form';
+@import 'cmps/add-list';
+@import 'cmps/add-task';
+@import 'cmps/task-btns';
+@import 'cmps/task-info';
+@import 'cmps/list-actions-menu';
+@import 'cmps/members-list';
+@import 'cmps/user-msg';
 
-@import 'cmps/modal-header.scss';
-@import 'cmps/dynamic-modal.scss';
+@import 'cmps/modal-header';
+@import 'cmps/dynamic-modal';
 
-@import 'cmps/labels-modal.scss';
-@import 'cmps/checklist-modal.scss';
-@import 'cmps/cover-modal.scss';
-@import 'cmps/remove-modal.scss';
-@import 'cmps/create-board-modal.scss';
-@import 'cmps/members-modal.scss';
-@import 'cmps/invite-to-board-modal.scss';
+@import 'cmps/labels-modal';
+@import 'cmps/checklist-modal';
+@import 'cmps/cover-modal';
+@import 'cmps/remove-modal';
+@import 'cmps/create-board-modal';
+@import 'cmps/members-modal';
+@import 'cmps/invite-to-board-modal';
