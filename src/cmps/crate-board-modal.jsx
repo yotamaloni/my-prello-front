@@ -1,18 +1,8 @@
 import React from 'react'
 
+import { dataService } from '../services/data.service.js'
+
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-
-
-const IMG1_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053148/samples/landscapes/landscape-panorama.jpg'
-const IMG2_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053146/samples/landscapes/nature-mountains.jpg'
-const IMG3_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053143/samples/landscapes/beach-boat.jpg'
-const IMG4_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053142/samples/landscapes/architecture-signs.jpg'
-const IMG5_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053138/samples/landscapes/girl-urban-view.jpg'
-const IMG6_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053145/samples/food/spices.jpg'
-const IMG7_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053144/samples/ecommerce/accessories-bag.jpg'
-const IMG8_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053136/samples/animals/reindeer.jpg'
-const IMG9_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053147/samples/animals/kitten-playing.gif'
-const IMG10_URL = 'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053141/samples/animals/three-dogs.jpg'
 
 export class CreateBoardModal extends React.Component {
     state = {
@@ -73,32 +63,6 @@ export class CreateBoardModal extends React.Component {
 
     render() {
         const { title, backgroundColor, imgUrl } = this.state
-        const colors = [
-            '#7BC86C',
-            '#F5DD29',
-            '#FFAF3F',
-            '#EF7564',
-            '#CD8DE5',
-            '#5BA4CF',
-            '#29CCE5',
-            '#6DECA9',
-            '#FF8ED4',
-            '#172B4D',
-        ]
-
-        const imgUrls = [
-            IMG1_URL,
-            IMG2_URL,
-            IMG3_URL,
-            IMG4_URL,
-            IMG5_URL,
-            IMG6_URL,
-            IMG7_URL,
-            IMG8_URL,
-            IMG9_URL,
-            IMG10_URL,
-        ]
-
         return (
             <div className='board-cover'>
                 {/* <h3 className='delete-title'>Delete card?</h3> */}
@@ -134,7 +98,7 @@ export class CreateBoardModal extends React.Component {
                 <div className='cover-colors'>
                     <h3 className='cover-title create-board-title'>Colors</h3>
                     <ul className='cover-color-list clean-list'>
-                        {colors.map((color, index) => {
+                        {dataService.colors.map((color, index) => {
                             return <li onClick={() => {
                                 this.onSetCoverColor(color)
                             }} key={index} style={{ backgroundColor: color }}></li>
@@ -145,7 +109,7 @@ export class CreateBoardModal extends React.Component {
                 <div className='cover-colors img'>
                     <h3 className='cover-title create-board-title'>Photos</h3>
                     <ul className='cover-color-list clean-list img-list'>
-                        {imgUrls.map((url, index) => {
+                        {dataService.imgUrls.map((url, index) => {
                             return <li onClick={() => {
                                 this.onSetCoverImg(url)
                             }} key={index} style={{ backgroundImage: `url(${url})` }}></li>

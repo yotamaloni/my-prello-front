@@ -58,7 +58,6 @@ class _TaskAddActivity extends React.Component {
         return (
 
             <section className='task-activity-add'>
-
                 <main className='main'>
                     <div className='title'>
                         Activity

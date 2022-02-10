@@ -31,7 +31,6 @@ class _TaskDescription extends React.Component {
         this.props.updateBoard({ ...board })
     }
 
-
     render() {
         const { task } = this.props
         let { description } = task

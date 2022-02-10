@@ -49,6 +49,7 @@
     &.labels {
       &::before {
         content: '\e867';
+        transform: rotate(-135deg);
       }
     }
     &.checklist {
@@ -64,6 +65,7 @@
     &.attachment {
       &::before {
         content: '\e226';
+        transform: rotate(-135deg);
       }
     }
     &.cover {

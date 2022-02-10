@@ -40,7 +40,6 @@ class _AddList extends React.Component {
         });
     }
 
-
     render() {
         let { title } = this.state
         const { onToggleAddList } = this.props

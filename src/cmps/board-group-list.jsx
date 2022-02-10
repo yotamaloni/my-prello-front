@@ -12,40 +12,20 @@ class _BoardGroupList extends React.Component {
     state = {
         groups: null,
     }
-
-    componentDidMount() {
-        this.setGroups()
-    }
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.board !== this.props.board) {
-            this.setGroups()
-        }
-
-    }
-
-    setGroups = () => {
-        const { board } = this.props
-        const groups = [...board.groups]
-        this.setState({ groups })
-    }
-
     onDragEnd = (result) => {
         const { source, destination, type } = result
         if (!destination) return
         if (
             destination.droppableId === source.droppableId &&
             destination.index === source.index
-        ) {
-            return;
-        }
-        if (type === 'group') this.updateGroups(source, destination)
-        else this.updateTasks(source, destination)
+        ) return
+        const { board } = this.props
+        let { groups } = board
+        if (type === 'group') this.updateGroups(board, groups, source, destination)
+        else this.updateTasks(board, groups, source, destination)
     };
 
-    updateGroups = (source, destination) => {
-        const { board } = this.props
-        const { groups } = this.state
+    updateGroups = (board, groups, source, destination) => {
         const newGroups = [...groups]
         const [group] = newGroups.splice(source.index, 1)
         newGroups.splice(destination.index, 0, group)
@@ -54,9 +34,7 @@ class _BoardGroupList extends React.Component {
         this.props.updateBoard({ ...board })
     }
 
-    updateTasks = (source, destination) => {
-        const { board } = this.props
-        const { groups } = this.state
+    updateTasks = (board, groups, source, destination) => {
         let newGroups = [...groups]
         const sourceGroup = newGroups.find((group) => group.id === source.droppableId)
         let destinationGroup = newGroups.find((group) => group.id === destination.droppableId)
@@ -71,18 +49,9 @@ class _BoardGroupList extends React.Component {
         board.groups = newGroups
         this.props.updateBoard({ ...board })
     }
-
-    // updateGroupInState = (groups) => {
-        // this.setState({ groups })
-    // }
-
     render() {
         const { board } = this.props
-        if (!board) return <div>Loading...</div>
-
-        // const groups = this.state.groups || board.groups
-        const groups = board.groups
-
+        const { groups } = board
         return (
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <Droppable
@@ -103,7 +72,6 @@ class _BoardGroupList extends React.Component {
                                                 ref={provided.innerRef}>
                                                 <BoardGroup
                                                     board={board}
-                                                    // updateGroupInState={this.updateGroupInState}
                                                     updateBoard={this.props.updateBoard}
                                                     group={group}
                                                 />

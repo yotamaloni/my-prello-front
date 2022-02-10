@@ -13,43 +13,32 @@ import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
 import { SearchInput } from './search-input.jsx'
 import { MemberIcon } from '../cmps/member-icon.jsx'
 
-class _AppHeader extends React.Component {
+function _AppHeader(props) {
 
-    componentDidMount() {
-    }
-
-    onLogoutUser = () => {
-        this.props.onLogout()
-    }
-
-    render() {
-        const fitClassName = this.props.isBoardDetails ? 'board-details-class' : 'app-board-class'
-        const { user } = this.props
-        return (
-            <section className={`app-header ${fitClassName}`}>
-                <div className='main-nav flex default-gap'>
-                    <AppsOutlinedIcon className='top-nav-btn' />
-                    <NavLink className="clean-link logo top-nav-btn" to='/'>Prello</NavLink>
-                    <NavLink className="clean-link top-nav-btn" to='/board'>Workspaces</NavLink>
-                </div>
-                <div className='config'>
-                    <SearchInput />
-                    <InfoOutlinedIcon className='top-nav-btn' />
-                    {user?.username ?
-                        <Link to='/login-signup' onClick={this.onLogoutUser} className='clickable clean-link'>
-                            <MemberIcon member={user} size={32} className='top-nav-btn' />
-                        </Link>
-                        :
-                        <Link to='/login-signup' className='clean-link' >
-                            <AccountCircleOutlinedIcon className='top-nav-btn' />
-                        </Link>
-                    }
-                </div>
-            </section>
-        )
-    }
-
-
+    const fitClassName = props.isBoardDetails ? 'board-details-class' : 'app-board-class'
+    const { user } = props
+    return (
+        <section className={`app-header ${fitClassName}`}>
+            <div className='main-nav flex default-gap'>
+                <AppsOutlinedIcon className='top-nav-btn' />
+                <NavLink className="clean-link logo top-nav-btn" to='/'>Prello</NavLink>
+                <NavLink className="clean-link top-nav-btn" to='/board'>Workspaces</NavLink>
+            </div>
+            <div className='config'>
+                <SearchInput />
+                <InfoOutlinedIcon className='top-nav-btn' />
+                {user?.username ?
+                    <Link to='/login-signup' onClick={this.onLogoutUser} className='clickable clean-link'>
+                        <MemberIcon member={user} size={32} className='top-nav-btn' />
+                    </Link>
+                    :
+                    <Link to='/login-signup' className='clean-link' >
+                        <AccountCircleOutlinedIcon className='top-nav-btn' />
+                    </Link>
+                }
+            </div>
+        </section>
+    )
 }
 
 

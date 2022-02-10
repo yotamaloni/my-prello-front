@@ -63,13 +63,9 @@ export class BoardGroup extends React.Component {
     }
 
     render() {
-        const loader = require('../img/loader.gif')
         const { group, board, updateBoard } = this.props
         const { tasks } = group
         const { isAddTaskOpen, isListActionsOpen, groupTitle } = this.state
-
-        if (!tasks) return <div className='loader-page'><img className='loader' src={loader} /></div>
-
         return (
             <section className='board-group'>
                 <div className='list-header'>
@@ -90,7 +86,6 @@ export class BoardGroup extends React.Component {
                 {isListActionsOpen && (
                     <React.Fragment>
                         <ListActionsMenu
-                            // updateGroupInState={this.props.updateGroupInState}
                             updateBoard={updateBoard}
                             board={board}
                             group={group}
@@ -111,8 +106,8 @@ export class BoardGroup extends React.Component {
                                             index={index} >
                                             {(provided) => (
 
-                                                < li className='task-container' {...provided.draggableProps} 
-                                                {...provided.dragHandleProps} ref={provided.innerRef} >
+                                                < li className='task-container' {...provided.draggableProps}
+                                                    {...provided.dragHandleProps} ref={provided.innerRef} >
                                                     <TaskPreview
                                                         key={task.id}
                                                         board={board}
@@ -133,7 +128,6 @@ export class BoardGroup extends React.Component {
 
                     {
                         !isAddTaskOpen ?
-
                             <React.Fragment>
                                 <div className='card-composer'>
                                     <button className='no-background card-composer' onClick={this.onToggleAddTask}>

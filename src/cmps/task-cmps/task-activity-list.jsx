@@ -17,9 +17,7 @@ function _TaskActivityList({ task, board, updateBoard }) {
         board.activities.splice(activityIdx, 1)
         updateBoard({ ...board })
     }
-
     const activities = board.activities.filter((activity) => activity.taskId === task.id)
-
     return (
         <section className='activity-list'>
             <ul className="clean-list">

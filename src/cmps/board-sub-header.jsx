@@ -13,64 +13,59 @@ import { setModal } from '../store/board.action.js'
 import { MembersList } from '../cmps/members-list.jsx'
 import { DynamicModal } from '../cmps/modal/dynamic-modal.jsx'
 
-class _BoardSubHeader extends React.Component {
+function _BoardSubHeader(props) {
 
-    MODAL_WIDTH = 304 + 'px'
-
-    onSetModal = (modalType) => {
-        this.props.setModal(modalType)
+    const MODAL_WIDTH = 304 + 'px'
+    
+    const onSetModal = (modalType) => {
+        props.setModal(modalType)
     }
+    const { toggleFilterModal, board, onToggleBoardStar, modal } = props
+    const starColor = board.isStarred ? 'gold' : '#FFF'
 
-    render() {
+    return (
+        <section className='board-sub-header'>
+            <div className='flex left-menu'>
+                <div className="sub-nav-btn">Board</div>
+                <p className=' sub-nav-btn board-title'>{board.title}</p>
 
-        const { toggleFilterModal, board, onToggleBoardStar } = this.props
-        const { modal } = this.props
-        const starColor = board.isStarred ? 'gold' : '#FFF'
+                {board.isStarred ?
+                    <StarRateIcon className="sub-nav-btn star"
+                        onClick={onToggleBoardStar}
+                        style={{ color: 'gold' }} />
+                    :
+                    <StarBorderOutlinedIcon className="sub-nav-btn star"
+                        onClick={onToggleBoardStar}
+                        style={{ color: starColor }} />
+                }
 
-        return (
-            <section className='board-sub-header'>
-                <div className='flex left-menu'>
-                    <div className="sub-nav-btn">Board</div>
-                    <p className=' sub-nav-btn board-title'>{board.title}</p>
-
-                    {board.isStarred ?
-                        <StarRateIcon className="sub-nav-btn star"
-                            onClick={onToggleBoardStar}
-                            style={{ color: 'gold' }} />
-                        :
-                        <StarBorderOutlinedIcon className="sub-nav-btn star"
-                            onClick={onToggleBoardStar}
-                            style={{ color: starColor }} />
-                    }
-
-                    <MembersList />
-                    <div className='invite-btn clickable' onClick={() =>
-                        this.onSetModal({ type: 'invite', width: this.MODAL_WIDTH })}>
-                        <GroupAddOutlinedIcon /><span>Invite</span>
-                        {modal?.type === 'invite' && <React.Fragment>
-                            < DynamicModal
-                                modal={'invite'}
-                                closeModal={() => this.onSetModal(null)}
-                            />
-                        </React.Fragment>}
-                    </div>
-
+                <MembersList />
+                <div className='invite-btn clickable' onClick={() =>
+                    onSetModal({ type: 'invite', width: MODAL_WIDTH })}>
+                    <GroupAddOutlinedIcon /><span>Invite</span>
+                    {modal?.type === 'invite' && <React.Fragment>
+                        < DynamicModal
+                            modal={'invite'}
+                            closeModal={() => onSetModal(null)}
+                        />
+                    </React.Fragment>}
                 </div>
 
-                <div className='flex right-menu'>
-                    <div className='flex default-gap sub-nav-btn' onClick={() => { toggleFilterModal() }}>
-                        <FilterListOutlinedIcon />
-                        <div className='txt-in-btn'>Filter</div>
-                    </div>
-                    <div className='flex default-gap sub-nav-btn'>
-                        <MoreHorizOutlinedIcon />
-                        <div className='txt-in-btn'>Show menu</div>
-                    </div>
-                </div>
+            </div>
 
-            </section>
-        )
-    }
+            <div className='flex right-menu'>
+                <div className='flex default-gap sub-nav-btn' onClick={() => { toggleFilterModal() }}>
+                    <FilterListOutlinedIcon />
+                    <div className='txt-in-btn'>Filter</div>
+                </div>
+                <div className='flex default-gap sub-nav-btn'>
+                    <MoreHorizOutlinedIcon />
+                    <div className='txt-in-btn'>Show menu</div>
+                </div>
+            </div>
+
+        </section>
+    )
 }
 
 function mapStateToProps({ boardModule }) {

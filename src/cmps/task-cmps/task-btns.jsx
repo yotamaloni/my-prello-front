@@ -8,7 +8,6 @@ import { DynamicModal } from '../modal/dynamic-modal.jsx'
 
 class _TaskBtns extends React.Component {
     state = {
-        modal: null,
         isArchiveOpen: false
     }
 
