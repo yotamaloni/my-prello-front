@@ -80,9 +80,7 @@ class _BoardGroupList extends React.Component {
                                     </Draggable>
                                 )
                             })}
-
                             {provided.placeholder}
-
                         </ul>
                     )}
                 </Droppable>

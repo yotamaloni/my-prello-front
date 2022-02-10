@@ -7,12 +7,8 @@
   .list-header {
     box-sizing: border-box;
     display: flex;
-    // flex-direction: column;
-    // justify-content: space-between;
-    // margin: 0 4px;
     height: 40px;
     justify-content: space-between;
-    // width: 252px;
     font-weight: bold;
     .no-background {
       margin: 4px 0;
@@ -27,8 +23,6 @@
       }
     }
     .group-title-container {
-      // height: auto;
-      // width: auto;
       margin: 0;
       padding: 0;
 
@@ -37,12 +31,9 @@
         padding: 4px 8px;
         margin: 5px 0;
         min-width: 50px;
-        // width: 90%;
-        // display:inline-block;
         color: #172b4d;
         font-family: inherit;
         font-weight: 600;
-        // width: 228px;
         min-height: 28px;
         line-height: 20px;
         font-size: 14px;

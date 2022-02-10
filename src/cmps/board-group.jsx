@@ -1,5 +1,5 @@
 import React from 'react'
-
+import styled from 'styled-components';
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 
 import AddIcon from '@mui/icons-material/Add';
@@ -8,8 +8,6 @@ import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import { TaskPreview } from './task-preview.jsx'
 import { AddTask } from './add-task.jsx'
 import { ListActionsMenu } from './list-actions-menu.jsx'
-
-
 
 export class BoardGroup extends React.Component {
 
@@ -66,6 +64,8 @@ export class BoardGroup extends React.Component {
         const { group, board, updateBoard } = this.props
         const { tasks } = group
         const { isAddTaskOpen, isListActionsOpen, groupTitle } = this.state
+        
+
         return (
             <section className='board-group'>
                 <div className='list-header'>
@@ -106,8 +106,11 @@ export class BoardGroup extends React.Component {
                                             index={index} >
                                             {(provided) => (
 
-                                                < li className='task-container' {...provided.draggableProps}
-                                                    {...provided.dragHandleProps} ref={provided.innerRef} >
+                                                < li className='task-container'
+                                                    {...provided.draggableProps}
+                                                    {...provided.dragHandleProps}
+                                                    ref={provided.innerRef}
+                                                >
                                                     <TaskPreview
                                                         key={task.id}
                                                         board={board}
@@ -123,7 +126,6 @@ export class BoardGroup extends React.Component {
                                 {provided.placeholder}
                             </ul>
                         )}
-
                     </Droppable>
 
                     {
