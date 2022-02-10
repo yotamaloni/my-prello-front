@@ -1,0 +1,32 @@
+.task-labels {
+  display: flex;
+  flex-direction: column;
+  .labels-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 0;
+    padding: 0;
+    > * {
+      color: $clr7;
+      cursor: pointer;
+      transition: 0.2s;
+      min-width: 40px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #091e420a;
+      font-size: 0.8rem;
+      border-radius: 3px;
+      padding: 5px;
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+    .add-label {
+      color: $clr4;
+      background-color: #d4d4d4;
+    }
+  }
+}

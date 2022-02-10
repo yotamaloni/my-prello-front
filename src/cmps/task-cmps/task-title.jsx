@@ -20,9 +20,11 @@ class _TaskTitle extends React.Component {
     render() {
         const { group, txt } = this.props
         return (
-            <section>
-                <TxtInput styleClass='task-title' txt={txt} onUpdateTxtInput={this.onUpdateTxtInput} />
-                <CallToActionOutlinedIcon className='info-icon title' />
+            <section className='task-title'>
+                <div className='input-container'>
+                    <TxtInput styleClass='task-title-input' txt={txt} onUpdateTxtInput={this.onUpdateTxtInput} />
+                    <CallToActionOutlinedIcon className='info-icon title' />
+                </div>
                 <div className='group-title'>In list <span>{group.title}</span></div>
             </section>
         )

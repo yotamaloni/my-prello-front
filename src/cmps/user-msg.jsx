@@ -24,17 +24,20 @@ class _UserMsg extends React.Component {
     render() {
         const { msg } = this.props
         if (!msg) return <React.Fragment></React.Fragment>
+
         const msgClass = msg.type || ''
         return (
             <section className={'user-msg ' + msgClass}>
-                <button
-                    onClick={() => {
-                        this.onCloseMsg()
-                    }}
-                >
-                    x
-                </button>
                 {msg.txt}
+                <div className='btn-container'>
+                    <button
+                        onClick={() => {
+                            this.onCloseMsg()
+                        }}
+                    >
+                        x
+                    </button>
+                </div>
             </section>
         )
     }

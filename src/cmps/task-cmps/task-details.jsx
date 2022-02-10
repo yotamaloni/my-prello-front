@@ -54,11 +54,9 @@ class _TaskDetails extends React.Component {
 
           <main className='task-main-container'>
 
-            <div className='title-container'>
-              <TaskTitle txt={title} task={task} group={group} />
-            </div>
+            <TaskTitle txt={title} task={task} group={group} />
 
-            <div className='info-and-btns-container'>
+            <div className='task-body'>
               <TaskInfo
                 group={group}
                 task={task}
@@ -70,6 +68,7 @@ class _TaskDetails extends React.Component {
                 task={task}
               />
             </div>
+
           </main>
 
           <button className='close-btn' onClick={() => {

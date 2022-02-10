@@ -1,0 +1,22 @@
+.task-activity-add {
+  .main {
+    .title {
+      margin: 0;
+      padding: 0;
+      font-size: 1rem;
+      font-weight: 600;
+      position: relative;
+      display: flex;
+      align-items: center;
+      .activity-icon {
+        font-size: 20px;
+        margin-inline-start: -40px;
+        position: absolute;
+        transform: scaleX(-1);
+      }
+    }
+    .config-activity {
+      margin-top: 10px;
+    }
+  }
+}

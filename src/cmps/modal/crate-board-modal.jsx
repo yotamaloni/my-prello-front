@@ -40,7 +40,7 @@ export class CreateBoardModal extends React.Component {
         this.setState({ backgroundColor: null, imgUrl: url })
     }
 
-    onSubmit = () => {
+    onSubmit = (ev) => {
         const { title, imgUrl, backgroundColor } = this.state
         const { closeModal } = this.props
         if (!title) {
@@ -56,7 +56,6 @@ export class CreateBoardModal extends React.Component {
         }
         this.props.addBoard(board)
         closeModal()
-
     }
 
     uploadImgCover = async (ev) => {
@@ -162,11 +161,16 @@ export class CreateBoardModal extends React.Component {
                     <input id="upload" className="file-input" type="file" onChange={(ev) => { this.uploadImgCover(ev) }} />
                 </div>
 
-                <div className={`full-width-btn ${creatBtnColor}`} onClick={this.onSubmit}>Create</div>
+                <div className={`full-width-btn ${creatBtnColor}`} onClick={(ev) => {
+                    ev.stopPropagation();
+                    closeModal()
+                    this.onSubmit()
+                }}>Create</div>
             </div>
         )
     }
 }
+
 
 
 

@@ -1,0 +1,26 @@
+.txt-area-form {
+  &.add-desc-form textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    font-size: inherit;
+    color: $clr3;
+    font-family: inherit;
+    overflow: auto;
+    min-height: 72px;
+    line-height: 20px;
+    background-color: $clr7;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 #091e4240;
+    margin-bottom: 0;
+    padding-inline-end: 20px;
+    color: $clr3;
+    &:focus {
+      outline: none !important;
+      border: #0079bf 2px solid;
+      border-radius: 3px;
+    }
+  }
+}

@@ -1,5 +1,5 @@
 .txt-form {
-  &.task-title {
+  &.task-title-input {
     input {
       width: 90%;
       padding-inline-start: 0;
@@ -17,7 +17,7 @@
       }
     }
   }
-  &.add-comment {
+  &.add-activity {
     input {
       width: 100%;
       height: 30px;
@@ -31,6 +31,9 @@
         border: none;
         border-radius: 3px;
       }
+    }
+    .save-btn {
+      margin-top: 10px;
     }
   }
 }

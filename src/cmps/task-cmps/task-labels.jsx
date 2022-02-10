@@ -11,7 +11,7 @@ export function TaskLabels({ task, board }) {
         labelsToDisplay = board.labels.filter((currLabel => taskLabelsIds.includes(currLabel.id)))
     }
     return (
-        <section className='labels sec-container info-child'>
+        <section className='task-labels'>
             <h3 className='config-title'>Labels</h3>
             <ul className="labels-list clean-list">
                 {labelsToDisplay && labelsToDisplay.map((label, index) => {

@@ -1,0 +1,18 @@
+.task-title {
+  margin-bottom: 10px;
+  .input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    .info-icon {
+      position: absolute;
+      margin-inline-start: -40px;
+    }
+  }
+  .group-title {
+    color: $clr4;
+    span {
+      text-decoration: underline;
+    }
+  }
+}

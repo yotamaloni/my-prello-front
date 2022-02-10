@@ -24,7 +24,7 @@ export class TxtAreaInput extends React.Component {
         else txt = this.state.txt
 
         return (
-            <form onSubmit={(ev) => this.onSubmitForm(ev)} className={`txt-form ${styleClass}`}>
+            <form onSubmit={(ev) => this.onSubmitForm(ev)} className={`txt-area-form ${styleClass}`}>
                 <textarea
                     className='txt-input'
                     placeholder={placeholder}

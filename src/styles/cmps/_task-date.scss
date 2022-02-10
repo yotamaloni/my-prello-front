@@ -1,0 +1,37 @@
+.task-date {
+  .date-display {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    color: $clr4;
+    cursor: pointer;
+    input {
+      cursor: pointer;
+    }
+  }
+  .due-date-container {
+    padding-inline-start: 5px;
+    padding-inline-end: 5px;
+    margin-inline-start: 5px;
+    background-color: #091e420a;
+    border-radius: 3px;
+    display: inline-block;
+
+    &:hover {
+      background-color: #d4d4d4;
+    }
+    .completed-date,
+    .not-completed-date {
+      color: #fff;
+      padding-inline-start: 5px;
+      padding-inline-end: 5px;
+      border-radius: 3px;
+    }
+    .not-completed-date {
+      background-color: #eb5a46;
+    }
+    .completed-date {
+      background-color: #61bd4f;
+    }
+  }
+}

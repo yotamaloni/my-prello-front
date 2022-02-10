@@ -41,8 +41,8 @@ class _TaskDate extends React.Component {
 
 
         return (
-            <section className='task-date info-child'>
-                <h3 className='labels-title'>Due date</h3>
+            <section className='task-date'>
+                <h3>Due date</h3>
                 <div className='date-display'>
                     <input onChange={this.onToggleDateCheckbox} type="checkbox" name="date" checked={isDateCheckbox} />
                     <span className='due-date-container' >{date}

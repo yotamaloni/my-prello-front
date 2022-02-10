@@ -38,10 +38,11 @@ class _TaskDescription extends React.Component {
         const { isDescriptionOpen } = this.state
         if (description === null && this.state.task.description) description = this.state.task.description
         return (
-            <section className='description sec-container info-child'>
-                <SegmentOutlinedIcon className='activity-icon info-icon' />
+            <section className='task-description'>
                 <div>
-                    <div className='info-title'>Description</div>
+                    <div className='description-title'>Description
+                        <SegmentOutlinedIcon className='description-icon' />
+                    </div>
                     {isDescriptionOpen ?
                         <TxtAreaInput
                             styleClass='add-desc-form'

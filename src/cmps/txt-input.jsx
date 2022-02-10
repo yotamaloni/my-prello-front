@@ -40,9 +40,9 @@ export class TxtInput extends React.Component {
                     onChange={this.onHandleChange} />
 
                 {isSaveBtn &&
-                    <div className='config-activity'>
+                    <div className='save-btn'>
                         <button onClick={(ev) => {
-                            this.onUpdateTxtInput(ev)
+                            this.onSubmitForm(ev)
                         }} className='add-btn'>Save</button>
                     </div>
                 }

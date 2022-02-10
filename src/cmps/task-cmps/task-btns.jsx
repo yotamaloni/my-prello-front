@@ -29,7 +29,7 @@ class _TaskBtns extends React.Component {
         const { task, modal } = this.props
         const { isArchiveOpen } = this.state
         return (
-            <div className='flex column align-end task-btns-container'>
+            <div className='flex column align-end task-btns'>
 
                 {/******Add to card***************************/}
 

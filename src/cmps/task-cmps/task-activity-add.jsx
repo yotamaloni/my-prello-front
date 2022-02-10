@@ -29,7 +29,6 @@ class _TaskAddActivity extends React.Component {
     }
 
     onOpenModal = () => {
-        console.log('oj')
         this.setState({ isActivityOpen: true })
     }
 
@@ -58,15 +57,17 @@ class _TaskAddActivity extends React.Component {
         const isSaveBtn = isActivityOpen ? true : false
         return (
 
-            <section className='activity sec-container info-child'>
+            <section className='task-activity-add'>
 
-                <TocOutlinedIcon className='activity-icon info-icon' />
+                <main className='main'>
+                    <div className='title'>
+                        Activity
+                        <TocOutlinedIcon className='activity-icon' />
 
-                <div className='activity-comment-container'>
-                    <div className='info-title'>Activity</div>
+                    </div>
                     <div onClick={this.onOpenModal}>
                         <TxtInput onClick={this.onOpenModal}
-                            styleClass='add-comment'
+                            styleClass='add-activity'
                             txt={null}
                             onUpdateTxtInput={this.onUpdateTxtInput}
                             placeholder='Write a comment...'
@@ -75,7 +76,7 @@ class _TaskAddActivity extends React.Component {
                             isBlurSubmit={false}
                         />
                     </div>
-                </div>
+                </main>
             </section>
 
         )

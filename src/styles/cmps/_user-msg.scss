@@ -1,18 +1,25 @@
 .user-msg {
+  display: flex;
+  align-items: center;
   color: white;
   padding: 10px;
   font-size: 1.4em;
   position: fixed;
-  bottom: 10px;
+  bottom: 15px;
   left: 10px;
   background-color: grey;
   border-radius: 3px;
-  button {
-    float: right;
-    border: 0;
-    border-radius: 50%;
-    margin: 5px;
+  gap: 5px;
+  .btn-container {
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 0;
+      border-radius: 50%;
+    }
   }
+
   &.success {
     background-color: rgb(41, 189, 73);
   }

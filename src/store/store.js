@@ -14,8 +14,6 @@ import thunk from 'redux-thunk'
 const rootReducer = combineReducers({
     boardModule : boardReducer,
     userModule : userReducer,
-    
-
 })
 
 

@@ -23,9 +23,8 @@ class _BoardApp extends React.Component {
         boards: null,
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         this.loadBoards()
-        await this.props.loadBoard(null)
         socketService.on('remove-board', (boardId) => {
             let { boards } = this.state
             boards = boards.filter(currBoard => {
@@ -58,6 +57,7 @@ class _BoardApp extends React.Component {
     loadBoards = async () => {
         try {
             const boards = await boardService.query()
+            await this.props.loadBoard(null)
             this.setState({ boards })
         } catch (err) {
             console.log('Cannot get boards ', err);
@@ -92,6 +92,7 @@ class _BoardApp extends React.Component {
         const starredBoards = boards.filter((board) => board.isStarred)
         const MODAL_WIDTH = 304 + 'px'
         const { modal } = this.props
+        console.log("🟡 ~ modal", modal)
         return (
             <section className="board-app">
                 <AppHeader isBoardDetails={false} />
@@ -121,12 +122,11 @@ class _BoardApp extends React.Component {
                                 onRemoveBoard={this.onRemoveBoard}
                             />
                         }))
-
                         }
                     </ul>
                 </div>
 
-                <div className='stared-board-container'>
+                <div className='starred-board-container'>
                     <h3>Starred boards</h3>
                     <ul className='stared-board-list clean-list'>
                         {starredBoards.reverse().map((board => {

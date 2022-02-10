@@ -1,12 +1,8 @@
-.task-btns-container {
-  margin-inline-end: 20px;
+.task-btns {
   .config-title {
-    margin-bottom: 4px;
-    margin-inline-start: 0;
     align-self: flex-start;
-    font-size: 0.75rem;
-    color: $clr4;
   }
+
   .task-btn {
     color: $clr4;
     position: relative;
@@ -18,9 +14,7 @@
     > * {
       margin-inline-start: 8px;
     }
-    justify-content: flex-start;
     margin-bottom: 8px;
-    border: none;
     border-radius: 3px;
     background-color: #091e420a;
     transition: 0.2s;

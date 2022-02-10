@@ -24,24 +24,36 @@
 @import 'cmps/board-details';
 @import 'cmps/board-group-list';
 @import 'cmps/board-group';
-@import 'cmps/task-preview';
-@import 'cmps/task-preview-info';
-@import 'cmps/task-details';
-@import 'cmps/task-cover';
 @import 'cmps/side-menu';
-@import 'cmps/txt-input';
-@import 'cmps/search-form';
 @import 'cmps/add-list';
 @import 'cmps/add-task';
-@import 'cmps/task-btns';
-@import 'cmps/task-info';
+@import 'cmps/task-preview';
+@import 'cmps/task-preview-info';
+
 @import 'cmps/list-actions-menu';
 @import 'cmps/members-list';
 @import 'cmps/user-msg';
 
+// input Components
+@import 'cmps/txt-input';
+@import 'cmps/txt-area-input';
+
+// task Components
+@import 'cmps/task-details';
+@import 'cmps/task-header';
+@import 'cmps/task-btns';
+@import 'cmps/task-info';
+@import 'cmps/task-title';
+@import 'cmps/task-members';
+@import 'cmps/task-labels';
+@import 'cmps/task-date';
+@import 'cmps/task-description';
+@import 'cmps/task-activity-add';
+@import 'cmps/task-activity-list';
+
+// modal Components
 @import 'cmps/modal-header';
 @import 'cmps/dynamic-modal';
-
 @import 'cmps/labels-modal';
 @import 'cmps/checklist-modal';
 @import 'cmps/cover-modal';

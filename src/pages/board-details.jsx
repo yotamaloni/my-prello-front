@@ -11,10 +11,8 @@ import { socketService } from '../services/socket.service.js'
 import { AppHeader } from '../cmps/app-header.jsx'
 import { BoardSubHeader } from '../cmps/board-sub-header.jsx'
 import { TaskDetails } from '../cmps/task-cmps/task-details.jsx'
-import { SideMenu } from '../cmps/side-menu.jsx'
 import { AddList } from '../cmps/add-list.jsx'
 import { BoardGroupList } from '../cmps/board-group-list.jsx'
-import { BoardFilter } from '../cmps/board-filter.jsx'
 import { CircularIndeterminate } from '../cmps/loader.jsx'
 
 
@@ -86,7 +84,6 @@ class _BoardDetails extends React.Component {
 
                         {!isAddListOpen ?
                             <React.Fragment>
-
                                 <div className='list-composer'>
                                     <button className='add-list-btn  list-composer' onClick={this.onToggleAddList}>
                                         <span>
