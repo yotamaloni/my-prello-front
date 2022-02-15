@@ -2,7 +2,8 @@ export const utilService = {
     makeId,
     timeConverter,
     getTimeSince,
-    getDateString
+    getDateString,
+    getRandomIntInclusive
 }
 
 function makeId(length = 6) {
@@ -78,4 +79,10 @@ function getDateString(dueDate) {
     }
 
     return `${month} ${day} ,${year} at ${hours}:${min} ${partOfTheDay} `
+}
+
+function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }

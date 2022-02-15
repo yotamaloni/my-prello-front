@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 
 import { connect } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 import { onLogout } from '../store/user.action.js'
 
@@ -14,6 +15,12 @@ import { SearchInput } from './search-input.jsx'
 import { MemberIcon } from '../cmps/member-icon.jsx'
 
 function _AppHeader(props) {
+    const history = useHistory()
+
+    function onLogoutUser() {
+        props.onLogout()
+        history.push('/login-signup')
+    }
 
     const fitClassName = props.isBoardDetails ? 'board-details-class' : 'app-board-class'
     const { user } = props
@@ -28,9 +35,9 @@ function _AppHeader(props) {
                 <SearchInput />
                 <InfoOutlinedIcon className='top-nav-btn' />
                 {user?.username ?
-                    <Link to='/login-signup' onClick={this.onLogoutUser} className='clickable clean-link'>
+                    <div onClick={onLogoutUser} className='clickable clean-link'>
                         <MemberIcon member={user} size={32} className='top-nav-btn' />
-                    </Link>
+                    </div>
                     :
                     <Link to='/login-signup' className='clean-link' >
                         <AccountCircleOutlinedIcon className='top-nav-btn' />

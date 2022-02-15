@@ -26,7 +26,6 @@ class _BoardDetails extends React.Component {
     componentDidMount() {
         const { boardId } = this.props.match.params;
         this.props.loadBoard(boardId)
-
         socketService.emit('board-watch', boardId)
         socketService.on('board-update', () => {
             this.props.loadBoard(boardId)

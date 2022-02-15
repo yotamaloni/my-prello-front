@@ -35,6 +35,8 @@ class _LoginSignup extends React.Component {
             this.props.history.push('/board')
         } catch (err) {
             console.log('Problem To Log In:', err);
+            this.props.history.push('/login-signup')
+
         }
     }
 

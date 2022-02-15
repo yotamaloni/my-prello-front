@@ -92,7 +92,6 @@ class _BoardApp extends React.Component {
         const starredBoards = boards.filter((board) => board.isStarred)
         const MODAL_WIDTH = 304 + 'px'
         const { modal } = this.props
-        console.log("🟡 ~ modal", modal)
         return (
             <section className="board-app">
                 <AppHeader isBoardDetails={false} />
