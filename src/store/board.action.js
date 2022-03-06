@@ -45,3 +45,9 @@ export function setModal(modal) {
 
     }
 }
+
+export function setBoardInReducer(board) {
+    return (dispatch) => {
+        dispatch({ type: 'SET_BOARD', board })
+    }
+}

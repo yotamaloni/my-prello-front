@@ -16,24 +16,23 @@ export class AppHome extends React.Component {
         return (
             <section className="app-home">
                 <HomeHeader />
-                <div className='home-container grid-container'>
+                <div className='home-container'>
                     <div className='txt-container'>
                         <h1 className='title'>Prello helps teams move work forward.</h1>
                         <p>Collaborate, manage projects, and reach new productivity peaks.
                             From high rises to the home office, the way your team works is unique — accomplish it all with Prello...</p>
                         <div className='config-container flex default-gap'>
-                            <Button sx={{ fontFamily: 'inherit', }} variant="contained">
-                                <NavLink className="clean-link" to='/board'>
+                            <NavLink className="clean-link" to='/board'>
+                                <Button sx={{ fontFamily: 'inherit', }} variant="contained">
                                     Try as a guest
-                                </NavLink>
-                            </Button>
+                                </Button>
+                            </NavLink>
+
 
                         </div>
 
                     </div>
-                    <div className='img'>
-                        <img src="https://www.appfox.io/wp-content/uploads/2021/05/How-to-manage-Trello-Power-Up-Limits-Hero-Image.png" alt="" />
-                    </div>
+                    <img src="https://res.cloudinary.com/dnft2vfvz/image/upload/v1646567068/sdvwput4a2qynrqsffm2.png" alt="Image not found" />
 
                 </div>
 

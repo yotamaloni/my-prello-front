@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom'
 
 import AddIcon from '@mui/icons-material/Add';
 
-import { loadBoard, updateBoard } from '../store/board.action.js'
+import { loadBoard, updateBoard, setBoardInReducer } from '../store/board.action.js'
 import { socketService } from '../services/socket.service.js'
 
 import { AppHeader } from '../cmps/app-header.jsx'
@@ -27,8 +27,8 @@ class _BoardDetails extends React.Component {
         const { boardId } = this.props.match.params;
         this.props.loadBoard(boardId)
         socketService.emit('board-watch', boardId)
-        socketService.on('board-update', () => {
-            this.props.loadBoard(boardId)
+        socketService.on('board-update', (board) => {
+            this.props.setBoardInReducer(board)
         })
     }
 
@@ -120,6 +120,7 @@ function mapStateToProps({ boardModule }) {
 const mapDispatchToProps = {
     loadBoard,
     updateBoard,
+    setBoardInReducer
 };
 
 

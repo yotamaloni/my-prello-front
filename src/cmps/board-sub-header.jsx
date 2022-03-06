@@ -15,8 +15,7 @@ import { DynamicModal } from '../cmps/modal/dynamic-modal.jsx'
 
 function _BoardSubHeader(props) {
 
-    const MODAL_WIDTH = 304 + 'px'
-    
+
     const onSetModal = (modalType) => {
         props.setModal(modalType)
     }
@@ -41,7 +40,7 @@ function _BoardSubHeader(props) {
 
                 <MembersList />
                 <div className='invite-btn clickable' onClick={() =>
-                    onSetModal({ type: 'invite', width: MODAL_WIDTH })}>
+                    onSetModal({ type: 'invite' })}>
                     <GroupAddOutlinedIcon /><span>Invite</span>
                     {modal?.type === 'invite' && <React.Fragment>
                         < DynamicModal

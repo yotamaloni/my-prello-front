@@ -1,15 +1,25 @@
 .modal {
   display: flex;
+  width: 250px;
   flex-direction: column;
   background-color: white;
   position: absolute;
   border: 0.5px solid #091e4240;
-  transform: translate(-10px, 120px);
+  transform: translate(-25%, 50%);
   border-radius: 3px;
   z-index: 10;
   padding: 12px;
   cursor: default;
-
+  &.invite-to-board {
+    position: fixed;
+    left: 25%;
+    top: 0%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  &.create-board {
+    transform: translate(-50%, 0%);
+  }
   //SUB-TITLES
   h4 {
     margin: 0 0;
@@ -37,7 +47,6 @@
       background-color: white;
     }
   }
- 
 
   //BUTTONS
   .full-width-btn {
@@ -69,6 +78,21 @@
       &:hover {
         background-color: darken(#0079bf, 5%);
       }
+    }
+  }
+}
+
+@media (min-width: $break-normal) {
+  .modal {
+    transform: translate(-50%, 50%);
+    width: 304px;
+    &.invite-to-board {
+      position: fixed;
+      left: 50%;
+      top: -10%;
+    }
+    &.create-board {
+      transform: translate(0%, 0%);
     }
   }
 }

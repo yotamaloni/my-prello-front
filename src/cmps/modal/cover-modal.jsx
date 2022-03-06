@@ -74,9 +74,8 @@ class _CoverModal extends React.Component {
             '#344563',
         ]
         const { modal, closeModal } = this.props
-        const { width } = modal
         return (
-            <section className='modal cover-modal' style={{ width: width }}>
+            <section className='modal cover-modal'>
 
                 <ModalHeader modal={modal} closeModal={closeModal} />
 

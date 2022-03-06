@@ -11,7 +11,6 @@ export class SearchInput extends React.Component {
     }
 
     render() {
-
         return (
             < form className="search-form" >
                 <SearchOutlinedIcon />
@@ -19,7 +18,6 @@ export class SearchInput extends React.Component {
             </form >
         )
     }
-
 }
 
 

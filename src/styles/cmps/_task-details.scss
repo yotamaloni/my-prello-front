@@ -9,7 +9,7 @@
   .task-details {
     border-radius: 3px;
     position: relative;
-    width: 768px;
+    max-width: 768px;
     margin-bottom: 100px;
     min-height: 600px;
     background-color: #f4f5f7;
@@ -47,6 +47,7 @@
       .task-body {
         display: flex;
         justify-content: space-between;
+        flex-wrap: wrap;
         gap: 10px;
         > * {
           h3 {
@@ -57,5 +58,11 @@
         }
       }
     }
+  }
+}
+
+@media (min-width: $break-normal) {
+  .task-details {
+    margin-bottom: 0;
   }
 }

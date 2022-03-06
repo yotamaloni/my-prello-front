@@ -71,10 +71,9 @@ export class CreateBoardModal extends React.Component {
     render() {
         const { title, backgroundColor, imgUrl } = this.state
         const { modal, closeModal } = this.props
-        const { width } = modal
         const creatBtnColor = title ? 'blue' : 'blur-text'
         return (
-            <div className='modal create-board' style={{ width: width }}>
+            <div className='modal create-board'>
 
                 <ModalHeader modal={modal} closeModal={closeModal} />
 

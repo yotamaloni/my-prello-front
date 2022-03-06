@@ -15,6 +15,15 @@ export class _AddTask extends React.Component {
         title: '',
         isOptionsMenuOpen: '',
     }
+    GUEST = {
+        "_id": utilService.makeId(),
+        "username": "Guest",
+        "password": "123",
+        "fullname": "Guest",
+        "color": "#00c2e0",
+        "initials": "G",
+        "isAdmin": false,
+    }
 
     handleChange = ({ target }) => {
         const field = target.name;
@@ -24,13 +33,11 @@ export class _AddTask extends React.Component {
         }));
     };
 
-
-
     onSubmitNewTask = (ev) => {
         ev.preventDefault();
-        const byMember = { id: utilService.makeId(), username: 'TEST' } //TO DO - UPDATE LOG IN
+        const { group, board, user } = this.props
+        const byMember = user?.username ? user : this.GUEST
         const { title } = this.state
-        const { group, board } = this.props
         const task = {
             title,
             byMember,
@@ -53,7 +60,7 @@ export class _AddTask extends React.Component {
 
 
     render() {
-        let { title, isOptionsMenuOpen } = this.state
+        let { title } = this.state
 
         return (
             <section >
@@ -77,9 +84,10 @@ export class _AddTask extends React.Component {
     }
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
     return {
-        board: boardModule.board
+        board: boardModule.board,
+        user: userModule
     }
 }
 

@@ -22,6 +22,7 @@ class _LoginSignup extends React.Component {
         this.setState(prevState => ({ ...prevState, isLogin: !prevState.isLogin }))
     }
     onSubmitForm = (ev) => {
+        console.log('ev', ev);
         ev.preventDefault()
         const { fullname, username, password, isLogin } = this.state
         if (!username || !password) return
@@ -35,8 +36,6 @@ class _LoginSignup extends React.Component {
             this.props.history.push('/board')
         } catch (err) {
             console.log('Problem To Log In:', err);
-            this.props.history.push('/login-signup')
-
         }
     }
 
@@ -51,9 +50,7 @@ class _LoginSignup extends React.Component {
             <section className='container'>
                 <h1 className='Header'>Prello</h1>
                 <div className='log-container'>
-                    <form onSubmit={(ev) => {
-                        this.onSubmitForm(ev)
-                    }}>
+                    <form onSubmit={this.onSubmitForm}>
                         {isLogin &&
                             <section>
                                 <h3>Log in to Prello</h3>

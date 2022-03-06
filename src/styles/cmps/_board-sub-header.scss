@@ -1,14 +1,21 @@
 .board-sub-header {
-  height: $sub-header-height;
+  min-height: $sub-header-height;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   color: #fff;
   padding-inline-start: 20px;
   padding-inline-end: 20px;
+  margin-bottom: 20px;
+
   .left-menu,
   .right-menu {
     gap: 10px;
+    flex-wrap: wrap;
+    > * {
+      margin-bottom: 10px;
+    }
   }
   p {
     margin: 0;
@@ -55,5 +62,11 @@
     span {
       margin-inline-start: 5px;
     }
+  }
+}
+
+@media (min-width: $break-normal) {
+  .board-sub-header {
+    margin-bottom: 0;
   }
 }

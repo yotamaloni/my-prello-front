@@ -15,7 +15,7 @@ export function onLogin(credentials) {
         } catch (err) {
             dispatch({ type: 'SHOW_MSG', msg: { type: 'danger', txt: 'Cannot Login' } })
             console.log('Cannot login', err)
-            throw err
+            throw new Error(err)
         }
     }
 }

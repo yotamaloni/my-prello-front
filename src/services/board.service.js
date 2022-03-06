@@ -62,7 +62,7 @@ async function getBoardById(boardId) {
 
 async function saveBoard(board) {
     const savedBoard = await httpService.put(`board/${board._id}`, board)
-    socketService.emit('board-update', board)
+    socketService.emit('board-update', savedBoard)
     return savedBoard
 }
 

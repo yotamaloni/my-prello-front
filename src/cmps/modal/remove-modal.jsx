@@ -21,11 +21,10 @@ class _RemoveModal extends React.Component {
     }
 
     render() {
-        const { board, closeModal, modal } = this.props
-        const { width } = modal
+        const { board, closeModal } = this.props
 
         return (
-            <section className='modal remove-modal' style={{ width: width }}>
+            <section className='modal remove-modal'>
                 <ModalHeader modal={{ type: `Delete card?` }} closeModal={closeModal} />
                 <p className='remove-warning' onClick={this.removeTask} >
                     All actions will be removed from

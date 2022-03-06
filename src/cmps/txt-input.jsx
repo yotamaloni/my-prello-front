@@ -11,7 +11,6 @@ export class TxtInput extends React.Component {
     }
 
     onSubmitForm = (ev) => {
-    console.log("🟡 ~ ev", ev)
         ev.preventDefault()
         this.props.onUpdateTxtInput(this.state.txt)
     }

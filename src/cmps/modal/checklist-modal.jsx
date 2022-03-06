@@ -10,9 +10,8 @@ class _ChecklistModal extends React.Component {
 
     render() {
         const { board, task, modal, closeModal } = this.props
-        const { width } = modal
         return (
-            <section className='modal checklist-modal' style={{ width: width }}>
+            <section className='modal checklist-modal'>
                 <ModalHeader modal={modal} closeModal={closeModal} />
             </section >
         )

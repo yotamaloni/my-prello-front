@@ -7,7 +7,6 @@ import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
 import { utilService } from '../services/util.service.js';
 
 import { MemberIcon } from './member-icon.jsx'
-import { getDateString } from './task-cmps/task-info.jsx'
 
 
 export class TaskPreviewInfo extends React.Component {

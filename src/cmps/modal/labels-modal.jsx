@@ -63,12 +63,11 @@ class _LabelsModal extends React.Component {
     render() {
         const { txt } = this.state
         const { board, task, modal, closeModal } = this.props
-        const { width } = modal
         const boardLabels = board.labels
         const taskLabels = task.labels || []
         const taskLabelsIds = taskLabels.map((label => label.id))
         return (
-            <section className='modal labels-modal' style={{ width: width }}>
+            <section className='modal labels-modal'>
 
                 <ModalHeader modal={modal} closeModal={closeModal} />
 

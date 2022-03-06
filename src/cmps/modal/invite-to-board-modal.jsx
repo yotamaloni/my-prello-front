@@ -63,12 +63,11 @@ class _InviteToBoardModal extends React.Component {
 
     render() {
         const { closeModal, board, modal } = this.props
-        const { width } = modal
         const { txt, isShortedList } = this.state
         const membersIds = board.members.map((member) => member._id) || []
         const { membersToShow } = this.state
         return (
-            < section className='modal invite-to-board' style={{ width: width }} >
+            < section className='modal invite-to-board'>
 
                 <ModalHeader modal={modal} closeModal={closeModal} />
 

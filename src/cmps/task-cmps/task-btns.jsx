@@ -12,7 +12,6 @@ class _TaskBtns extends React.Component {
     }
 
     BUTTONS = ['members', 'labels', 'checklist', 'date', 'attachment', 'cover']
-    MODAL_WIDTH = 304 + 'px'
 
 
     onToggleDeleteModal = () => {
@@ -36,7 +35,7 @@ class _TaskBtns extends React.Component {
                 <ul className="add-to-card-list clean-list">
                     {this.BUTTONS.map(btn => {
                         return <li key={btn} className='task-btn' onClick={() =>
-                            this.onSetModal({ type: btn, width: this.MODAL_WIDTH })}>
+                            this.onSetModal({ type: btn })}>
                             <div className={`txt ${btn}`} >{btn}</div>
                             {modal?.type === btn && <React.Fragment>
                                 < DynamicModal
@@ -57,7 +56,7 @@ class _TaskBtns extends React.Component {
                 </div>
                 {isArchiveOpen && <React.Fragment>
                     <div className='task-btn delete' onClick={() =>
-                        this.onSetModal({ type: 'remove', width: this.MODAL_WIDTH })}>
+                        this.onSetModal({ type: 'remove' })}>
                         <div className='txt remove'>Delete</div>
                         {modal?.type === 'remove' &&
                             <React.Fragment>

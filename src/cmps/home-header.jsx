@@ -11,11 +11,12 @@ export function HomeHeader() {
             </div>
 
             <div className='config'>
-                <Button sx={{ fontFamily: 'inherit', }} variant="contained">
-                    <NavLink className="clean-link" to='/login-signup'>
+                <NavLink className="clean-link" to='/login-signup'>
+                    <Button sx={{ fontFamily: 'inherit', }} variant="contained">
                         Log in
-                    </NavLink>
-                </Button>
+                    </Button>
+                </NavLink>
+
             </div>
         </header>
     )

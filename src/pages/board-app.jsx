@@ -2,8 +2,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-
-
 import { boardService } from "../services/board.service.js"
 import { socketService } from "../services/socket.service.js"
 
@@ -13,8 +11,6 @@ import { AppHeader } from '../cmps/app-header.jsx'
 import { BoardsList } from '../cmps/boards-list.jsx'
 import { DynamicModal } from '../cmps/modal/dynamic-modal.jsx'
 import { CircularIndeterminate } from '../cmps/loader.jsx'
-
-
 
 
 class _BoardApp extends React.Component {
@@ -90,7 +86,6 @@ class _BoardApp extends React.Component {
         const { boards } = this.state
         if (!boards) return <div className='loader-page'><CircularIndeterminate /></div>
         const starredBoards = boards.filter((board) => board.isStarred)
-        const MODAL_WIDTH = 304 + 'px'
         const { modal } = this.props
         return (
             <section className="board-app">
@@ -102,12 +97,11 @@ class _BoardApp extends React.Component {
 
                         <li className='create-new-board'
                             onClick={() =>
-                                this.onSetModal({ type: 'create-board', width: MODAL_WIDTH })}>
+                                this.onSetModal({ type: 'create-board' })}>
                             <p>Create new board</p>
                             {modal?.type &&
                                 <React.Fragment>
                                     < DynamicModal
-                                        width={MODAL_WIDTH}
                                         modal={'create-board'}
                                         addBoard={this.onCreateBoard}
                                         closeModal={() => this.onSetModal(null)}

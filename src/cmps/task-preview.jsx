@@ -1,5 +1,3 @@
-
-
 import React from 'react'
 import { NavLink, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -46,59 +44,49 @@ class _TaskPreview extends React.Component {
         const { dueDate, description } = task
         const comments = this.props.board.activities?.filter((activity) => activity.taskId === task.id)
         const members = task.members || null
-        const isExpendedLabels = this.props.board?.isExpendedLabels
+        const isExpendedLabels = this.props.board.isExpendedLabels
         const labelsSize = isExpendedLabels ? 'large' : 'small'
-
-
 
         return (
             <div>
                 <NavLink className="clean-link" to={`/board/${board._id}/${group.id}/${task.id}`}>
                     <section className="task-preview">
                         {(style?.imgUrl) &&
-                            <React.Fragment >
-                                <div className='img-container'>
-                                    <img src={style.imgUrl} alt="Not found" />
-                                </div>
-                            </React.Fragment>
+                            <div className='img-container'>
+                                <img src={style.imgUrl} alt="Not found" />
+                            </div>
                         }
                         {(style?.backgroundColor) &&
-                            <React.Fragment >
-                                <div className='background-color-container' style={{ backgroundColor: style.backgroundColor }}>
+                            <div className='background-color-container' style={{ backgroundColor: style.backgroundColor }}>
 
-                                </div>
-                            </React.Fragment>
+                            </div>
                         }
                         {labels?.length ?
-                            < React.Fragment >
-                                <ul className='labels-container clean-list'>
-                                    {labelsToDisplay.map((label, index) => {
-                                        const txt = label?.txt
-                                        return <li
-                                            style={{ backgroundColor: label.color }}
-                                            onClick={(ev) => ev.stopPropagation(),
-                                                this.onToggleLabelsSize} className={`label ${labelsSize}`}
-                                            key={index}>
-                                            {(labelsSize === 'large'
-                                                &&
-                                                txt)
-                                                ? txt : ''}
-                                        </li>
-                                    })}
-                                </ul>
-                            </React.Fragment>
+                            <ul className='labels-container clean-list'>
+                                {labelsToDisplay.map((label, index) => {
+                                    const txt = label?.txt
+                                    return <li
+                                        style={{ backgroundColor: label.color }}
+                                        onClick={(ev) => ev.stopPropagation(),
+                                            this.onToggleLabelsSize} className={`label ${labelsSize}`}
+                                        key={index}>
+                                        {(labelsSize === 'large'
+                                            &&
+                                            txt)
+                                            ? txt : ''}
+                                    </li>
+                                })}
+                            </ul>
                             :
                             <React.Fragment >
                             </React.Fragment>
                         }
                         <div className="title">{title}</div>
                         {(description || comments?.length || dueDate || members?.length) &&
-                            <React.Fragment >
-                                <TaskPreviewInfo description={description}
-                                    comments={comments}
-                                    dueDate={dueDate}
-                                    members={members} />
-                            </React.Fragment>
+                            <TaskPreviewInfo description={description}
+                                comments={comments}
+                                dueDate={dueDate}
+                                members={members} />
                         }
                     </section>
                 </NavLink>
@@ -107,7 +95,6 @@ class _TaskPreview extends React.Component {
         )
     }
 }
-
 
 function mapStateToProps({ boardModule }) {
     return {

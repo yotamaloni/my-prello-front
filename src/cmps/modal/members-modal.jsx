@@ -51,12 +51,11 @@ class _MembersModal extends React.Component {
 
     render() {
         const { task, modal, closeModal } = this.props
-        const { width } = modal
         const { txt } = this.state
         const membersIds = task?.members?.map((member) => member._id) || []
         const { membersToShow } = this.state
         return (
-            < section className='modal members-modal' style={{ width: width }} >
+            < section className='modal members-modal'>
                 <ModalHeader modal={modal} closeModal={closeModal} />
                 <div className='search-members'>
                     <input className='search-members-input'
