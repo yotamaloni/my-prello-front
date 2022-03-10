@@ -42,7 +42,6 @@ export function setFilter(filterBy) {
 export function setModal(modal) {
     return (dispatch) => {
         dispatch({ type: 'SET_MODAL', modal })
-
     }
 }
 

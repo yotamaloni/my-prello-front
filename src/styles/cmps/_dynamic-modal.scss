@@ -5,7 +5,6 @@
   background-color: white;
   position: absolute;
   border: 0.5px solid #091e4240;
-  transform: translate(-25%, 50%);
   border-radius: 3px;
   z-index: 10;
   padding: 12px;
@@ -19,6 +18,9 @@
   }
   &.create-board {
     transform: translate(-50%, 0%);
+  }
+  &.MuiPickersStaticWrapper-staticWrapperRoot {
+    background-color: red;
   }
   //SUB-TITLES
   h4 {
@@ -93,6 +95,13 @@
     }
     &.create-board {
       transform: translate(0%, 0%);
+    }
+    &.date-modal {
+      width: 304px;
+    }
+    &.MuiPickersBasePicker-pickerView {
+      background-color: red !important;
+      width: 500px !important;
     }
   }
 }

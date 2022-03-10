@@ -39,6 +39,8 @@ class _BoardApp extends React.Component {
     componentWillUnmount() {
         socketService.off('remove-board')
         socketService.off('add-board')
+        const { modal } = this.props
+        if (modal) this.props.setModal(null)
     }
 
     onCreateBoard = async (board) => {

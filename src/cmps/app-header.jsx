@@ -27,7 +27,7 @@ function _AppHeader(props) {
     return (
         <section className={`app-header ${fitClassName}`}>
             <div className='main-nav flex default-gap'>
-                <AppsOutlinedIcon className='top-nav-btn' />
+                {/* <AppsOutlinedIcon className='top-nav-btn' /> */}
                 <NavLink className="clean-link logo top-nav-btn" to='/'>Prello</NavLink>
                 <NavLink className="clean-link top-nav-btn" to='/board'>Workspaces</NavLink>
             </div>

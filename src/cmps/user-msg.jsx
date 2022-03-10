@@ -13,7 +13,7 @@ class _UserMsg extends React.Component {
         if (this.timeoutId) clearTimeout(this.timeoutId)
         this.timeoutId = setTimeout(() => {
             this.onCloseMsg()
-        }, 3000)
+        }, 100000)
     }
 
 

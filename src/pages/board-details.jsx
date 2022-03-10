@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom'
 
 import AddIcon from '@mui/icons-material/Add';
 
-import { loadBoard, updateBoard, setBoardInReducer } from '../store/board.action.js'
+import { loadBoard, updateBoard, setBoardInReducer, setModal } from '../store/board.action.js'
 import { socketService } from '../services/socket.service.js'
 
 import { AppHeader } from '../cmps/app-header.jsx'
@@ -34,6 +34,8 @@ class _BoardDetails extends React.Component {
 
     componentWillUnmount() {
         socketService.off('board-update')
+        const { modal } = this.props
+        if (modal) this.props.setModal(null)
     }
 
     onToggleMenuModal = () => {
@@ -114,13 +116,15 @@ class _BoardDetails extends React.Component {
 function mapStateToProps({ boardModule }) {
     return {
         board: boardModule.board,
+        modal: boardModule.modal
     }
 }
 
 const mapDispatchToProps = {
     loadBoard,
     updateBoard,
-    setBoardInReducer
+    setBoardInReducer,
+    setModal
 };
 
 

@@ -39,23 +39,24 @@ class _DateModal extends React.Component {
     render() {
         const { dueDate } = this.state
         const { modal, closeModal } = this.props
-        const { width } = modal
 
         return (
-            <section className="modal date-modal" style={{ minWidth: width }} >
+            <section className="modal date-modal" >
                 <ModalHeader modal={modal} closeModal={closeModal} />
-                <ThemeProvider theme={materialTheme}>
-                    <DatePicker
-                        autoOk
-                        orientation="landscape"
-                        variant="static"
-                        openTo="date"
-                        format="dd/MM/yyyy"
-                        value={dueDate}
-                        onChange={this.handleChange}
-                        disableToolbar
-                    />
-                </ThemeProvider>
+                <div className="date-body-container">
+                    <ThemeProvider theme={materialTheme}>
+                        <DatePicker
+                            autoOk
+                            orientation="landscape"
+                            variant="static"
+                            openTo="date"
+                            format="dd/MM/yyyy"
+                            value={dueDate}
+                            onChange={this.handleChange}
+                            disableToolbar
+                        />
+                    </ThemeProvider>
+                </div>
                 <button onClick={this.onSubmit} className='add-btn'>Save</button>
             </section>
         )
