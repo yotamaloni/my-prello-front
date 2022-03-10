@@ -1,4 +1,6 @@
 .board-group {
+  display: flex;
+  flex-direction: column;
   > * {
     padding: 0 0px;
     margin-bottom: 0 0 0 0;
@@ -56,7 +58,7 @@
     min-height: 1px;
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: calc(100vh - 220px);
+    max-height: calc(100vh - 320px);
   }
 
   .group-title {
@@ -78,4 +80,15 @@
   width: 256px;
   text-align: left;
   height: 30px;
+}
+
+@media (min-width: $break-normal) {
+  .board-group {
+    .task-list {
+      min-height: 1px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: calc(100vh - 200px);
+    }
+  }
 }

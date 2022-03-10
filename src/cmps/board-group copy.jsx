@@ -64,7 +64,7 @@ export class BoardGroup extends React.Component {
         const { group, board, updateBoard } = this.props
         const { tasks } = group
         const { isAddTaskOpen, isListActionsOpen, groupTitle } = this.state
-
+        
 
         return (
             <section className='board-group'>
@@ -124,31 +124,30 @@ export class BoardGroup extends React.Component {
                                     )
                                 })}
                                 {provided.placeholder}
-                                <li>
-                                    {
-                                        !isAddTaskOpen ?
-                                            <React.Fragment>
-                                                <div className='card-composer'>
-                                                    <button className='no-background card-composer' onClick={this.onToggleAddTask}>
-                                                        <span>
-                                                            <AddIcon fontSize="small"></AddIcon>
-                                                        </span>
-                                                        <span>
-                                                            Add a card
-                                                        </span>
-                                                    </button>
-                                                </div>
-                                            </React.Fragment>
-                                            :
-                                            <React.Fragment>
-                                                <AddTask updateBoard={updateBoard}
-                                                    board={board} onToggleAddTask={this.onToggleAddTask} group={group} />
-                                            </React.Fragment>
-                                    }
-                                </li>
                             </ul>
                         )}
                     </Droppable>
+
+                    {
+                        !isAddTaskOpen ?
+                            <React.Fragment>
+                                <div className='card-composer'>
+                                    <button className='no-background card-composer' onClick={this.onToggleAddTask}>
+                                        <span>
+                                            <AddIcon fontSize="small"></AddIcon>
+                                        </span>
+                                        <span>
+                                            Add a card
+                                        </span>
+                                    </button>
+                                </div>
+                            </React.Fragment>
+                            :
+                            <React.Fragment>
+                                <AddTask updateBoard={updateBoard}
+                                    board={board} onToggleAddTask={this.onToggleAddTask} group={group} />
+                            </React.Fragment>
+                    }
                 </div >
             </section >
         )

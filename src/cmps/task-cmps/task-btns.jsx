@@ -24,7 +24,7 @@ class _TaskBtns extends React.Component {
     }
 
     render() {
-        const { task, modal } = this.props
+        const { task, group, modal } = this.props
         const { isArchiveOpen } = this.state
         return (
             <div className='flex column align-end task-btns'>
@@ -62,6 +62,7 @@ class _TaskBtns extends React.Component {
                             <React.Fragment>
                                 < DynamicModal
                                     task={task}
+                                    group={group}
                                     closeModal={() => this.onSetModal(null)}
                                 />
                             </React.Fragment>}

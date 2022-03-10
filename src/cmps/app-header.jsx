@@ -33,7 +33,6 @@ function _AppHeader(props) {
             </div>
             <div className='config'>
                 <SearchInput />
-                <InfoOutlinedIcon className='top-nav-btn' />
                 {user?.username ?
                     <div onClick={onLogoutUser} className='clickable clean-link'>
                         <MemberIcon member={user} size={32} className='top-nav-btn' />

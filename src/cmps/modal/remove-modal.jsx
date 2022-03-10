@@ -14,7 +14,7 @@ class _RemoveModal extends React.Component {
     }
 
     removeTask = () => {
-        const { task, board, group } = this.props
+        const { task, group, board } = this.props
         const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
         group.tasks.splice(taskIdx, 1)
         this.props.updateBoard({ ...board })
@@ -26,14 +26,14 @@ class _RemoveModal extends React.Component {
         return (
             <section className='modal remove-modal'>
                 <ModalHeader modal={{ type: `Delete card?` }} closeModal={closeModal} />
-                <p className='remove-warning' onClick={this.removeTask} >
+                <p className='remove-warning' >
                     All actions will be removed from
                     the activity feed and you won't be
                     able to re-open the card. There is no undo.
                 </p>
 
                 <Link className='clean-link delete-btn' to={`/board/${board._id}`}>
-                    <div onClick={this.removeCover} className='full-width-btn red'>
+                    <div onClick={this.removeTask} className='full-width-btn red'>
                         Remove Cover
                     </div>
                 </Link>

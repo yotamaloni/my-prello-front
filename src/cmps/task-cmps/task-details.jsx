@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { updateBoard } from '../../store/board.action.js'
+import { updateBoard, setModal } from '../../store/board.action.js'
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
@@ -21,6 +21,10 @@ class _TaskDetails extends React.Component {
 
   componentDidMount() {
     this.setTask()
+  }
+  componentWillUnmount() {
+    const { modal } = this.props
+    if (modal) this.props.setModal(null)
   }
 
   setTask = () => {
@@ -86,13 +90,15 @@ function mapStateToProps({ boardModule }) {
 
   return {
 
-    board: boardModule.board
+    board: boardModule.board,
+    modal: boardModule.modal
 
   }
 }
 
 const mapDispatchToProps = {
   updateBoard,
+  setModal
 };
 
 
