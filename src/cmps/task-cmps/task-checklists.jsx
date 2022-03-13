@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
+import { utilService } from '../../services/util.service'
+
 import { updateBoard } from '../../store/board.action.js'
 import { TaskChecklistsPreview } from './task-checklists-preview.jsx';
 
@@ -14,14 +15,28 @@ function _TaskChecklists(props) {
         props.updateBoard({ ...board })
     }
 
-    function onAddItemToChecklist(checklist, item) {
-        // checklist.id=
+    function onAddItemToChecklist(itemTitle, checklist) {
+        const { board, updateBoard } = props
+        const itemToAdd = {
+            id: utilService.makeId(),
+            title: itemTitle,
+            isMarked: false
+        }
+        checklist.items.push(itemToAdd)
+        updateBoard({ ...board })
     }
-    function onToggleItemMark(checklist, itemId) {
-        // checklist.id=
+
+    function onRemoveItemFromChecklist(itemId, checklist) {
+        const { board, updateBoard } = props
+        const itemIdx = checklist.items.findIndex(item => item.id === itemId)
+        checklist.items.splice(itemIdx, 1)
+        updateBoard({ ...board })
+
     }
-    function onRemoveItemFromChecklist(checklist, itemId) {
-        // checklist.id=
+    function onToggleItemMark(item) {
+        item.isMarked = !item.isMarked
+        const { board, updateBoard } = props
+        updateBoard({ ...board })
     }
 
     const { task } = props

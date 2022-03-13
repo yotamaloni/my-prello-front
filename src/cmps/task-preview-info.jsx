@@ -30,59 +30,41 @@ export class TaskPreviewInfo extends React.Component {
         return (
             <section className='task-preview-info'>
                 <div className='left-section'>
-                    {dueDate ?
-                        <React.Fragment >
-                            <div className={`due-date-container ${dueDateClass}`}>
-                                <AccessTimeOutlinedIcon className={`info-icon due-date`} />
-                                <span>{date}</span>
-                            </div>
-                        </React.Fragment>
-                        :
-                        <React.Fragment ></React.Fragment>
-
+                    {dueDate &&
+                        <div className={`due-date-container ${dueDateClass}`}>
+                            <AccessTimeOutlinedIcon className={`info-icon due-date`} />
+                            <span>{date}</span>
+                        </div>
                     }
 
-                    {description ?
-                        <React.Fragment >
-                            <div className='description'>
-                                <SubjectOutlinedIcon className='info-icon description' />
-                            </div>
-                        </React.Fragment>
-                        :
-                        <React.Fragment ></React.Fragment>
+                    {description &&
+                        <div className='description'>
+                            <SubjectOutlinedIcon className='info-icon description' />
+                        </div>
+
 
                     }
-                    {comments.length ?
-                        <React.Fragment >
-                            <div className='comments'>
-                                <ForumOutlinedIcon className='info-icon comments' /><span>{comments.length}</span>
-                            </div>
-                        </React.Fragment>
-                        :
-                        <React.Fragment ></React.Fragment>
+                    {comments.length > 0 &&
+                        <div className='comments'>
+                            <ForumOutlinedIcon className='info-icon comments' /><span>{comments.length}</span>
+                        </div>
+
+
                     }
-                    {checklists?.length ?
-                        <React.Fragment >
-                            <div className='checklists'>
-                                <CheckBoxOutlinedIcon className='info-icon checklists' />
-                            </div>
-                        </React.Fragment>
-                        :
-                        <React.Fragment ></React.Fragment>
+                    {checklists?.length > 0 &&
+                        <div className='checklists'>
+                            <CheckBoxOutlinedIcon className='info-icon checklists' />
+                        </div>
                     }
                 </div>
 
                 <div className='right-section'>
-                    {members?.length ?
-                        <React.Fragment >
-                            <ul className='members clean-list'>
-                                {members.map(member => {
-                                    return <li key={member._id}> <MemberIcon member={member} size={28} /></li>
-                                })}
-                            </ul>
-                        </React.Fragment>
-                        :
-                        <React.Fragment ></React.Fragment>
+                    {members?.length > 0 &&
+                        <ul className='members clean-list'>
+                            {members.map(member => {
+                                return <li key={member._id}> <MemberIcon member={member} size={28} /></li>
+                            })}
+                        </ul>
                     }
                 </div>
             </section >

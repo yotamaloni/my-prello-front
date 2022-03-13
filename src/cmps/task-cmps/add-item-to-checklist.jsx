@@ -21,8 +21,7 @@ export class AddItemToChecklist extends React.Component {
 
     render() {
         const { title } = this.state
-        const { onToggleAddItem } = this.props
-        console.log("🟡 ~ onToggleAddItem", onToggleAddItem)
+        const { onToggleAddItem, checklist } = this.props
         return (
             <section className='add-item-to-checklists' >
                 <form className="add-item-form">
@@ -36,7 +35,11 @@ export class AddItemToChecklist extends React.Component {
                             value={title} />
                     </div>
                     <div className='flex add-item-btn-container'>
-                        <button className='add-item-btn add-btn' type="submit" onClick={() => { this.props.onSubmitNewItem(title) }}>Add</button>
+                        <button className='add-item-btn add-btn' type="submit" onClick={(ev) => {
+                            ev.preventDefault()
+                            onToggleAddItem()
+                            this.props.onAddItemToChecklist(title, checklist)
+                        }}>Add</button>
                         <button className='no-background' onClick={onToggleAddItem}><CloseIcon /></button>
                     </div>
                 </form>

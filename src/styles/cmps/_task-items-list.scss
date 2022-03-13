@@ -1,0 +1,42 @@
+.items-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+  .item-title {
+    padding: 0;
+    margin: 0;
+    margin-inline-start: 5px;
+  }
+  .delete-icon {
+    display: none;
+  }
+  > * {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-inline-start: 0px;
+    &:hover {
+      background-color: #091e420a;
+      border-radius: 3px;
+      .delete-icon {
+        display: flex;
+        align-items: center;
+        color: $clr4;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .item-list-checkbox {
+    font-size: 20px;
+    position: absolute;
+    margin-inline-start: -37px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+}
