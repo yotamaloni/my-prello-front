@@ -79,35 +79,3 @@ export function showMsg(txt) {
     }
 }
 
-
-
-// export function removeUser(userId) {
-//     return async dispatch => {
-//         try {
-//             await userService.remove(userId)
-//             dispatch({ type: 'REMOVE_USER', userId })
-//         } catch (err) {
-//             console.log('UserActions: err in removeUser', err)
-//         }
-//     }
-// }
-
-
-// export function loadAndWatchUser(userId) {
-//     return async (dispatch) => {
-//         try {
-//             const user = await userService.getById(userId);
-//             dispatch({ type: 'SET_WATCHED_USER', user })
-//             socketService.emit(SOCKET_EMIT_USER_WATCH, userId)
-//             socketService.off(SOCKET_EVENT_USER_UPDATED)
-//             socketService.on(SOCKET_EVENT_USER_UPDATED, user => {
-//                 console.log('USER UPADTED FROM SOCKET');
-//                 dispatch({ type: 'SET_WATCHED_USER', user })
-//             })
-//         } catch (err) {
-//             showErrorMsg('Cannot load user')
-//             console.log('Cannot load user', err)
-//         }
-//     }
-// }
-

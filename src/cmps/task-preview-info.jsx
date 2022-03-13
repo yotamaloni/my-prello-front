@@ -3,6 +3,7 @@ import React from 'react'
 import SubjectOutlinedIcon from '@mui/icons-material/SubjectOutlined';
 import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
 import ForumOutlinedIcon from '@mui/icons-material/ForumOutlined';
+import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 
 import { utilService } from '../services/util.service.js';
 
@@ -12,7 +13,7 @@ import { MemberIcon } from './member-icon.jsx'
 export class TaskPreviewInfo extends React.Component {
 
     render() {
-        const { dueDate, comments, description, members } = this.props
+        const { dueDate, comments, description, members, checklists } = this.props
         let dueDateClass = ''
         let date = ''
 
@@ -55,6 +56,15 @@ export class TaskPreviewInfo extends React.Component {
                         <React.Fragment >
                             <div className='comments'>
                                 <ForumOutlinedIcon className='info-icon comments' /><span>{comments.length}</span>
+                            </div>
+                        </React.Fragment>
+                        :
+                        <React.Fragment ></React.Fragment>
+                    }
+                    {checklists?.length ?
+                        <React.Fragment >
+                            <div className='checklists'>
+                                <CheckBoxOutlinedIcon className='info-icon checklists' />
                             </div>
                         </React.Fragment>
                         :

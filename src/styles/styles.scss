@@ -27,6 +27,7 @@
 @import 'cmps/board-group';
 @import 'cmps/side-menu';
 @import 'cmps/add-list';
+@import 'cmps/add-item-to-checklists';
 @import 'cmps/add-task';
 @import 'cmps/task-preview';
 @import 'cmps/task-preview-info';
@@ -49,16 +50,17 @@
 @import 'cmps/task-labels';
 @import 'cmps/task-date';
 @import 'cmps/task-description';
+@import 'cmps/task-checklists';
 @import 'cmps/task-activity-add';
 @import 'cmps/task-activity-list';
 
 // modal Components
 @import 'cmps/modal-header';
 @import 'cmps/labels-modal';
-@import 'cmps/checklist-modal';
 @import 'cmps/cover-modal';
 @import 'cmps/remove-modal';
 @import 'cmps/create-board-modal';
 @import 'cmps/members-modal';
+@import 'cmps/check-list-modal';
 @import 'cmps/invite-to-board-modal';
 @import 'cmps/dynamic-modal';

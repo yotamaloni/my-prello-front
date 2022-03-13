@@ -57,7 +57,6 @@ class _BoardFilter extends React.Component {
         const field = target.name
         const value = target.value
         this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, [field]: value } }), () => {
-            console.log('this.state.filterBy:', this.state.filterBy);
             this.onSetFilter(this.state.filterBy)
         });
     }
@@ -79,21 +78,17 @@ class _BoardFilter extends React.Component {
             if (checked) {
                 this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, [field]: fieldVals } }), () => {
                     this.onSetFilter(this.state.filterBy)
-                    console.log('this.state.filterBy:', this.state.filterBy);
                 })
             } else {
                 this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, [field]: [] } }), () => {
                     this.onSetFilter(this.state.filterBy)
-                    console.log('this.state.filterBy:', this.state.filterBy);
                 })
             }
         } else {
             let vals = this.state.filterBy[field]
             const newVals = vals.includes(value) ? vals.filter(val => val !== value) : [...vals, value]
-            // console.log('newVals:', newVals);
             this.setState((prevState) => ({ filterBy: { ...prevState.filterBy, [field]: [...newVals] } }), () => {
                 this.onSetFilter(this.state.filterBy)
-                // console.log('this.state.filterBy:', this.state.filterBy);
             });
         }
     }
@@ -111,11 +106,6 @@ class _BoardFilter extends React.Component {
             initials += splitedName[splitedName.length - 1].substring(0, 1).toUpperCase();
         }
         return initials;
-    }
-
-    onOpenModal = (type) => {
-        console.log("🟡 ~ type", type)
-
     }
 
     onToggleMembersModal = () => {

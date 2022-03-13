@@ -1,0 +1,31 @@
+.add-item-to-checklists {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-right: 20px;
+  padding: 4px;
+  border-radius: 3px;
+  .add-item-form {
+    width: 100%;
+    .add-input {
+      width: 100%;
+      height: 30px;
+      border: #0079bf 2px solid;
+      border-radius: 3px;
+      &:focus {
+        outline: none !important;
+        border: #0079bf 2px solid;
+        border-radius: 3px;
+      }
+    }
+    .add-item-btn-container {
+      .add-btn {
+        background-color: #0079bf;
+        &:hover {
+          background-color: darken(#0079bf, 5%);
+        }
+      }
+      margin-top: 4px;
+    }
+  }
+}

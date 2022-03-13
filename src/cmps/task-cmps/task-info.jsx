@@ -4,6 +4,7 @@ import { TaskLabels } from './task-labels.jsx'
 import { TaskDescription } from './task-description.jsx'
 import { TaskAddActivity } from './task-activity-add.jsx'
 import { TaskActivityList } from './task-activity-list.jsx'
+import { TaskChecklists } from './task-checklists.jsx'
 
 export function TaskInfo({ task, board }) {
 
@@ -20,6 +21,7 @@ export function TaskInfo({ task, board }) {
                 <TaskDate task={task} dueDate={dueDate} />}
 
             <TaskDescription task={task} />
+            <TaskChecklists task={task} />
             <TaskAddActivity task={task} />
             <TaskActivityList task={task} />
         </div >

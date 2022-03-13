@@ -2,7 +2,6 @@ import { boardService } from "../services/board.service.js"
 
 
 export function loadBoard(boardId) {
-    console.log('IN LOAD BOARD')
 
     return async (dispatch, getState) => {
         const { boardModule: { filterBy } } = getState()
@@ -20,7 +19,6 @@ export function loadBoard(boardId) {
 }
 
 export function updateBoard(board) {
-    console.log('IN UPDATE BOARD')
     return async (dispatch) => {
         try {
             await boardService.saveBoard(board)

@@ -21,5 +21,8 @@
     "peacock.color": "#1857a4",
     "turboConsoleLog.includeFileNameAndLineNum": false,
     "turboConsoleLog.insertEnclosingFunction": false,
-    "turboConsoleLog.insertEnclosingClass": false
+    "turboConsoleLog.insertEnclosingClass": false,
+    "cSpell.words": [
+        "preventdefault"
+    ]
 }

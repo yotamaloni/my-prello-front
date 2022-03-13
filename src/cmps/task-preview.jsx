@@ -31,7 +31,7 @@ class _TaskPreview extends React.Component {
 
     render() {
         const { task, group, board } = this.props
-        const { title, labels, style } = task
+        const { title, labels, style, checklists } = task
 
         let taskLabelsIds = []
         let labelsToDisplay = []
@@ -67,8 +67,11 @@ class _TaskPreview extends React.Component {
                                     const txt = label?.txt
                                     return <li
                                         style={{ backgroundColor: label.color }}
-                                        onClick={(ev) => ev.stopPropagation(),
-                                            this.onToggleLabelsSize} className={`label ${labelsSize}`}
+                                        onClick={(ev) => {
+                                            ev.stopPropagation()
+                                            this.onToggleLabelsSize()
+                                        }}
+                                        className={`label ${labelsSize}`}
                                         key={index}>
                                         {(labelsSize === 'large'
                                             &&
@@ -82,11 +85,13 @@ class _TaskPreview extends React.Component {
                             </React.Fragment>
                         }
                         <div className="title">{title}</div>
-                        {(description || comments?.length || dueDate || members?.length) &&
+                        {(description || comments?.length || dueDate || members?.length || checklists?.length) &&
                             <TaskPreviewInfo description={description}
                                 comments={comments}
                                 dueDate={dueDate}
-                                members={members} />
+                                members={members}
+                                checklists={checklists}
+                            />
                         }
                     </section>
                 </NavLink>

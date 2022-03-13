@@ -22,7 +22,6 @@ class _LoginSignup extends React.Component {
         this.setState(prevState => ({ ...prevState, isLogin: !prevState.isLogin }))
     }
     onSubmitForm = (ev) => {
-        console.log('ev', ev);
         ev.preventDefault()
         const { fullname, username, password, isLogin } = this.state
         if (!username || !password) return
