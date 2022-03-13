@@ -1,14 +1,11 @@
 .create-board {
-  position: absolute;
-  top: -100px;
-  right: -100px;
   > *:not(:last-child) {
     margin-bottom: 10px;
   }
   cursor: default;
 
   .chosen-background {
-    height: 120px;
+    min-height: 120px;
     background-size: cover;
     background-position: center;
   }
