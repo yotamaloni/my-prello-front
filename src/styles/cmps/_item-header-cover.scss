@@ -1,0 +1,25 @@
+.item-header-cover:not(.board-cover-class) {
+  position: relative;
+  height: 160px;
+  background-color: $clr1;
+  display: flex;
+  justify-content: center;
+  font-size: inherit;
+  img {
+    height: 160px;
+    width: auto;
+    margin: 0 auto;
+  }
+}
+
+.item-header-cover.board-cover-class {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  margin-inline-start: 6px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: none;
+  }
+}

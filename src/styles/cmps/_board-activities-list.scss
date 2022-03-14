@@ -1,0 +1,64 @@
+.board-activity-list {
+  color: $clr3;
+  border-top: 1px solid #091e4221;
+  .activity-header {
+    position: relative;
+    margin-inline-start: 42px;
+    margin-bottom: 5px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    .activity-icon {
+      position: absolute;
+      font-size: 20px;
+      margin-inline-start: -35px;
+      position: absolute;
+      transform: scaleX(-1);
+    }
+  }
+  .menu-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 0px;
+    .activity-info {
+      position: relative;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      gap: 10px;
+      .txt-container {
+        width: 100%;
+        .user-info {
+          width: 100%;
+          .username {
+            font-weight: 700;
+            margin-inline-end: 5px;
+          }
+          .task-title {
+            margin: 0 5px;
+            text-decoration: underline;
+          }
+          .time-since {
+            color: $clr4;
+            font-size: 0.75rem;
+          }
+        }
+        .activity-txt {
+          width: 100%;
+          height: 36px;
+          padding-inline-start: 5px;
+          border-radius: 3px;
+          box-shadow: 0 1px 0 #091e4240;
+          border: none;
+          background-color: $clr7;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

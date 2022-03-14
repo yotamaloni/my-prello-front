@@ -1,13 +1,13 @@
 const imgUrls = [
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053148/samples/landscapes/landscape-panorama.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053146/samples/landscapes/nature-mountains.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053143/samples/landscapes/beach-boat.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053142/samples/landscapes/architecture-signs.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053138/samples/landscapes/girl-urban-view.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053145/samples/food/spices.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053144/samples/ecommerce/accessories-bag.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053136/samples/animals/reindeer.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643053147/samples/animals/kitten-playing.gif',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273708/kq1ugldfmbcqpptvwvyh.png',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273708/v0mqdvbqxh6czdrgrysb.png',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273709/a4vbuuwexsllef1sa2p6.jpg',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273605/mqnhc7cgcivlgohi2w2m.png',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273605/tx1lfdili2uxlnyyinio.jpg',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643297323/vgunmxwzitxpvttyxyyh.jpg',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643633719/yxdyw5lmajrgmme9caye.jpg',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643539821/nkuvj56egafth7w7npyd.jpg',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643539695/wxf2jpeck7fmiugyxp1f.jpg',
 ]
 const colors = [
     '#7BC86C',

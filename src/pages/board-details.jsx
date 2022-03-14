@@ -10,6 +10,7 @@ import { socketService } from '../services/socket.service.js'
 
 import { AppHeader } from '../cmps/app-header.jsx'
 import { BoardSubHeader } from '../cmps/board-sub-header.jsx'
+import { BoardSideMenu } from '../cmps/board-side-menu.jsx'
 import { TaskDetails } from '../cmps/task-cmps/task-details.jsx'
 import { AddList } from '../cmps/add-list.jsx'
 import { BoardGroupList } from '../cmps/board-group-list.jsx'
@@ -20,20 +21,27 @@ class _BoardDetails extends React.Component {
     state = {
         isMenuOpen: '',
         isAddListOpen: '',
-        isFilterModalOpen: ''
+        isFilterModalOpen: '',
+        isSideMenuOpen: false,
     }
+
+    timeoutId = null
 
     componentDidMount() {
         const { boardId } = this.props.match.params;
         this.props.loadBoard(boardId)
         socketService.emit('board-watch', boardId)
         socketService.on('board-update', (board) => {
-            this.props.setBoardInReducer(board)
+            setTimeout(() => {
+                clearTimeout(this.timeoutId)
+                this.timeoutId = this.props.setBoardInReducer(board)
+            }, 500);
         })
     }
-
+    s
     componentWillUnmount() {
         socketService.off('board-update')
+        clearTimeout(this.timeoutId)
         const { modal } = this.props
         if (modal) this.props.setModal(null)
     }
@@ -46,6 +54,11 @@ class _BoardDetails extends React.Component {
     onToggleFilterModal = () => {
         const isFilterModalOpen = this.state.isFilterModalOpen ? '' : 'open'
         this.setState({ isFilterModalOpen })
+    }
+
+    onToggleSideMenu = () => {
+        const { isSideMenuOpen } = this.state
+        this.setState({ isSideMenuOpen: !isSideMenuOpen })
     }
 
     onToggleAddList = () => {
@@ -61,8 +74,8 @@ class _BoardDetails extends React.Component {
     }
 
     render() {
-        const { isAddListOpen } = this.state
-        const { board } = this.props
+        const { isAddListOpen, isSideMenuOpen } = this.state
+        const { board, updateBoard } = this.props
         if (!board || !board.title) return <div className='loader-page'><CircularIndeterminate /></div>
         const imgUrl = board.style.imgUrl || ''
         const backgroundColor = board.style.backgroundColor || '#29CCE5'
@@ -77,33 +90,32 @@ class _BoardDetails extends React.Component {
                 <BoardSubHeader board={board}
                     toggleMenuModal={this.onToggleMenuModal}
                     toggleFilterModal={this.onToggleFilterModal}
-                    onToggleBoardStar={this.onToggleBoardStar} />
+                    onToggleBoardStar={this.onToggleBoardStar}
+                    onToggleSideMenu={this.onToggleSideMenu}
+                />
                 <div className='overflow-container'>
                     <div className='group-container flex default-gap'>
 
                         <BoardGroupList />
 
                         {!isAddListOpen ?
-                            <React.Fragment>
-                                <div className='list-composer'>
-                                    <button className='add-list-btn  list-composer' onClick={this.onToggleAddList}>
-                                        <span>
-                                            <AddIcon fontSize="small"></AddIcon>
-                                        </span>
-                                        <span>
-                                            Add another list
-                                        </span>
-                                    </button>
-                                </div>
-                            </React.Fragment>
+                            <div className='list-composer'>
+                                <button className='add-list-btn  list-composer' onClick={this.onToggleAddList}>
+                                    <span>
+                                        <AddIcon fontSize="small"></AddIcon>
+                                    </span>
+                                    <span>
+                                        Add another list
+                                    </span>
+                                </button>
+                            </div>
                             :
-                            <React.Fragment>
-                                <div className='list-composer'>
-                                    <AddList board={board} onToggleAddList={this.onToggleAddList} />
-                                </div>
-                            </React.Fragment>
+                            <div className='list-composer'>
+                                <AddList board={board} onToggleAddList={this.onToggleAddList} />
+                            </div>
                         }
                     </div>
+                    <BoardSideMenu isSideMenuOpen={isSideMenuOpen} board={board} updateBoard={updateBoard} onToggleSideMenu={this.onToggleSideMenu} />
 
                     <Route path={`/board/:boardId/:groupId/:taskId`} component={TaskDetails} />
 

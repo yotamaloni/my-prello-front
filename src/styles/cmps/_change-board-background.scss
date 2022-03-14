@@ -1,0 +1,66 @@
+.change-board-background {
+  > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  cursor: default;
+
+  .chosen-background {
+    min-height: 120px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .input-title {
+    .required-title {
+      margin-top: 5px;
+      align-self: flex-start;
+      font-size: 0.875rem;
+      color: $clr3;
+      font-weight: 400;
+      &::after {
+        content: ' *';
+        color: #eb5a46;
+      }
+      &::before {
+        content: '👋 ';
+      }
+    }
+  }
+  .cover-colors-container {
+    .cover-color-list {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 5px;
+      > * {
+        cursor: pointer;
+        height: 32px;
+        border-radius: 3px;
+      }
+    }
+  }
+  .cover-img-container {
+    .cover-img-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 5px;
+      > * {
+        background-size: cover;
+        background-position: center;
+        cursor: pointer;
+        height: 50px;
+        border-radius: 3px;
+      }
+    }
+  }
+
+  .upload-img-container {
+    .file-input {
+      display: none;
+    }
+  }
+
+  .blur-text {
+    color: #a5adba;
+    background-color: rgba(9, 30, 66, 0.04);
+  }
+}

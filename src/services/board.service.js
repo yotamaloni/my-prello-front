@@ -14,7 +14,8 @@ export const boardService = {
     getBoardById,
     addBoard,
     saveBoard,
-    removeBoard
+    removeBoard,
+    uploadImg,
 }
 
 const GUEST = {
@@ -69,4 +70,20 @@ async function saveBoard(board) {
 
 async function removeBoard(boardId) {
     return httpService.delete(`board/${boardId}`)
+}
+
+async function uploadImg(ev) {
+    const CLOUD_NAME = 'dnft2vfvz'
+    const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
+    const formData = new FormData();
+    formData.append('file', ev.target.files[0])
+    formData.append('upload_preset', 'bhdlgcay');
+
+    return fetch(UPLOAD_URL, {
+        method: 'POST',
+        body: formData
+    })
+        .then(res => res.json())
+        .then(res => res.url)
+        .catch(err => console.error(err))
 }

@@ -19,7 +19,7 @@ function _BoardSubHeader(props) {
     const onSetModal = (modalType) => {
         props.setModal(modalType)
     }
-    const { toggleFilterModal, board, onToggleBoardStar, modal } = props
+    const { toggleFilterModal, board, onToggleBoardStar, modal, onToggleSideMenu } = props
     const starColor = board.isStarred ? 'gold' : '#FFF'
 
     return (
@@ -59,7 +59,7 @@ function _BoardSubHeader(props) {
                 </div>
                 <div className='flex default-gap sub-nav-btn'>
                     <MoreHorizOutlinedIcon />
-                    <div className='txt-in-btn'>Show menu</div>
+                    <div onClick={onToggleSideMenu} className='txt-in-btn'>Show menu</div>
                 </div>
             </div>
 

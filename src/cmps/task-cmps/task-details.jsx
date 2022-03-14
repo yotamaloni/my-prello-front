@@ -6,7 +6,7 @@ import { updateBoard, setModal } from '../../store/board.action.js'
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
-import { TaskHeader } from './task-header.jsx'
+import { ItemHeaderCover } from '../item-header-cover.jsx'
 import { TaskTitle } from './task-title.jsx'
 import { TaskBtns } from './task-btns.jsx'
 import { TaskInfo } from './task-info.jsx'
@@ -53,7 +53,7 @@ class _TaskDetails extends React.Component {
         < section className="task-details" onClick={(ev) => ev.stopPropagation()}>
 
           {(bgCover || imgCover) &&
-            <TaskHeader bgCover={bgCover} imgCover={imgCover} />
+            <ItemHeaderCover bgCover={bgCover} imgCover={imgCover} />
           }
 
           <main className='task-main-container'>

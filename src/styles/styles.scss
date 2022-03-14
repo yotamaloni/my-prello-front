@@ -18,6 +18,8 @@
 // Specific Components
 @import 'cmps/login-signup';
 @import 'cmps/board-sub-header';
+@import 'cmps/item-header-cover';
+@import 'cmps/board-side-menu';
 @import 'cmps/search-form';
 @import 'cmps/board-app';
 @import 'cmps/board-filter';
@@ -31,9 +33,10 @@
 @import 'cmps/add-task';
 @import 'cmps/task-preview';
 @import 'cmps/task-preview-info';
-
+@import 'cmps/board-activities-list';
 @import 'cmps/list-actions-menu';
 @import 'cmps/members-list';
+@import 'cmps/change-board-background';
 @import 'cmps/user-msg';
 
 // input Components
@@ -42,7 +45,6 @@
 
 // task Components
 @import 'cmps/task-details';
-@import 'cmps/task-header';
 @import 'cmps/task-btns';
 @import 'cmps/task-info';
 @import 'cmps/task-title';

@@ -46,6 +46,7 @@ class _TaskAddActivity extends React.Component {
             txt,
             id: utilService.makeId(3),
             taskId: task.id,
+            taskTitle: task.title
         }
         board.activities.push(activity)
         this.props.updateBoard({ ...board })

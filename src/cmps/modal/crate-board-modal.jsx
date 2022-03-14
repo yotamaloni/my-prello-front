@@ -1,86 +1,101 @@
 import React from 'react'
 
 import { dataService } from '../../services/data.service.js'
+import { boardService } from '../../services/board.service.js'
 
 import { ModalHeader } from './modal-header.jsx'
+import { CircularIndeterminate } from '../loader.jsx'
 
 export class CreateBoardModal extends React.Component {
     inputRef = React.createRef();
 
     state = {
-        title: '',
-        backgroundColor: '#29CCE5',
+        title: null,
+        backgroundColor: null,
         imgUrl: null,
     }
     componentDidMount() {
-        this.inputRef.current.focus();
+        const { isCreateBoard } = this.props
+        if (!isCreateBoard) {
+            const { board } = this.props
+            const { style } = board
+            this.setState({ title: board.title, backgroundColor: style.backgroundColor, imgUrl: style.imgUrl })
+        } else {
+            this.setState({ title: '', backgroundColor: '#29CCE5', imgUrl: null })
+        }
+        // this.inputRef.current.focus();
     }
     onHandleChange = ({ target }) => {
         const field = target.name
         const value = target.value
         this.setState((prevState) => ({ ...prevState, [field]: value }))
+        const { isCreateBoard } = this.props
+        if (!isCreateBoard) this.updateBoardDetails(value, this.state.backgroundColor, this.state.imgUrl)
     }
 
     onSetCoverColor = (color) => {
         this.setState({ backgroundColor: color, imgUrl: null })
+        const { isCreateBoard } = this.props
+        if (!isCreateBoard) this.updateBoardDetails(this.state.title, color, this.state.imgUrl)
     }
 
     onSetCoverImg = (url) => {
         this.setState({ backgroundColor: null, imgUrl: url })
+        const { isCreateBoard } = this.props
+        if (!isCreateBoard) this.updateBoardDetails(this.state.title, this.state.backgroundColor, url)
     }
 
     onSubmit = (ev) => {
         const { title, imgUrl, backgroundColor } = this.state
-        const { closeModal } = this.props
+        const { closeModal, isCreateBoard } = this.props
         if (!title) {
             this.inputRef.current.focus();
             return
         }
-        const board = {
+        const boardToAdd = {
             title,
             style: {
                 backgroundColor,
                 imgUrl,
             }
         }
-        this.props.addBoard(board)
+        this.props.addBoard(boardToAdd)
         closeModal()
     }
-
     uploadImgCover = async (ev) => {
-        const imgUrl = await this.uploadImg(ev)
+        const imgUrl = await boardService.uploadImg(ev)
         this.onSetCoverImg(imgUrl)
     }
 
-    uploadImg = (ev) => {
-        const CLOUD_NAME = 'dnft2vfvz'
-        const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
-        const formData = new FormData();
-        formData.append('file', ev.target.files[0])
-        formData.append('upload_preset', 'bhdlgcay');
-
-        return fetch(UPLOAD_URL, {
-            method: 'POST',
-            body: formData
-        })
-            .then(res => res.json())
-            .then(res => res.url)
-            .catch(err => console.error(err))
+    updateBoardDetails = async (title, backgroundColor, imgUrl) => {
+        if (!title) {
+            this.inputRef.current.focus();
+            return
+        }
+        const { board, updateBoard } = this.props
+        board.title = title
+        board.style = {
+            backgroundColor,
+            imgUrl
+        }
+        updateBoard({ ...board })
     }
-
     render() {
-        const { title, backgroundColor, imgUrl } = this.state
-        const { modal, closeModal } = this.props
+        const { backgroundColor, imgUrl, title } = this.state
+        const { modal, closeModal, isCreateBoard } = this.props
+        const updateBoardClass = isCreateBoard ? '' : 'update-board'
+        if (title === null) return <div className='loader-page'><CircularIndeterminate /></div>
         const creatBtnColor = title ? 'blue' : 'blur-text'
         return (
-            <div className='modal create-board'>
-
-                <ModalHeader modal={modal} closeModal={closeModal} />
-
-                <div className='chosen-background'
-                    style={{ backgroundImage: `url(${imgUrl})`, backgroundColor: backgroundColor }}>
-                </div>
-
+            <div className={`modal create-board ${updateBoardClass}`} >
+                {isCreateBoard &&
+                    <div>
+                        <ModalHeader modal={modal} closeModal={closeModal} />
+                        <div className='chosen-background'
+                            style={{ backgroundImage: `url(${imgUrl})`, backgroundColor: backgroundColor }}>
+                        </div>
+                    </div>
+                }
                 <div className='input-title'>
                     <h4>Title</h4>
                     <input ref={this.inputRef}
@@ -90,7 +105,6 @@ export class CreateBoardModal extends React.Component {
                         onChange={(ev) => { this.onHandleChange(ev) }}
                     />
                     <h4 className='required-title'>Board title is required</h4>
-
                 </div>
 
                 <div className='cover-colors-container'>
@@ -123,15 +137,19 @@ export class CreateBoardModal extends React.Component {
                     <input id="upload" className="file-input" type="file" onChange={(ev) => { this.uploadImgCover(ev) }} />
                 </div>
 
-                <div className={`full-width-btn ${creatBtnColor}`} onClick={(ev) => {
-                    ev.stopPropagation();
-                    closeModal()
-                    this.onSubmit()
-                }}>Create</div>
+                {isCreateBoard &&
+                    <div className={`full-width-btn ${creatBtnColor}`} onClick={(ev) => {
+                        ev.stopPropagation();
+                        this.onSubmit()
+                    }}>{isCreateBoard ? 'Create' : 'Update'}</div>
+                }
+
+
             </div>
         )
     }
 }
+
 
 
 

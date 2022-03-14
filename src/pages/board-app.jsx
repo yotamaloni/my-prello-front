@@ -104,9 +104,11 @@ class _BoardApp extends React.Component {
                             {modal?.type &&
                                 <React.Fragment>
                                     < DynamicModal
+                                        isCreateBoard={true}
                                         modal={'create-board'}
                                         addBoard={this.onCreateBoard}
-                                        closeModal={() => this.onSetModal(null)}
+                                        closeModal={() => this.onSetModal(null)
+                                        }
                                     />
                                 </React.Fragment>
                             }

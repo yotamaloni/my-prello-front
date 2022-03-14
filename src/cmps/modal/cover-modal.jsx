@@ -3,9 +3,9 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
-import { updateBoard } from '../../store/board.action.js'
+import { boardService } from '../../services/board.service.js'
 
-import DoneIcon from '@mui/icons-material/Done';
+import { updateBoard } from '../../store/board.action.js'
 
 import { ModalHeader } from './modal-header.jsx'
 
@@ -26,7 +26,7 @@ class _CoverModal extends React.Component {
     setImgCover = async (ev) => {
         const { task, board } = this.props
         try {
-            const imgUrl = await this.uploadImg(ev)
+            const imgUrl = await boardService.uploadImg(ev)
             if (!task.style) {
                 task.style = { imgUrl }
             } else {
@@ -42,23 +42,6 @@ class _CoverModal extends React.Component {
         const { task, board } = this.props
         task.style = null
         this.props.updateBoard({ ...board })
-    }
-
-
-    uploadImg = (ev) => {
-        const CLOUD_NAME = 'dnft2vfvz'
-        const UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`
-        const formData = new FormData();
-        formData.append('file', ev.target.files[0])
-        formData.append('upload_preset', 'bhdlgcay');
-
-        return fetch(UPLOAD_URL, {
-            method: 'POST',
-            body: formData
-        })
-            .then(res => res.json())
-            .then(res => res.url)
-            .catch(err => console.error(err))
     }
     render() {
         const colors = [

@@ -18,13 +18,14 @@ function _TaskActivityList({ task, board, updateBoard }) {
         updateBoard({ ...board })
     }
     const activities = board.activities.filter((activity) => activity.taskId === task.id)
+
     return (
         <section className='activity-list'>
             <ul className="clean-list">
                 {activities.map((activity) => {
                     return <li className='comments' key={activity.id}>
                         <div className='user-name'>{activity.byMember.username}  <TimeSince activity={activity} />
-                            <div className='member-icon-container' >
+                            <div className="member-icon-container" >
                                 <MemberIcon key={activity.byMember._id}
                                     member={activity.byMember}
                                     size={28} />
@@ -40,12 +41,12 @@ function _TaskActivityList({ task, board, updateBoard }) {
 
                         <div className='activity-actions flex default-gap'>
                             {/* <div onClick>Edit</div> */}
-                            <div onClick={() => onRemoveActivity(activity.id)}>Delete</div>
+                            <div className='remove-btn clickable' onClick={() => onRemoveActivity(activity.id)}>Delete</div>
                         </div>
                     </li>
                 })}
             </ul>
-        </section>
+        </section >
     )
 }
 
