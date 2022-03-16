@@ -31,19 +31,9 @@
   }
 
   .labels-container {
-    // gap: 5px;
-    // display: grid;
-    // grid-template-columns: repeat(auto-fill, 40px);
     display: flex;
     flex-wrap: wrap;
     margin: 0 4px 4px 0;
-
-    // >* {
-    //   width: 40px;
-    //   height: 8px;
-    //   border-radius: 3px;
-    // }
-
     .label {
       margin: 0 4px 4px 0;
       display: flex;

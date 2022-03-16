@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Route } from 'react-router-dom'
+import { NavLink} from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { updateBoard } from '../store/board.action.js'
@@ -12,17 +12,7 @@ class _TaskPreview extends React.Component {
         isExpendedLabels: false
     }
 
-    onToggleLabelsSize = (ev) => {
-        ev.preventDefault()
-        ev.stopPropagation()
-
-        const isExpendedLabels = this.state.isExpendedLabels ? false : true
-
-        this.setState({ isExpendedLabels })
-    }
-
-    onToggleLabelsSize = (ev) => {
-        ev.preventDefault()
+    onToggleLabelsSize = () => {
         const { board } = this.props
         let isExpendedLabels = board.isExpendedLabels ? false : true
         board.isExpendedLabels = isExpendedLabels
@@ -61,14 +51,14 @@ class _TaskPreview extends React.Component {
 
                             </div>
                         }
-                        {labels?.length ?
+                        {labels?.length > 0 &&
                             <ul className='labels-container clean-list'>
                                 {labelsToDisplay.map((label, index) => {
                                     const txt = label?.txt
                                     return <li
                                         style={{ backgroundColor: label.color }}
                                         onClick={(ev) => {
-                                            ev.stopPropagation()
+                                            ev.preventDefault()
                                             this.onToggleLabelsSize()
                                         }}
                                         className={`label ${labelsSize}`}
@@ -80,9 +70,6 @@ class _TaskPreview extends React.Component {
                                     </li>
                                 })}
                             </ul>
-                            :
-                            <React.Fragment >
-                            </React.Fragment>
                         }
                         <div className="title">{title}</div>
                         {(description || comments?.length || dueDate || members?.length || checklists?.length) &&

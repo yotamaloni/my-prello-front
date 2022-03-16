@@ -1,8 +1,12 @@
 import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
-import { MemberIcon } from '../member-icon.jsx'
+import { connect } from 'react-redux'
 
-export function TaskLabels({ task, board }) {
+import { setModal } from '../../store/board.action.js'
+
+
+export function _TaskLabels(props) {
+    const { task, board, setModal } = props
     const labels = task.labels
     let taskLabelsIds = []
     let labelsToDisplay = []
@@ -21,9 +25,21 @@ export function TaskLabels({ task, board }) {
                     </li>
                 })}
                 <li className="label add-label">
-                    <AddOutlinedIcon onClick={() => this.props.openModal('label')} />
+                    <AddOutlinedIcon onClick={() => setModal({ type: 'labels' })} />
                 </li>
             </ul>
         </section >
     )
 }
+
+function mapStateToProps({ boardModule }) {
+    return {
+        modal: boardModule.modal,
+    }
+}
+
+const mapDispatchToProps = {
+    setModal
+};
+
+export const TaskLabels = connect(mapStateToProps, mapDispatchToProps)(_TaskLabels)

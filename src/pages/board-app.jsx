@@ -52,10 +52,9 @@ class _BoardApp extends React.Component {
         }
     }
 
-    loadBoards = async () => {
+    loadBoards = async (filterBy = null) => {
         try {
-            const boards = await boardService.query()
-            await this.props.loadBoard(null)
+            const boards = await boardService.query(filterBy)
             this.setState({ boards })
         } catch (err) {
             console.log('Cannot get boards ', err);
@@ -91,7 +90,7 @@ class _BoardApp extends React.Component {
         const { modal } = this.props
         return (
             <section className="board-app">
-                <AppHeader isBoardDetails={false} />
+                <AppHeader loadBoards={this.loadBoards} isBoardDetails={false} />
                 <h2>WorkSpaces</h2>
                 <div className='all-board-container'>
                     <h3>All boards</h3>
@@ -143,14 +142,15 @@ class _BoardApp extends React.Component {
 function mapStateToProps({ boardModule }) {
     return {
         board: boardModule.board,
-        modal: boardModule.modal
+        modal: boardModule.modal,
+        filterBy: boardModule.filterBy,
     }
 }
 
 const mapDispatchToProps = {
     updateBoard,
     loadBoard,
-    setModal
+    setModal,
 };
 
 

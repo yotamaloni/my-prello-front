@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import { utilService } from '../../services/util.service'
 
-
 import { updateBoard } from '../../store/board.action.js'
 
 import { ModalHeader } from './modal-header.jsx'

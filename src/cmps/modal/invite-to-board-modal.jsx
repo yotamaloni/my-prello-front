@@ -6,7 +6,6 @@ import { loadUsers, showMsg } from '../../store/user.action.js'
 import { updateBoard } from '../../store/board.action.js'
 
 import DoneIcon from '@mui/icons-material/Done';
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
 import { ModalHeader } from './modal-header.jsx'
 import { MemberIcon } from '../member-icon.jsx'

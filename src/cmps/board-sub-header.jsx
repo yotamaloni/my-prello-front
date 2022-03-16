@@ -6,7 +6,6 @@ import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
-import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 
 import { setModal } from '../store/board.action.js'
 
@@ -19,13 +18,12 @@ function _BoardSubHeader(props) {
     const onSetModal = (modalType) => {
         props.setModal(modalType)
     }
-    const { toggleFilterModal, board, onToggleBoardStar, modal, onToggleSideMenu } = props
+    const { board, onToggleBoardStar, modal, onToggleSideMenu } = props
     const starColor = board.isStarred ? 'gold' : '#FFF'
 
     return (
         <section className='board-sub-header'>
             <div className='flex left-menu'>
-                <div className="sub-nav-btn">Board</div>
                 <p className=' sub-nav-btn board-title'>{board.title}</p>
 
                 {board.isStarred ?
@@ -53,11 +51,7 @@ function _BoardSubHeader(props) {
             </div>
 
             <div className='flex right-menu'>
-                <div className='flex default-gap sub-nav-btn' onClick={() => { toggleFilterModal() }}>
-                    <FilterListOutlinedIcon />
-                    <div className='txt-in-btn'>Filter</div>
-                </div>
-                <div className='flex default-gap sub-nav-btn'>
+                <div className='flex sub-nav-btn'>
                     <MoreHorizOutlinedIcon />
                     <div onClick={onToggleSideMenu} className='txt-in-btn'>Show menu</div>
                 </div>

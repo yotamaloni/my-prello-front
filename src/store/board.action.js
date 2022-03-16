@@ -6,11 +6,12 @@ export function loadBoard(boardId) {
     return async (dispatch, getState) => {
         const { boardModule: { filterBy } } = getState()
         try {
-            let board = null
             if (boardId) {
-                board = await boardService.getBoardById(boardId, filterBy)
+                const board = await boardService.getBoardById(boardId, filterBy)
                 dispatch({ type: 'SET_BOARD', board })
                 if (!board) throw new Error
+            } else {
+                dispatch({ type: 'SET_BOARD', board: null })
             }
         } catch (err) {
             console.log('Cannot get board', err)
@@ -30,7 +31,7 @@ export function updateBoard(board) {
 }
 
 
-export function setFilter(filterBy) {
+export function setFilterBy(filterBy) {
     return (dispatch) => {
         dispatch({ type: 'SET_FILTER', filterBy })
 

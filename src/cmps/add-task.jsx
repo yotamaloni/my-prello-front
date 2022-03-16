@@ -2,6 +2,8 @@ import React from 'react'
 
 import { connect } from 'react-redux'
 
+import { dataService } from '../services/data.service.js';
+
 import { updateBoard } from '../store/board.action.js'
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -15,16 +17,7 @@ export class _AddTask extends React.Component {
         title: '',
         isOptionsMenuOpen: '',
     }
-    GUEST = {
-        "_id": utilService.makeId(),
-        "username": "Guest",
-        "password": "123",
-        "fullname": "Guest",
-        "color": "#00c2e0",
-        "initials": "G",
-        "isAdmin": false,
-    }
-
+ 
     handleChange = ({ target }) => {
         const field = target.name;
         const value = target.value;
@@ -36,7 +29,7 @@ export class _AddTask extends React.Component {
     onSubmitNewTask = (ev) => {
         ev.preventDefault();
         const { group, board, user } = this.props
-        const byMember = user?.username ? user : this.GUEST
+        const byMember = user?.username ? user : dataService.guestUser
         const { title } = this.state
         const task = {
             title,

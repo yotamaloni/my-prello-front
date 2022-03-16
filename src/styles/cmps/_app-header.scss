@@ -66,3 +66,22 @@
     }
   }
 }
+
+@media (max-width: $break-narrow) {
+  .app-header {
+    padding: 5px 10px;
+    margin: 0;
+    align-items: flex-start;
+    .main-nav {
+      display: flex;
+      justify-content: space-between;
+      .logo {
+        padding: 0;
+        margin: 0;
+      }
+    }
+    .config {
+      gap: 5px;
+    }
+  }
+}

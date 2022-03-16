@@ -4,7 +4,6 @@ const initialState = {
     board: {},
     filterBy: null,
     modal: null
-
 }
 export function boardReducer(state = initialState, action) {
 
@@ -22,6 +21,5 @@ export function boardReducer(state = initialState, action) {
             break;
         default:
     }
-
     return newState;
 }

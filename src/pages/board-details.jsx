@@ -44,6 +44,7 @@ class _BoardDetails extends React.Component {
         clearTimeout(this.timeoutId)
         const { modal } = this.props
         if (modal) this.props.setModal(null)
+        this.props.loadBoard(null)
     }
 
     onToggleMenuModal = () => {

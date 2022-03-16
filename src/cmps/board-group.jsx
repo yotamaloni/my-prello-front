@@ -1,15 +1,15 @@
 import React from 'react'
-import styled from 'styled-components';
 import { Droppable, Draggable } from 'react-beautiful-dnd'
-
+import { connect } from 'react-redux'
 import AddIcon from '@mui/icons-material/Add';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
+
 
 import { TaskPreview } from './task-preview.jsx'
 import { AddTask } from './add-task.jsx'
 import { ListActionsMenu } from './list-actions-menu.jsx'
 
-export class BoardGroup extends React.Component {
+export class _BoardGroup extends React.Component {
 
     state = {
         isAddTaskOpen: '',
@@ -61,8 +61,13 @@ export class BoardGroup extends React.Component {
     }
 
     render() {
-        const { group, board, updateBoard } = this.props
-        const { tasks } = group
+        const { group, board, updateBoard, filterBy } = this.props
+        let { tasks } = group
+        if (filterBy?.title) {
+            tasks = tasks.filter(task => {
+                return task.title?.toLowerCase().includes(filterBy.title)
+            })
+        }
         const { isAddTaskOpen, isListActionsOpen, groupTitle } = this.state
 
 
@@ -155,3 +160,14 @@ export class BoardGroup extends React.Component {
     }
 }
 
+function mapStateToProps({ boardModule }) {
+
+    return {
+        filterBy: boardModule.filterBy
+    }
+}
+
+const mapDispatchToProps = {
+};
+
+export const BoardGroup = connect(mapStateToProps, mapDispatchToProps)(_BoardGroup)

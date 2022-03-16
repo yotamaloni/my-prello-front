@@ -7,21 +7,13 @@ import { updateBoard } from '../../store/board.action.js'
 import TocOutlinedIcon from '@mui/icons-material/TocOutlined';
 
 import { utilService } from '../../services/util.service'
+import { dataService } from '../../services/data.service.js';
 
 import { TxtInput } from '../txt-input.jsx'
 
 class _TaskAddActivity extends React.Component {
     state = {
         isActivityOpen: null,
-    }
-    GUEST = {
-        "_id": utilService.makeId(),
-        "username": "Guest",
-        "password": "123",
-        "fullname": "Guest",
-        "color": "#00c2e0",
-        "initials": "G",
-        "isAdmin": false,
     }
 
     onCloseModal = () => {
@@ -39,7 +31,7 @@ class _TaskAddActivity extends React.Component {
 
     submitActivity = (txt) => {
         const { task, board, user } = this.props
-        const byMember = user?.username ? user : this.GUEST
+        const byMember = user?.username ? user : dataService.guestUser
         const activity = {
             byMember,
             createdAt: Date.now(),

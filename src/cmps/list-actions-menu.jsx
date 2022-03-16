@@ -1,15 +1,10 @@
-import { utilService } from '../services/util.service.js'
-
-
 import CloseIcon from '@mui/icons-material/Close';
-
 
 export function ListActionsMenu({ onToggleListActions, group, board, updateBoard, updateGroupInState }) {
 
     function onRemoveGroup() {
         const groups = board.groups.filter(currGroup => currGroup.id !== group.id)
         board.groups = groups
-        // updateGroupInState([...board.groups])
         updateBoard({ ...board })
         onToggleListActions()
     }
@@ -17,21 +12,9 @@ export function ListActionsMenu({ onToggleListActions, group, board, updateBoard
     function onRemoveAllCards() {
         const idx = board.groups.findIndex((currGroup => currGroup.id === group.id))
         board.groups[idx].tasks = []
-        // updateGroupInState([...board.groups])
         updateBoard({ ...board })
         onToggleListActions()
     }
-
-    function onCopyList() {
-        const idx = board.groups.findIndex((currGroup => currGroup.id === group.id))
-        const newGroup = { ...board.groups[idx] }
-        newGroup.id = utilService.makeId()
-        board.groups.splice(idx, 0, newGroup)
-        // updateGroupInState([...board.groups])
-        updateBoard({ ...board })
-        onToggleListActions()
-    }
-
 
     return (
         <div className="actions-container">
@@ -44,9 +27,6 @@ export function ListActionsMenu({ onToggleListActions, group, board, updateBoard
                 </div>
             </div>
             <div className="actions">
-                <div>
-                    <button onClick={onCopyList} className="no-background">Copy list...</button>
-                </div>
                 <div>
                     <button onClick={onRemoveAllCards} className="no-background">Archive all cards in this list...</button>
                 </div>

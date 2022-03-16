@@ -3,11 +3,9 @@ import { utilService } from './util.service'
 import { httpService } from './http.service'
 import { socketService } from './socket.service'
 
-import Axios from 'axios'
 import { userService } from './user.service'
-var axios = Axios.create({
-    withCredentials: true
-})
+import { dataService } from './data.service'
+
 
 export const boardService = {
     query,
@@ -18,38 +16,18 @@ export const boardService = {
     uploadImg,
 }
 
-const GUEST = {
-    "_id": utilService.makeId(),
-    "username": "Guest",
-    "password": "123",
-    "fullname": "Guest",
-    "color": "#00c2e0",
-    "isAdmin": false,
-}
-
-const LABELS = [
-    { color: '#61bd4f', txt: '', id: utilService.makeId() },
-    { color: '#f2d600', txt: '', id: utilService.makeId() },
-    { color: '#ff9f1a', txt: '', id: utilService.makeId() },
-    { color: '#eb5a46', txt: '', id: utilService.makeId() },
-    { color: '#c377e0', txt: '', id: utilService.makeId() },
-    { color: '#0079bf', txt: '', id: utilService.makeId() },
-    { color: '#00c2e0', txt: '', id: utilService.makeId() },
-    { color: '#344563', txt: '', id: utilService.makeId() },
-]
-
-
-async function query(filterBy = null, sortBy = null) {
-    return httpService.get(`board`, { filterBy, sortBy })
+async function query(filterBy = null) {
+    return httpService.get(`board`, { filterBy })
 }
 
 async function addBoard(board) {
-    const user = userService.getLoggedinUser()
+    let user = userService.getLoggedinUser()
+    if (!user) user = dataService.guestUser
     board.createdBy = user
     board.activities = []
     board.groups = []
     board.members = user ? [user] : []
-    board.labels = LABELS
+    board.labels = dataService.labels
     const AddedBoard = await httpService.post(`board`, board)
     return AddedBoard
 }

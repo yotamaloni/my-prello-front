@@ -8,8 +8,6 @@ import { useHistory } from 'react-router-dom'
 import { onLogout } from '../store/user.action.js'
 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import AppsOutlinedIcon from '@mui/icons-material/AppsOutlined';
 
 import { SearchInput } from './search-input.jsx'
 import { MemberIcon } from '../cmps/member-icon.jsx'
@@ -22,8 +20,8 @@ function _AppHeader(props) {
         history.push('/login-signup')
     }
 
-    const fitClassName = props.isBoardDetails ? 'board-details-class' : 'app-board-class'
-    const { user } = props
+    const { user, loadBoards, isBoardDetails } = props
+    const fitClassName = isBoardDetails ? 'board-details-class' : 'app-board-class'
     return (
         <section className={`app-header ${fitClassName}`}>
             <div className='main-nav flex default-gap'>
@@ -32,7 +30,7 @@ function _AppHeader(props) {
                 <NavLink className="clean-link top-nav-btn" to='/board'>Workspaces</NavLink>
             </div>
             <div className='config'>
-                <SearchInput />
+                <SearchInput loadBoards={loadBoards} isBoardDetails={isBoardDetails} />
                 {user?.username ?
                     <div onClick={onLogoutUser} className='clickable clean-link'>
                         <MemberIcon member={user} size={32} className='top-nav-btn' />
@@ -47,8 +45,6 @@ function _AppHeader(props) {
     )
 }
 
-
-
 function mapStateToProps({ userModule }) {
 
     return {
@@ -60,6 +56,5 @@ function mapStateToProps({ userModule }) {
 const mapDispatchToProps = {
     onLogout
 };
-
 
 export const AppHeader = connect(mapStateToProps, mapDispatchToProps)(_AppHeader)

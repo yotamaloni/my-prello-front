@@ -23,7 +23,6 @@ export class CreateBoardModal extends React.Component {
         } else {
             this.setState({ title: '', backgroundColor: '#29CCE5', imgUrl: null })
         }
-        // this.inputRef.current.focus();
     }
     onHandleChange = ({ target }) => {
         const field = target.name
@@ -45,9 +44,9 @@ export class CreateBoardModal extends React.Component {
         if (!isCreateBoard) this.updateBoardDetails(this.state.title, this.state.backgroundColor, url)
     }
 
-    onSubmit = (ev) => {
+    onSubmit = () => {
         const { title, imgUrl, backgroundColor } = this.state
-        const { closeModal, isCreateBoard } = this.props
+        const { closeModal } = this.props
         if (!title) {
             this.inputRef.current.focus();
             return

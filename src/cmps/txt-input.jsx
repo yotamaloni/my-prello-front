@@ -12,7 +12,9 @@ export class TxtInput extends React.Component {
 
     onSubmitForm = (ev) => {
         ev.preventDefault()
+        ev.stopPropagation()
         this.props.onUpdateTxtInput(this.state.txt)
+        this.setState({ txt: '' })
     }
 
     render() {

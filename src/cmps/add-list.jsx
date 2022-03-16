@@ -7,8 +7,6 @@ import { utilService } from '../services/util.service.js'
 
 import { updateBoard } from '../store/board.action.js'
 
-
-
 class _AddList extends React.Component {
 
     state = {
