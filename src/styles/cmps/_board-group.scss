@@ -9,7 +9,7 @@
   .list-header {
     box-sizing: border-box;
     display: flex;
-    height: 40px;
+    min-height: 40px;
     justify-content: space-between;
     font-weight: bold;
     .no-background {

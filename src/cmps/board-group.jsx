@@ -70,7 +70,6 @@ export class _BoardGroup extends React.Component {
         }
         const { isAddTaskOpen, isListActionsOpen, groupTitle } = this.state
 
-
         return (
             <section className='board-group'>
                 <div className='list-header'>
@@ -80,7 +79,8 @@ export class _BoardGroup extends React.Component {
                             type="text" name="groupTitle"
                             value={groupTitle}
                             onBlur={this.onSubmitTitle}
-                            onChange={this.onHandleChange} autoComplete='false' />
+                            onChange={this.onHandleChange} autoComplete='false'
+                        />
                     </div>
 
                     <div><button onClick={this.onToggleListActions} className='no-background'>

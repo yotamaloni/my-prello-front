@@ -6,7 +6,7 @@ export class TxtInput extends React.Component {
     }
 
     onHandleChange = ({ target }) => {
-        const value = target.value
+        const { value } = target
         this.setState((prevState) => ({ txt: value }))
     }
 
@@ -14,7 +14,7 @@ export class TxtInput extends React.Component {
         ev.preventDefault()
         ev.stopPropagation()
         this.props.onUpdateTxtInput(this.state.txt)
-        this.setState({ txt: '' })
+        this.setState({ txt: null })
     }
 
     render() {
