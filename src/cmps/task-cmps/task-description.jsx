@@ -3,8 +3,6 @@ import React from 'react'
 
 import SegmentOutlinedIcon from '@mui/icons-material/SegmentOutlined';
 
-import { utilService } from '../../services/util.service'
-
 import { connect } from 'react-redux'
 import { updateBoard } from '../../store/board.action.js'
 

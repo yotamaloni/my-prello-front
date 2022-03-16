@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 
 import { setModal } from '../../store/board.action.js'
 
-
 export function _TaskLabels(props) {
     const { task, board, setModal } = props
     const labels = task.labels

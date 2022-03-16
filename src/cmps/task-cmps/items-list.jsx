@@ -1,4 +1,5 @@
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+
 export function ItemsList(props) {
     const { onToggleItemMark, checklist, onRemoveItemFromChecklist } = props
     const { items } = checklist

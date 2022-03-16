@@ -21,7 +21,7 @@ export class CreateBoardModal extends React.Component {
             const { style } = board
             this.setState({ title: board.title, backgroundColor: style.backgroundColor, imgUrl: style.imgUrl })
         } else {
-            this.setState({ title: '', backgroundColor: '#29CCE5', imgUrl: null })
+            this.setState({ title: '', backgroundColor: '#0079BF', imgUrl: null })
         }
     }
     onHandleChange = ({ target }) => {
@@ -142,8 +142,6 @@ export class CreateBoardModal extends React.Component {
                         this.onSubmit()
                     }}>{isCreateBoard ? 'Create' : 'Update'}</div>
                 }
-
-
             </div>
         )
     }

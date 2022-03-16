@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import CheckBoxOutlinedIcon from '@mui/icons-material/CheckBoxOutlined';
 import { ItemsList } from './items-list.jsx'
@@ -10,10 +10,6 @@ import { AddItemToChecklist } from './add-item-to-checklist.jsx'
 export function TaskChecklistsPreview(props) {
 
     const [isInputItemOpen, setIsInputItemOpen] = useState(false)
-    // useEffect(() => {
-    //     setIsInputItemOpen(false)
-    // }, [])
-
     function onToggleAddItem() {
         setIsInputItemOpen(!isInputItemOpen)
     }

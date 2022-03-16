@@ -153,6 +153,5 @@ const mapDispatchToProps = {
     setModal,
 };
 
-
 export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp)
 

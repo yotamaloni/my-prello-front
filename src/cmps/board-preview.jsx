@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { Link } from 'react-router-dom'
-
 export class BoardPreview extends React.Component {
 
     render() {
@@ -9,7 +7,6 @@ export class BoardPreview extends React.Component {
         return (
             <section className="board-preview" >
                 <h4>{board.title}</h4>
-
             </section>
         )
     }

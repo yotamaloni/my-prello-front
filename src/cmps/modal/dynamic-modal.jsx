@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { } from '../../store/board.action.js'
 
 import { MembersModal } from './members-modal.jsx'
 import { LabelsModal } from './labels-modal.jsx'

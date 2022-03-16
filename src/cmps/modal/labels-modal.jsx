@@ -1,4 +1,3 @@
-
 import React from 'react'
 
 import { connect } from 'react-redux'
@@ -47,7 +46,7 @@ class _LabelsModal extends React.Component {
         const { txt, editLabel } = this.state
         if (!editLabel) return
         editLabel.txt = txt
-        const { board, task } = this.props
+        const { board } = this.props
         const { labels } = board
         const updatedLabels = labels.map((label) => label.id === editLabel.id ? editLabel : label)
         board.labels = updatedLabels

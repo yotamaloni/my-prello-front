@@ -1,5 +1,3 @@
-
-
 export function MemberIcon({ member, size }) {
 
     return (

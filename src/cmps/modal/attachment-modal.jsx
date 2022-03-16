@@ -13,6 +13,7 @@ class _AttachmentModal extends React.Component {
         return (
             <section className='modal attachment-modal'>
                 <ModalHeader modal={modal} closeModal={closeModal} />
+                <img src="https://res.cloudinary.com/dnft2vfvz/image/upload/v1647445636/skwtnfzflktrdnn2fkif.gif" alt="" />
             </section >
         )
     }

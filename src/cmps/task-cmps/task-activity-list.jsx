@@ -1,13 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import { updateBoard } from '../../store/board.action.js'
-
-import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
-
 import { TimeSince } from './time-since.jsx'
 import { MemberIcon } from '../member-icon.jsx'
-import { TxtInput } from '../txt-input.jsx'
 
 
 function _TaskActivityList({ task, board, updateBoard }) {
@@ -33,14 +28,9 @@ function _TaskActivityList({ task, board, updateBoard }) {
 
                         </div>
                         <div className='txt'>{activity.txt}</div>
-                        {/* <TxtInput
-                            styleClass='add-comment'
-                            txt={activity.txt}
-                            isImmutable={false}
-                        /> */}
+
 
                         <div className='activity-actions flex default-gap'>
-                            {/* <div onClick>Edit</div> */}
                             <div className='remove-btn clickable' onClick={() => onRemoveActivity(activity.id)}>Delete</div>
                         </div>
                     </li>

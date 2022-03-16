@@ -6,7 +6,6 @@ import { updateBoard } from '../store/board.action.js'
 
 import { TaskPreviewInfo } from './task-preview-info.jsx'
 
-
 class _TaskPreview extends React.Component {
     state = {
         isExpendedLabels: false

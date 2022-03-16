@@ -34,7 +34,6 @@ const mapDispatchToProps = {
     setFilterBy
 };
 
-
 export const SearchInput = connect(mapStateToProps, mapDispatchToProps)(_SearchInput)
 
 

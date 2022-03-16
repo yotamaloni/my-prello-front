@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { } from '../store/board.action.js'
 
 import { MemberIcon } from '../cmps/member-icon.jsx'
 

@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { isEmpty } from "lodash";
 import { updateBoard } from '../store/board.action.js'
 
 import { BoardGroup } from './board-group.jsx'

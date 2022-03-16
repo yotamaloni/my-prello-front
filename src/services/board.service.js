@@ -1,11 +1,8 @@
-
-import { utilService } from './util.service'
 import { httpService } from './http.service'
 import { socketService } from './socket.service'
 
 import { userService } from './user.service'
 import { dataService } from './data.service'
-
 
 export const boardService = {
     query,

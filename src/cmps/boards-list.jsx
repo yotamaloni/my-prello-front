@@ -25,9 +25,9 @@ export function BoardsList({ board, onRemoveBoard, onToggleBoardStar }) {
                         onClick={(ev) => { onToggleBoardStar(ev, board) }}
                         className="star" style={{ color: starColor }} />
                 }
-                {
+                {/* {
                     <div style={{ color: '#fff' }} className="remove-btn" onClick={(ev) => onRemoveBoard(ev, board)}>x</div>
-                }
+                } */}
             </li>
         </Link>
     )

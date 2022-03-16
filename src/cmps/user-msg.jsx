@@ -1,9 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { closeMsg } from '../store/user.action.js';
-
 
 class _UserMsg extends React.Component {
 
@@ -15,7 +13,6 @@ class _UserMsg extends React.Component {
             this.onCloseMsg()
         }, 3000)
     }
-
 
     onCloseMsg = () => {
         this.props.closeMsg()
@@ -42,8 +39,6 @@ class _UserMsg extends React.Component {
         )
     }
 }
-
-
 
 function mapStateToProps({ userModule }) {
     return {

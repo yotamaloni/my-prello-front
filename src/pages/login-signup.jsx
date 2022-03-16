@@ -3,8 +3,6 @@ import { connect } from 'react-redux'
 
 import { onLogin, onSignup } from '../store/user.action.js'
 
-import { userService } from '../services/user.service.js'
-
 class _LoginSignup extends React.Component {
     state = {
         fullname: '',
