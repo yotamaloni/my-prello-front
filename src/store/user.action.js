@@ -73,9 +73,9 @@ export function loadUsers(filterBy) {
     }
 }
 
-export function showMsg(txt) {
+export function showMsg(txt, classMsg = 'success') {
     return async dispatch => {
-        dispatch({ type: 'SHOW_MSG', msg: { type: 'success', txt } })
+        dispatch({ type: 'SHOW_MSG', msg: { type: classMsg, txt } })
     }
 }
 

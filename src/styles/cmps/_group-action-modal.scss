@@ -1,0 +1,25 @@
+.group-action-modal {
+  min-height: 130px;
+  transform: translate(-50%, 0%);
+  overflow-y: hidden;
+
+  .actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    > * {
+      width: 258px;
+    }
+  }
+  .no-background {
+    color: $clr3;
+    margin-left: 6px;
+    text-align: start;
+    height: 30px;
+    padding: 6px, 12px;
+    &:hover {
+      background-color: $clr1;
+    }
+  }
+}

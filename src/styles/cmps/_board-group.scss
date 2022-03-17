@@ -1,6 +1,9 @@
 .board-group {
   display: flex;
   flex-direction: column;
+  .modal-base {
+    position: relative;
+  }
   > * {
     padding: 0 0px;
     margin-bottom: 0 0 0 0;
@@ -11,13 +14,16 @@
     display: flex;
     min-height: 40px;
     justify-content: space-between;
-    font-weight: bold;
+
     .no-background {
-      margin: 4px 0;
-      width: 32px;
+      position: relative;
       height: 32px;
       padding: 6px;
       margin-left: 2px;
+      &:not(.action) {
+        width: 32px;
+        margin: 4px 0;
+      }
       svg {
         height: 16px;
         width: 16px;
@@ -68,18 +74,17 @@
       text-decoration: underline;
     }
   }
-}
+  .task-container {
+    border-radius: 3px;
+  }
 
-.task-container {
-  border-radius: 3px;
-}
-
-.card-composer {
-  display: flex;
-  align-items: center;
-  width: 256px;
-  text-align: left;
-  height: 30px;
+  .card-composer {
+    display: flex;
+    align-items: center;
+    width: 256px;
+    text-align: left;
+    height: 30px;
+  }
 }
 
 @media (min-width: $break-normal) {

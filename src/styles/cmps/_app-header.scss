@@ -69,7 +69,7 @@
 
 @media (max-width: $break-narrow) {
   .app-header {
-    padding: 5px 10px;
+    padding: 5px 20px;
     margin: 0;
     align-items: flex-start;
     .main-nav {
@@ -81,7 +81,9 @@
       }
     }
     .config {
+      width: 100%;
       gap: 5px;
+      justify-content: space-between;
     }
   }
 }

@@ -13,6 +13,7 @@ export class CreateBoardModal extends React.Component {
         title: null,
         backgroundColor: null,
         imgUrl: null,
+        isLoading: null,
     }
     componentDidMount() {
         const { isCreateBoard } = this.props
@@ -35,13 +36,13 @@ export class CreateBoardModal extends React.Component {
     onSetCoverColor = (color) => {
         this.setState({ backgroundColor: color, imgUrl: null })
         const { isCreateBoard } = this.props
-        if (!isCreateBoard) this.updateBoardDetails(this.state.title, color, this.state.imgUrl)
+        if (!isCreateBoard) this.updateBoardDetails(this.state.title, color, null)
     }
 
     onSetCoverImg = (url) => {
         this.setState({ backgroundColor: null, imgUrl: url })
         const { isCreateBoard } = this.props
-        if (!isCreateBoard) this.updateBoardDetails(this.state.title, this.state.backgroundColor, url)
+        if (!isCreateBoard) this.updateBoardDetails(this.state.title, null, url)
     }
 
     onSubmit = () => {
@@ -62,11 +63,15 @@ export class CreateBoardModal extends React.Component {
         closeModal()
     }
     uploadImgCover = async (ev) => {
+        this.setState({ isLoading: true })
         const imgUrl = await boardService.uploadImg(ev)
         this.onSetCoverImg(imgUrl)
+        this.setState({ isLoading: false })
+
     }
 
     updateBoardDetails = async (title, backgroundColor, imgUrl) => {
+        console.log("🟡 ~ title", title)
         if (!title) {
             this.inputRef.current.focus();
             return
@@ -80,7 +85,7 @@ export class CreateBoardModal extends React.Component {
         updateBoard({ ...board })
     }
     render() {
-        const { backgroundColor, imgUrl, title } = this.state
+        const { backgroundColor, imgUrl, title, isLoading } = this.state
         const { modal, closeModal, isCreateBoard } = this.props
         const updateBoardClass = isCreateBoard ? '' : 'update-board'
         if (title === null) return <div className='loader-page'><CircularIndeterminate /></div>
@@ -135,12 +140,14 @@ export class CreateBoardModal extends React.Component {
                     }} className='full-width-btn gray'>Upload a cover image</label>
                     <input id="upload" className="file-input" type="file" onChange={(ev) => { this.uploadImgCover(ev) }} />
                 </div>
-
                 {isCreateBoard &&
                     <div className={`full-width-btn ${creatBtnColor}`} onClick={(ev) => {
                         ev.stopPropagation();
                         this.onSubmit()
                     }}>{isCreateBoard ? 'Create' : 'Update'}</div>
+                }
+                {isLoading &&
+                    <div className='loader-page'><CircularIndeterminate /></div>
                 }
             </div>
         )

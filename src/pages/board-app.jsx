@@ -6,6 +6,7 @@ import { boardService } from "../services/board.service.js"
 import { socketService } from "../services/socket.service.js"
 
 import { updateBoard, loadBoard, setModal } from '../store/board.action.js'
+import { showMsg } from '../store/user.action.js'
 
 import { AppHeader } from '../cmps/app-header.jsx'
 import { BoardsList } from '../cmps/boards-list.jsx'
@@ -47,6 +48,7 @@ class _BoardApp extends React.Component {
         try {
             await boardService.addBoard(board)
             socketService.emit('add-board')
+            this.props.showMsg('Board successfully added')
         } catch (err) {
             console.log('Problem to add board', err);
         }
@@ -78,6 +80,8 @@ class _BoardApp extends React.Component {
         try {
             await boardService.removeBoard(board._id)
             socketService.emit('remove-board')
+            this.props.showMsg('Board successfully removed')
+
         } catch (err) {
             console.log('Cannot remove board ', err);
         }
@@ -139,11 +143,12 @@ class _BoardApp extends React.Component {
     }
 }
 
-function mapStateToProps({ boardModule }) {
+function mapStateToProps({ boardModule, userModule }) {
     return {
         board: boardModule.board,
         modal: boardModule.modal,
         filterBy: boardModule.filterBy,
+        msg: userModule.msg
     }
 }
 
@@ -151,6 +156,7 @@ const mapDispatchToProps = {
     updateBoard,
     loadBoard,
     setModal,
+    showMsg
 };
 
 export const BoardApp = connect(mapStateToProps, mapDispatchToProps)(_BoardApp)

@@ -11,9 +11,10 @@ import { CoverModal } from './cover-modal.jsx'
 import { RemoveModal } from './remove-modal.jsx'
 import { InviteToBoardModal } from './invite-to-board-modal.jsx'
 import { CreateBoardModal } from './crate-board-modal.jsx'
+import { GroupAction } from './group-action-modal.jsx'
 
 function _DynamicModal(props) {
-    const { modal } = props
+    const { modal, group } = props
 
     switch (modal.type) {
         case 'members':
@@ -50,6 +51,10 @@ function _DynamicModal(props) {
             />;
         case 'create-board':
             return <CreateBoardModal
+                {...props}
+            />;
+        case 'group' + group?.id:
+            return <GroupAction
                 {...props}
             />;
         default:

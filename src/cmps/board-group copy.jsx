@@ -4,11 +4,10 @@ import { connect } from 'react-redux'
 import AddIcon from '@mui/icons-material/Add';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 
-import { setModal } from '../store/board.action.js'
 
 import { TaskPreview } from './task-preview.jsx'
 import { AddTask } from './add-task.jsx'
-import { DynamicModal } from './modal/dynamic-modal.jsx';
+import { ListActionsMenu } from './list-actions-menu.jsx'
 
 export class _BoardGroup extends React.Component {
 
@@ -61,12 +60,8 @@ export class _BoardGroup extends React.Component {
         this.props.updateBoard({ ...board })
     }
 
-    onSetModal = (modalType) => {
-        this.props.setModal(modalType)
-    }
-
     render() {
-        const { group, board, updateBoard, filterBy, modal } = this.props
+        const { group, board, updateBoard, filterBy } = this.props
         let { tasks } = group
         if (filterBy?.title) {
             tasks = tasks.filter(task => {
@@ -86,22 +81,23 @@ export class _BoardGroup extends React.Component {
                             onBlur={this.onSubmitTitle}
                             onChange={this.onHandleChange} autoComplete='false'
                         />
-
                     </div>
 
-                    <div className='modal-base'>
-                        <button onClick={() => this.onSetModal({ type: 'group' + group.id })} className='no-background'>
-                            <MoreHorizOutlinedIcon sx={{ color: '#172b4d' }} />
-                        </button>
-                        {modal?.type === 'group' + group.id && <React.Fragment>
-                            < DynamicModal
-                                group={group}
-                                closeModal={() => this.onSetModal(null)}
-                            />
-                        </React.Fragment>}
+                    <div><button onClick={this.onToggleListActions} className='no-background'>
+                        <MoreHorizOutlinedIcon sx={{ color: '#172b4d' }} />
+                    </button>
                     </div>
                 </div>
-
+                {isListActionsOpen && (
+                    <React.Fragment>
+                        <ListActionsMenu
+                            updateBoard={updateBoard}
+                            board={board}
+                            group={group}
+                            onToggleListActions={this.onToggleListActions}
+                        />
+                    </React.Fragment>
+                )}
                 <div>
                     <Droppable droppableId={group.id} type="task">
                         {(provided, snapshot) => (
@@ -167,13 +163,11 @@ export class _BoardGroup extends React.Component {
 function mapStateToProps({ boardModule }) {
 
     return {
-        filterBy: boardModule.filterBy,
-        modal: boardModule.modal
+        filterBy: boardModule.filterBy
     }
 }
 
 const mapDispatchToProps = {
-    setModal
 };
 
 export const BoardGroup = connect(mapStateToProps, mapDispatchToProps)(_BoardGroup)
