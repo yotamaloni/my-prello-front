@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Prello",
+  "short_name": "Prello",
   "icons": [
     {
       "src": "favicon.ico",

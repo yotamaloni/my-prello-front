@@ -3,7 +3,8 @@ export const utilService = {
     timeConverter,
     getTimeSince,
     getDateString,
-    getRandomIntInclusive
+    getRandomIntInclusive,
+    isInPeriodOfTime
 }
 
 function makeId(length = 6) {
@@ -86,3 +87,18 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
+const MILL_SEC_IN_DAY = 1000 * 60 * 60 * 24
+const MILL_SEC_IN_WEEK = 1000 * 60 * 60 * 24 * 7
+const MILL_SEC_IN_MONTH = 1000 * 60 * 60 * 24 * 30
+
+function isInPeriodOfTime(periodOfTime, time) {
+    switch (periodOfTime) {
+        case 'day':
+            return (time - Date.now() > 0 && time - Date.now() < MILL_SEC_IN_DAY)
+        case 'week':
+            return (time - Date.now() > 0 && time - Date.now() < MILL_SEC_IN_WEEK)
+        case 'month':
+            return (time - Date.now() > 0 && time - Date.now() < MILL_SEC_IN_MONTH)
+    }
+}
+

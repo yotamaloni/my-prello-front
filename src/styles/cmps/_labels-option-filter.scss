@@ -1,0 +1,45 @@
+.labels-option-filter {
+  color: $clr4;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  .labels-option-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .icon-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      transform: rotate(225deg);
+      > * {
+        font-size: 1rem;
+      }
+    }
+    .labels-color-container {
+      height: 32px;
+      width: 100%;
+    }
+    input {
+      width: 16px;
+      &.not-visible {
+        visibility: hidden;
+      }
+    }
+    p {
+      font-weight: normal;
+      &.show-more {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .show-more-icon {
+          display: flex;
+        }
+      }
+    }
+  }
+}

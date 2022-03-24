@@ -71,7 +71,6 @@ export class CreateBoardModal extends React.Component {
     }
 
     updateBoardDetails = async (title, backgroundColor, imgUrl) => {
-        console.log("🟡 ~ title", title)
         if (!title) {
             this.inputRef.current.focus();
             return

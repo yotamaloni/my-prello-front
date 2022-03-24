@@ -41,7 +41,6 @@ class _BoardApp extends React.Component {
         socketService.off('remove-board')
         socketService.off('add-board')
         const { modal } = this.props
-        if (modal) this.props.setModal(null)
     }
 
     onCreateBoard = async (board) => {
@@ -73,6 +72,10 @@ class _BoardApp extends React.Component {
         const isStarred = board.isStarred ? false : true
         board.isStarred = isStarred
         this.props.updateBoard({ ...board })
+        this.setState({ boards: [...this.state.boards] })
+        const msg = board.isStarred ? 'Board successfully starred' : 'Board successfully un-starred'
+        this.props.showMsg(msg)
+
     }
 
     onRemoveBoard = async (ev, board) => {
@@ -88,8 +91,8 @@ class _BoardApp extends React.Component {
     }
 
     render() {
-        const { boards } = this.state
-        if (!boards) return <div className='loader-page'><CircularIndeterminate /></div>
+        if (!this.state.boards) return <div className='loader-page'><CircularIndeterminate /></div>
+        const boards = [...this.state.boards].reverse()
         const starredBoards = boards.filter((board) => board.isStarred)
         const { modal } = this.props
         return (
@@ -116,7 +119,7 @@ class _BoardApp extends React.Component {
                                 </React.Fragment>
                             }
                         </li>
-                        {boards.reverse().map((board => {
+                        {boards.map((board => {
                             return <BoardsList key={board._id} board={board}
                                 onToggleBoardStar={this.onToggleBoardStar}
                                 onRemoveBoard={this.onRemoveBoard}
@@ -129,7 +132,7 @@ class _BoardApp extends React.Component {
                 <div className='starred-board-container'>
                     <h3>Starred boards</h3>
                     <ul className='stared-board-list clean-list'>
-                        {starredBoards.reverse().map((board => {
+                        {starredBoards.map((board => {
                             return <BoardsList key={board._id} board={board}
                                 onToggleBoardStar={this.onToggleBoardStar}
                                 onRemoveBoard={this.onRemoveBoard}

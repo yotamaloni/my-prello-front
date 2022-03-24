@@ -7,8 +7,10 @@ import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import { setModal } from '../store/board.action.js'
 
 import { TaskPreview } from './task-preview.jsx'
+import { CircularIndeterminate } from './loader.jsx'
 import { AddTask } from './add-task.jsx'
 import { DynamicModal } from './modal/dynamic-modal.jsx';
+import { boardService } from '../services/board.service.js';
 
 export class _BoardGroup extends React.Component {
 
@@ -16,7 +18,7 @@ export class _BoardGroup extends React.Component {
         isAddTaskOpen: '',
         isListActionsOpen: '',
         tasks: null,
-        groupTitle: ''
+        groupTitle: '',
     }
 
     componentDidMount() {
@@ -68,11 +70,7 @@ export class _BoardGroup extends React.Component {
     render() {
         const { group, board, updateBoard, filterBy, modal } = this.props
         let { tasks } = group
-        if (filterBy?.title) {
-            tasks = tasks.filter(task => {
-                return task.title?.toLowerCase().includes(filterBy.title)
-            })
-        }
+        tasks = boardService.getFilteredTasks(filterBy, tasks)
         const { isAddTaskOpen, isListActionsOpen, groupTitle } = this.state
 
         return (

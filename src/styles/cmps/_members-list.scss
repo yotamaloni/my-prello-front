@@ -1,4 +1,20 @@
 .members-list {
+  color: $clr4;
   display: flex;
   background: none;
+  &.column-list {
+    flex-direction: column;
+    gap: 10px;
+    .member-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      input {
+        width: 16px;
+      }
+      p {
+        font-weight: normal;
+      }
+    }
+  }
 }

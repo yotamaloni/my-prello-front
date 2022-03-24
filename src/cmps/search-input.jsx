@@ -14,7 +14,11 @@ export function _SearchInput(props) {
         const value = target.value
         setTitle(value)
         if (!isBoardDetails) loadBoards({ title: value })
-        else setFilterBy({ title: value.toLowerCase() })
+        else {
+            const { filterBy } = props
+            filterBy.title = value
+            setFilterBy(filterBy)
+        }
     }
 
     return (
@@ -27,6 +31,7 @@ export function _SearchInput(props) {
 
 function mapStateToProps({ boardModule }) {
     return {
+        filterBy: boardModule.filterBy
     }
 }
 

@@ -3,6 +3,10 @@ import { socketService } from './socket.service'
 
 import { userService } from './user.service'
 import { dataService } from './data.service'
+import { utilService } from './util.service'
+
+const MILL_SEC_IN_DAY = 1000 * 60 * 60 * 24
+const MILL_SEC_IN_WEEK = 1000 * 60 * 60 * 24 * 7
 
 export const boardService = {
     query,
@@ -11,6 +15,7 @@ export const boardService = {
     saveBoard,
     removeBoard,
     uploadImg,
+    getFilteredTasks
 }
 
 async function query(filterBy = null) {
@@ -62,3 +67,54 @@ async function uploadImg(ev) {
         .then(res => res.url)
         .catch(err => console.error(err))
 }
+
+function getFilteredTasks(filterBy, tasks) {
+    if (!filterBy.title && !filterBy.dates && !filterBy.labels?.length && !filterBy.members?.length) return tasks
+    const filteredTasks = tasks.filter(task => {
+        return (_isTitleIncludes(task, filterBy.title) &&
+            _isLabelsIncludes(task, filterBy.labels) &&
+            _isMembersIncludes(task, filterBy.members) &&
+            _isDatesIncludes(task, filterBy.dates)
+        )
+    })
+    return filteredTasks
+}
+function _isTitleIncludes(task, title) {
+    if (!title) return true
+    return task.title?.toLowerCase().includes(title)
+}
+function _isLabelsIncludes(task, filterByLabels) {
+    if (!filterByLabels?.length) return true
+    if (filterByLabels.includes('noLabels') && !task.labels?.length) return true
+    return task.labels?.some(label => {
+        return (filterByLabels.includes(label.color))
+    })
+}
+
+function _isMembersIncludes(task, filterByMembers) {
+    if (!filterByMembers?.length) return true
+    return task.members?.some(member => {
+        return (filterByMembers.includes(member._id))
+    })
+}
+
+function _isDatesIncludes(task, filterByDate) {
+    if (!filterByDate) return true
+    switch (filterByDate) {
+        case 'noDates':
+            return (!task.dueDate)
+        case 'overDue':
+            return (task.dueDate?.time < Date.now() && !task.dueDate?.completed)
+        case 'nextDay':
+            return (!task.dueDate?.completed && task.dueDate?.time && utilService.isInPeriodOfTime('day', task.dueDate.time))
+        case 'nextWeek':
+            return (!task.dueDate?.completed && task.dueDate?.time && utilService.isInPeriodOfTime('week', task.dueDate.time))
+        case 'nextMonth':
+            return (!task.dueDate?.completed && task.dueDate?.time && utilService.isInPeriodOfTime('month', task.dueDate.time))
+        case 'notCompleted':
+            return (!task.dueDate?.completed)
+        case 'completed':
+            return (task.dueDate?.completed)
+    }
+}
+

@@ -34,7 +34,6 @@ export function updateBoard(board) {
 export function setFilterBy(filterBy) {
     return (dispatch) => {
         dispatch({ type: 'SET_FILTER', filterBy })
-
     }
 }
 

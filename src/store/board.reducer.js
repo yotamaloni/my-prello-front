@@ -2,7 +2,7 @@
 
 const initialState = {
     board: {},
-    filterBy: null,
+    filterBy: {},
     modal: null
 }
 export function boardReducer(state = initialState, action) {

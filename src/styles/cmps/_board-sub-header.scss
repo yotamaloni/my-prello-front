@@ -12,8 +12,10 @@
   .right-menu {
     gap: 10px;
     flex-wrap: wrap;
+    .filter {
+      position: relative;
+    }
   }
-
   p {
     margin: 0;
     padding: 0;
@@ -70,5 +72,9 @@
 }
 @media (max-width: $break-narrow) {
   .board-sub-header {
+    .left-menu,
+    .right-menu {
+      margin-bottom: 10px;
+    }
   }
 }

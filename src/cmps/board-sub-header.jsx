@@ -6,6 +6,7 @@ import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import StarBorderOutlinedIcon from '@mui/icons-material/StarBorderOutlined';
 import StarRateIcon from '@mui/icons-material/StarRate';
 import GroupAddOutlinedIcon from '@mui/icons-material/GroupAddOutlined';
+import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 
 import { setModal } from '../store/board.action.js'
 
@@ -50,11 +51,24 @@ function _BoardSubHeader(props) {
 
             </div>
 
-            <div className='flex right-menu'>
-                <div className='flex sub-nav-btn'>
-                    <MoreHorizOutlinedIcon />
-                    <div onClick={onToggleSideMenu} className='txt-in-btn'>Show menu</div>
+            <div className='flex right-menu '>
+                <div onClick={() =>
+                    onSetModal({ type: 'filter' })} className='flex sub-nav-btn filter'>
+                    <FilterListOutlinedIcon />
+                    <div className='txt-in-btn'>Filter</div>
+                    {modal?.type === 'filter' && <React.Fragment>
+                        < DynamicModal
+                            modal={'filter'}
+                            closeModal={() => onSetModal(null)}
+                        />
+                    </React.Fragment>}
+
                 </div>
+                <div onClick={onToggleSideMenu} className='flex sub-nav-btn'>
+                    <MoreHorizOutlinedIcon />
+                    <div className='txt-in-btn'>Show menu</div>
+                </div>
+
             </div>
 
         </section>

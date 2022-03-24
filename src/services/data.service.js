@@ -45,9 +45,21 @@ const guestUser = {
     "initials": "G",
     "isAdmin": false,
 }
+
+const dateOptions = [
+    { name: 'noDates', txt: 'No dates', id: utilService.makeId() },
+    { name: 'overDue', txt: 'Over due', id: utilService.makeId() },
+    { name: 'nextDay', txt: 'Due in the next day', id: utilService.makeId() },
+    { name: 'nextWeek', txt: 'Due in the next week', id: utilService.makeId() },
+    { name: 'nextMonth', txt: 'Due in the next month', id: utilService.makeId() },
+    { name: 'completed', txt: 'Marked as completed', id: utilService.makeId() },
+    { name: 'notCompleted', txt: 'Not marked as completed', id: utilService.makeId() }
+]
 export const dataService = {
     imgUrls,
     colors,
     labels,
-    guestUser
+    guestUser,
+    dateOptions
 }
+

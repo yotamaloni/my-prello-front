@@ -90,7 +90,7 @@
 }
 
 @media (min-width: $break-normal) {
-  .modal:not(.invite-to-board, .create-board) {
+  .modal:not(.invite-to-board, .create-board, .filter-by-modal) {
     position: absolute;
     top: 50%;
     left: 0%;
