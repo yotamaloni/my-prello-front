@@ -1,13 +1,16 @@
 import { divide } from 'lodash'
 import React from 'react'
 import { connect } from 'react-redux'
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+
 import { setFilterBy } from '../store/board.action.js'
 
 import { MemberIcon } from '../cmps/member-icon.jsx'
 
 class _MembersList extends React.Component {
     state = {
-        filterByMembers: []
+        filterByMembers: [],
+        isMembersFullyOpen: false,
     }
     componentDidMount() {
         const filterByMembers = this.props.filterBy?.members || []
@@ -25,16 +28,20 @@ class _MembersList extends React.Component {
         this.setState({ filterByMembers: [...filterByMembers] })
         this.props.setFilterBy({ ...filterBy })
     }
+    onOpenShowMore = () => {
+        this.setState({ isMembersFullyOpen: true })
+    }
 
     render() {
-        const { board, isCheckList, filterBy } = this.props
-        const { filterByMembers } = this.state
+        const { board, isCheckList } = this.props
+        const { filterByMembers, isMembersFullyOpen } = this.state
         const size = this.props.size || 28
         const { members } = board
+        const membersToDisplay = !isMembersFullyOpen && isCheckList ? members.slice(0, 3) : members
         const listClass = isCheckList ? 'column-list' : ''
         return (
             <ul className={`members-list clean-list ${listClass}`} style={{ background: 'none' }}>
-                {members.map((member) => {
+                {membersToDisplay.map((member) => {
                     return <li className="member-container" key={member._id} >
                         {isCheckList &&
                             <input type="checkbox" id={member._id} onChange={this.handleChange} checked={filterByMembers?.includes(member._id)} />
@@ -44,8 +51,16 @@ class _MembersList extends React.Component {
                             <p>Cards assigned to {member.username}</p>
                         }
                     </li>
-
                 })
+                }
+                {
+                    (!isMembersFullyOpen && (isCheckList)) &&
+                    <React.Fragment>
+                        <li className='members-option-container' onClick={this.onOpenShowMore} >
+                            <input type="checkbox" className='not-visible' />
+                            <p className='show-more'>Show more members <span className='show-more-icon'><KeyboardArrowDownOutlinedIcon /></span></p>
+                        </li>
+                    </React.Fragment>
                 }
             </ ul >
         )

@@ -16,5 +16,28 @@
         font-weight: normal;
       }
     }
+    .members-option-container {
+      display: flex;
+      gap: 10px;
+
+      input {
+        width: 16px;
+        &.not-visible {
+          visibility: hidden;
+        }
+      }
+      p {
+        font-weight: normal;
+        &.show-more {
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          .show-more-icon {
+            display: flex;
+          }
+        }
+      }
+    }
   }
 }

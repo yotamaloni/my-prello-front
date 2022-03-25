@@ -76,7 +76,7 @@ class _DateOptionFilter extends React.Component {
                     <React.Fragment>
                         <li className='date-option-container' onClick={this.onOpenShowMore} >
                             <input type="checkbox" className='not-visible' />
-                            <p className='show-more'>Show More options <span className='show-more-icon'><KeyboardArrowDownOutlinedIcon /></span></p>
+                            <p className='show-more'>Show more options <span className='show-more-icon'><KeyboardArrowDownOutlinedIcon /></span></p>
                         </li>
                     </React.Fragment>
                 }

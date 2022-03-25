@@ -64,7 +64,7 @@ class _LabelsOptionFilter extends React.Component {
                     <React.Fragment>
                         <li className='labels-option-container' onClick={this.onOpenShowMore} >
                             <input type="checkbox" className='not-visible' />
-                            <p className='show-more'>Show More labels <span className='show-more-icon'><KeyboardArrowDownOutlinedIcon /></span></p>
+                            <p className='show-more'>Show more labels <span className='show-more-icon'><KeyboardArrowDownOutlinedIcon /></span></p>
                         </li>
                     </React.Fragment>
                 }
