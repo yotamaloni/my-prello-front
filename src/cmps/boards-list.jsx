@@ -9,7 +9,7 @@ import { BoardPreview } from '../cmps/board-preview.jsx'
 
 export function _BoardsList(props) {
 
-    const { board, onRemoveBoard, onToggleBoardStar, user } = props
+    const { board, onRemoveBoard, onToggleBoardStar, user, index } = props
     const starColor = board.isStarred ? 'gold' : '#95a0b3'
     const imgUrl = board.style.imgUrl || '#0079BF'
     const backgroundColor = board.style.backgroundColor
@@ -22,11 +22,11 @@ export function _BoardsList(props) {
                 <BoardPreview board={board} />
                 {board.isStarred ?
                     <StarIcon
-                        onClick={(ev) => { onToggleBoardStar(ev, board) }}
+                        onClick={(ev) => { onToggleBoardStar(ev, board._id) }}
                         className="star" style={{ color: 'gold', }} />
                     :
                     <StarBorderOutlinedIcon
-                        onClick={(ev) => { onToggleBoardStar(ev, board) }}
+                        onClick={(ev) => { onToggleBoardStar(ev, board._id) }}
                         className="star" style={{ color: starColor }} />
                 }
                 {user?.isAdmin &&

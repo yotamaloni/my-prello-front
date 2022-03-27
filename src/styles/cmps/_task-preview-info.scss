@@ -35,9 +35,13 @@
     .description,
     .comments,
     .due-date,
-    .checklists {
+    .checklists,
+    .attachments {
       padding: 3px;
       border-radius: 3px;
+    }
+    .attachments {
+      transform: rotate(22.5deg);
     }
   }
   .members {

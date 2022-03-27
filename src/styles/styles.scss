@@ -50,6 +50,9 @@
 @import 'cmps/task-labels';
 @import 'cmps/task-date';
 @import 'cmps/task-description';
+@import 'cmps/task-attachment';
+@import 'cmps/attachment-list';
+@import 'cmps/attachment-preview';
 @import 'cmps/task-checklists';
 @import 'cmps/task-activity-add';
 @import 'cmps/task-activity-list';
@@ -60,6 +63,7 @@
 // modal Components
 @import 'cmps/modal-header';
 @import 'cmps/labels-modal';
+@import 'cmps/attachment-modal';
 @import 'cmps/cover-modal';
 @import 'cmps/remove-modal';
 @import 'cmps/create-board-modal';

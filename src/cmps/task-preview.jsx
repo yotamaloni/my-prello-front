@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { updateBoard } from '../store/board.action.js'
 
 import { TaskPreviewInfo } from './task-preview-info.jsx'
+import { AttachmentSharp } from '@mui/icons-material'
 
 class _TaskPreview extends React.Component {
     state = {
@@ -20,7 +21,7 @@ class _TaskPreview extends React.Component {
 
     render() {
         const { task, group, board } = this.props
-        const { title, labels, style, checklists } = task
+        const { title, labels, style, checklists, attachments } = task
 
         let taskLabelsIds = []
         let labelsToDisplay = []
@@ -71,12 +72,14 @@ class _TaskPreview extends React.Component {
                             </ul>
                         }
                         <div className="title">{title}</div>
-                        {(description || comments?.length || dueDate || members?.length || checklists?.length) &&
+                        {(description || comments?.length || dueDate || members?.length ||
+                            checklists?.length || attachments?.length) &&
                             <TaskPreviewInfo description={description}
                                 comments={comments}
                                 dueDate={dueDate}
                                 members={members}
                                 checklists={checklists}
+                                attachments={attachments}
                             />
                         }
                     </section>

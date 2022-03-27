@@ -67,8 +67,9 @@ class _BoardApp extends React.Component {
         this.props.setModal(modalType)
     }
 
-    onToggleBoardStar = (ev, board) => {
+    onToggleBoardStar = (ev, boardId) => {
         ev.preventDefault()
+        const board = this.state.boards.find((currBoard => currBoard._id === boardId))
         const isStarred = board.isStarred ? false : true
         board.isStarred = isStarred
         this.props.updateBoard({ ...board })
@@ -119,8 +120,8 @@ class _BoardApp extends React.Component {
                                 </React.Fragment>
                             }
                         </li>
-                        {boards.map((board => {
-                            return <BoardsList key={board._id} board={board}
+                        {boards.map(((board, index) => {
+                            return <BoardsList key={board._id} board={{ ...board }} index={index}
                                 onToggleBoardStar={this.onToggleBoardStar}
                                 onRemoveBoard={this.onRemoveBoard}
                             />

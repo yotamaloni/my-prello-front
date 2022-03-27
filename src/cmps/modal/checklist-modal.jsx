@@ -47,7 +47,7 @@ class _ChecklistModal extends React.Component {
                 <div className='checklist-modal-input'>
                     <input className='checklist-modal-input'
                         placeholder='Checklist'
-                        type='checkbox'
+                        type='text'
                         onChange={this.handleChange}
                         autoComplete='off'
                         name='title'

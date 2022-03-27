@@ -2,6 +2,7 @@ import { TaskMembers } from './task-members.jsx'
 import { TaskDate } from './task-date.jsx'
 import { TaskLabels } from './task-labels.jsx'
 import { TaskDescription } from './task-description.jsx'
+import { TaskAttachment } from './task-attachment.jsx'
 import { TaskAddActivity } from './task-activity-add.jsx'
 import { TaskActivityList } from './task-activity-list.jsx'
 import { TaskChecklists } from './task-checklists.jsx'
@@ -21,7 +22,17 @@ export function TaskInfo({ task, board }) {
                 <TaskDate task={task} dueDate={dueDate} />}
 
             <TaskDescription task={task} />
-            <TaskChecklists task={task} />
+            {
+                task.attachments?.length > 0
+                &&
+                <TaskAttachment task={task} />
+            }
+            {
+                task.checklists?.length > 0
+                &&
+                <TaskChecklists task={task} />
+            }
+
             <TaskAddActivity task={task} />
             <TaskActivityList task={task} />
         </div >

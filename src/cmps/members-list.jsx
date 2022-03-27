@@ -54,7 +54,7 @@ class _MembersList extends React.Component {
                 })
                 }
                 {
-                    (!isMembersFullyOpen && (isCheckList)) &&
+                    (!isMembersFullyOpen && isCheckList && members.length > 3) &&
                     <React.Fragment>
                         <li className='members-option-container' onClick={this.onOpenShowMore} >
                             <input type="checkbox" className='not-visible' />
