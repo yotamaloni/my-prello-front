@@ -4,7 +4,7 @@ import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutl
 import { ModalHeader } from '../cmps/modal/modal-header.jsx'
 import { ItemHeaderCover } from './item-header-cover.jsx'
 import { BoardActivitiesList } from '../cmps/board-activity-list.jsx'
-import { CreateBoardModal } from './modal/crate-board-modal.jsx'
+import { CreateBoardModal } from './modal/create-board-modal.jsx'
 
 
 export function BoardSideMenu(props) {

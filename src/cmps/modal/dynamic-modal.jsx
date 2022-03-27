@@ -11,7 +11,7 @@ import { CoverModal } from './cover-modal.jsx'
 import { RemoveModal } from './remove-modal.jsx'
 import { InviteToBoardModal } from './invite-to-board-modal.jsx'
 import { FilterByModal } from './filter-by-modal.jsx'
-import { CreateBoardModal } from './crate-board-modal.jsx'
+import { CreateBoardModal } from './create-board-modal.jsx'
 import { GroupAction } from './group-action-modal.jsx'
 
 function _DynamicModal(props) {

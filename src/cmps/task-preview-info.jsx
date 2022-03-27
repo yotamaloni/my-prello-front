@@ -42,15 +42,11 @@ export class TaskPreviewInfo extends React.Component {
                         <div className='description'>
                             <SubjectOutlinedIcon className='info-icon description' />
                         </div>
-
-
                     }
                     {comments.length > 0 &&
                         <div className='comments'>
                             <ForumOutlinedIcon className='info-icon comments' /><span>{comments.length}</span>
                         </div>
-
-
                     }
                     {attachments?.length > 0 &&
                         <div className='attachments'>

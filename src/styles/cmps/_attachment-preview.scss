@@ -1,5 +1,6 @@
 .attachment-preview {
   gap: 10px;
+  flex-wrap: wrap;
   cursor: pointer;
   &:hover {
     background-color: #091e420a;
@@ -23,6 +24,9 @@
   }
   .attachment-desc {
     .attachment-title {
+      inline-size: 100%;
+      overflow-wrap: break-word;
+      word-break: break-all;
       margin: 0;
       padding: 0;
     }

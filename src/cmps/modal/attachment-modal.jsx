@@ -36,7 +36,7 @@ class _AttachmentModal extends React.Component {
             this.inputRef.current.focus()
             return
         }
-        if (link.slice(0, 3) === 'www') link = 'https://' + link
+        if (link.slice(0, 5) !== 'https') link = 'https://' + link
         const file = {
             name: link,
             type: 'link',
