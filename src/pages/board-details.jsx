@@ -46,18 +46,19 @@ class _BoardDetails extends React.Component {
         this.props.loadBoard(null)
     }
 
-    onToggleMenuModal = () => {
-        const isMenuOpen = this.state.isMenuOpen ? '' : 'open'
-        this.setState({ isMenuOpen })
-    }
+    // onToggleMenuModal = () => {
+    //     const isMenuOpen = this.state.isMenuOpen ? '' : 'open'
+    //     this.setState({ isMenuOpen })
+    // }
 
-    onToggleFilterModal = () => {
-        const isFilterModalOpen = this.state.isFilterModalOpen ? '' : 'open'
-        this.setState({ isFilterModalOpen })
-    }
+    // onToggleFilterModal = () => {
+    //     const isFilterModalOpen = this.state.isFilterModalOpen ? '' : 'open'
+    //     this.setState({ isFilterModalOpen })
+    // }
 
-    onToggleSideMenu = () => {
-        const { isSideMenuOpen } = this.state
+    onToggleSideMenu = (isClose = null) => {
+        let { isSideMenuOpen } = this.state
+        if (isClose) isSideMenuOpen = true
         this.setState({ isSideMenuOpen: !isSideMenuOpen })
     }
 
@@ -81,7 +82,7 @@ class _BoardDetails extends React.Component {
         const backgroundColor = board.style.backgroundColor || '#29CCE5'
 
         return (
-            <section className="board-details"
+            <section onClick={() => this.onToggleSideMenu('close')} className="board-details"
                 style={{
                     backgroundImage: `url(${imgUrl})`,
                     backgroundColor: backgroundColor

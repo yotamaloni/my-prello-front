@@ -2,7 +2,6 @@
   .config-title {
     align-self: flex-start;
   }
-
   .task-btn {
     color: $clr4;
     position: relative;
@@ -83,6 +82,18 @@
       &::before {
         content: '\e15b';
       }
+    }
+  }
+}
+@media (max-width: $break-narrow) {
+  .task-btns {
+    width: 100%;
+    > * {
+      width: 100%;
+    }
+    .task-btn {
+      width: 100%;
+      min-width: 168px;
     }
   }
 }

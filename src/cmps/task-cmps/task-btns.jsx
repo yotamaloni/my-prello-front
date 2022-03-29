@@ -54,20 +54,21 @@ class _TaskBtns extends React.Component {
                 <div className='task-btn' onClick={this.onToggleDeleteModal}>
                     <div className='txt archive' >Archive</div>
                 </div>
-                {isArchiveOpen && <React.Fragment>
-                    <div className='task-btn delete' onClick={() =>
-                        this.onSetModal({ type: 'remove' })}>
-                        <div className='txt remove'>Delete</div>
-                        {modal?.type === 'remove' &&
-                            <React.Fragment>
-                                < DynamicModal
-                                    task={task}
-                                    group={group}
-                                    closeModal={() => this.onSetModal(null)}
-                                />
-                            </React.Fragment>}
-                    </div>
-                </React.Fragment>}
+                {isArchiveOpen &&
+                    <React.Fragment>
+                        <div className='task-btn delete' onClick={() =>
+                            this.onSetModal({ type: 'remove' })}>
+                            <div className='txt remove'>Delete</div>
+                            {modal?.type === 'remove' &&
+                                <React.Fragment>
+                                    < DynamicModal
+                                        task={task}
+                                        group={group}
+                                        closeModal={() => this.onSetModal(null)}
+                                    />
+                                </React.Fragment>}
+                        </div>
+                    </React.Fragment>}
 
             </div >
         )

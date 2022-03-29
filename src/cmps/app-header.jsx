@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 
+import { dataService } from '../services/data.service.js'
+
 import { onLogout } from '../store/user.action.js'
 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
@@ -20,7 +22,12 @@ function _AppHeader(props) {
         history.push('/login-signup')
     }
 
-    const { user, loadBoards, isBoardDetails } = props
+    let { loadBoards, isBoardDetails, user } = props
+    let txtLog = 'Logout'
+    if (!user) {
+        txtLog = 'Login'
+        user = dataService.guestUser
+    }
     const fitClassName = isBoardDetails ? 'board-details-class' : 'app-board-class'
     return (
         <section className={`app-header ${fitClassName}`}>
@@ -30,17 +37,11 @@ function _AppHeader(props) {
             </div>
             <div className='config'>
                 <SearchInput loadBoards={loadBoards} isBoardDetails={isBoardDetails} />
-                {user?.username ?
-                    <div onClick={onLogoutUser} className='clickable clean-link'>
-                        <MemberIcon member={user} size={32} className='top-nav-btn' />
-                    </div>
-                    :
-                    <Link to='/login-signup' className='clean-link' >
-                        <AccountCircleOutlinedIcon className='top-nav-btn' />
-                    </Link>
-                }
+                <div title={txtLog} onClick={onLogoutUser} className={`user clickable clean-link`}>
+                    <MemberIcon member={user} size={32} className='top-nav-btn' />
+                </div>
             </div>
-        </section>
+        </section >
     )
 }
 

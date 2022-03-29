@@ -20,7 +20,7 @@ export function BoardSideMenu(props) {
     const sideBarClass = isSideMenuOpen ? 'board-side-menu open' : 'board-side-menu'
     const bgCover = board.style.backgroundColor
     const imgCover = board.style.imgUrl
-    return <section className={sideBarClass}>
+    return <section className={sideBarClass} onClick={(ev) => ev.stopPropagation()}>
         <ModalHeader modal={modal} closeModal={onToggleSideMenu} />
 
         {section === 'menu' &&

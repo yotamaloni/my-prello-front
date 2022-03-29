@@ -23,7 +23,7 @@ function _BoardSubHeader(props) {
     const starColor = board.isStarred ? 'gold' : '#FFF'
 
     return (
-        <section className='board-sub-header'>
+        <section className='board-sub-header' >
             <div className='flex left-menu'>
                 <p className=' sub-nav-btn board-title'>{board.title}</p>
 
@@ -62,9 +62,11 @@ function _BoardSubHeader(props) {
                             closeModal={() => onSetModal(null)}
                         />
                     </React.Fragment>}
-
                 </div>
-                <div onClick={onToggleSideMenu} className='flex sub-nav-btn'>
+                <div onClick={(ev) => {
+                    ev.stopPropagation()
+                    onToggleSideMenu()
+                }} className='flex sub-nav-btn'>
                     <MoreHorizOutlinedIcon />
                     <div className='txt-in-btn'>Show menu</div>
                 </div>
