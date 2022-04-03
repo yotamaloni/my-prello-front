@@ -10,6 +10,7 @@ export const userService = {
    signup,
    getLoggedinUser,
    getUsers,
+   loginGoogle
 }
 
 const colors = [
@@ -26,15 +27,22 @@ const colors = [
 async function signup({ username, password, fullname }) {
    const userCred = { username, password, fullname, color: _getRandomColor(), initials: _getInitials(fullname) }
    const user = await httpService.post('auth/signup', userCred)
-   return _saveLocalUser(user)
+   if (user.username) return _saveLocalUser(user)
+   else return 'Username is already exist'
 }
 
 async function login({ username, password }) {
    const userCred = { username, password }
-
    const user = await httpService.post('auth/login', userCred)
    return _saveLocalUser(user)
 }
+
+async function loginGoogle({ username, password, fullname }) {
+   const userCred = { username, password, fullname, color: _getRandomColor(), initials: _getInitials(fullname) }
+   const user = await httpService.post('auth/login-google', userCred)
+   return _saveLocalUser(user)
+}
+
 
 async function logout() {
    sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
@@ -61,6 +69,7 @@ function _getRandomColor() {
 
 
 function _getInitials(fullname) {
+   if (!fullname) return 'X'
    let splitedName = fullname.split(' '),
       initials = splitedName[0].substring(0, 1).toUpperCase();
 

@@ -21,15 +21,41 @@ export function onLogin(credentials) {
 }
 
 
-export function onSignup(credentials) {
+export function onLoginFromGoogle(credentials) {
     return async (dispatch) => {
         try {
-            const user = await userService.signup(credentials)
+            const user = await userService.loginGoogle(credentials)
             dispatch({
                 type: 'SET_USER',
                 user
             })
-            dispatch({ type: 'SHOW_MSG', msg: { type: 'success', txt: `Welcom ${user.username}, We're glad you joined us!` } })
+            dispatch({ type: 'SHOW_MSG', msg: { type: 'success', txt: 'Logged in' } })
+            return user
+        } catch (err) {
+            dispatch({ type: 'SHOW_MSG', msg: { type: 'danger', txt: 'Cannot Login' } })
+            console.log('Cannot login', err)
+            throw new Error(err)
+        }
+    }
+}
+
+
+export function onSignup(credentials) {
+    return async (dispatch) => {
+        try {
+            const user = await userService.signup(credentials)
+            if (!user.username) {
+                dispatch({ type: 'SHOW_MSG', msg: { type: 'success', txt: `User name is already exist` } })
+            }
+            else {
+                dispatch({
+                    type: 'SET_USER',
+                    user
+                })
+                dispatch({ type: 'SHOW_MSG', msg: { type: 'success', txt: `Welcom ${user.username}, We're glad you joined us!` } })
+            }
+            return user
+
         } catch (err) {
             dispatch({ type: 'SHOW_MSG', msg: { type: 'danger', txt: 'Something went wrong...' } })
             console.log('Cannot signup', err)
