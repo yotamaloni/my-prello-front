@@ -85,6 +85,12 @@
 
     .google-container {
       margin-top: 20px;
+      transition: background-color 0.5s ease;
+
+      &:hover {
+        background-color: lighten($clr4, 50%);
+
+      }
     }
   }
 

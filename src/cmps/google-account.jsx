@@ -8,10 +8,9 @@ export function GoogleAccount(props) {
 
     }
     const handleLogin = (googleData) => {
-        const { profileObj, tokenObj } = googleData
+        const { profileObj, tokenId } = googleData
         const { familyName, givenName, email } = profileObj
-        const { id_token } = tokenObj
-        props.loginGoogle(id_token, givenName, familyName, email)
+        props.loginGoogle(tokenId, givenName, familyName, email)
     }
     return <section>
         <GoogleLogin

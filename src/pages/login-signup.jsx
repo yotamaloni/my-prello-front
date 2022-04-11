@@ -1,5 +1,4 @@
 import React from 'react'
-import GoogleLogin from 'react-google-login'
 import { connect } from 'react-redux'
 
 import { onLogin, onSignup, onLoginFromGoogle } from '../store/user.action.js'
@@ -48,7 +47,7 @@ class _LoginSignup extends React.Component {
         try {
             lastName = lastName || ''
             givenName = givenName || ''
-            const fullname = givenName + lastName
+            const fullname = givenName + ' ' + lastName
             const username = email
             const user = await this.props.onLoginFromGoogle({ fullname, username, password })
             if (user.username) this.props.history.push('/board')
@@ -67,35 +66,38 @@ class _LoginSignup extends React.Component {
                             <h3>{isLogin ? 'Log in to Prello' : 'Sign up for your account'}</h3>
                             <div className='field'>
                                 <label>
-                                    <input placeholder=' Enter username...' type="text" value={username} name='username' onChange={this.handleChange} />
+                                    <input required
+                                        title='Must start with a letter'
+                                        placeholder=' Enter username...'
+                                        type="text" value={username}
+                                        name='username'
+                                        onChange={this.handleChange} />
                                 </label>
                             </div>
 
                             {!isLogin &&
                                 <div className='field'>
                                     <label>
-                                        <input placeholder=' Enter full name...' type="text" value={fullname} name='fullname' onChange={this.handleChange} />
+                                        <input required
+                                            title='Must contain first name and last name in letters only'
+                                            placeholder=' Enter full name...'
+                                            type="text" value={fullname}
+                                            name='fullname'
+                                            onChange={this.handleChange} />
                                     </label>
                                 </div>
                             }
-
                             <div className='field'>
-                                {isLogin ?
-                                    <label >
-                                        <input placeholder=' Enter password...' type="password" value={password} name='password' onChange={this.handleChange} />
-                                    </label>
-                                    :
-                                    <label >
-                                        <input
-                                            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-                                            placeholder=' Enter password...'
-                                            type="password"
-                                            value={password}
-                                            name='password'
-                                            onChange={this.handleChange} />
-                                    </label>
-                                }
+                                <label >
+                                    <input required
+                                        title={isLogin ? '' : "Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"}
+                                        pattern={isLogin ? '^.+' : "(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"}
+                                        placeholder=' Enter password...'
+                                        type="password"
+                                        value={password}
+                                        name='password'
+                                        onChange={this.handleChange} />
+                                </label>
                             </div>
 
                             <button type='submit' className='main-button'>{isLogin ? 'Login' : 'Sign up'}</button>
