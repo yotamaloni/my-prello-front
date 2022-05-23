@@ -1,17 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router } from 'react-router-dom'
-import { Provider } from 'react-redux';
+import React from "react";
+import ReactDOM from "react-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import { Provider } from "react-redux";
 
-import { store } from './store/store'
+import { store } from "./store/store";
 
-import './styles/styles.scss'
-import { RootCmp } from './root-cmp'
+import "./styles/styles.scss";
+import { RootCmp } from "./root-cmp";
 
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import DateFnsUtils from "@date-io/date-fns";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,9 +23,7 @@ ReactDOM.render(
       </Router>
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
-
 serviceWorkerRegistration.register();
-

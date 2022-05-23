@@ -62,9 +62,13 @@
 
   .task-list {
     min-height: 1px;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
     max-height: calc(100vh - 290px);
+    &:hover{
+      overflow-y: auto;
+
+    }
   }
 
   .group-title {
@@ -91,8 +95,6 @@
   .board-group {
     .task-list {
       min-height: 1px;
-      overflow-y: auto;
-      overflow-x: hidden;
       max-height: calc(100vh - 220px);
     }
   }

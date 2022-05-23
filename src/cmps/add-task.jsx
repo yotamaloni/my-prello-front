@@ -17,7 +17,7 @@ export class _AddTask extends React.Component {
         title: '',
         isOptionsMenuOpen: '',
     }
- 
+
     handleChange = ({ target }) => {
         const field = target.name;
         const value = target.value;

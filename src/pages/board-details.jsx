@@ -31,13 +31,9 @@ class _BoardDetails extends React.Component {
         this.props.loadBoard(boardId)
         socketService.emit('board-watch', boardId)
         socketService.on('board-update', (board) => {
-            setTimeout(() => {
-                clearTimeout(this.timeoutId)
-                this.timeoutId = this.props.setBoardInReducer(board)
-            }, 500);
+            this.props.setBoardInReducer(board)
         })
     }
-    s
     componentWillUnmount() {
         socketService.off('board-update')
         clearTimeout(this.timeoutId)
@@ -45,16 +41,6 @@ class _BoardDetails extends React.Component {
         if (modal) this.props.setModal(null)
         this.props.loadBoard(null)
     }
-
-    // onToggleMenuModal = () => {
-    //     const isMenuOpen = this.state.isMenuOpen ? '' : 'open'
-    //     this.setState({ isMenuOpen })
-    // }
-
-    // onToggleFilterModal = () => {
-    //     const isFilterModalOpen = this.state.isFilterModalOpen ? '' : 'open'
-    //     this.setState({ isFilterModalOpen })
-    // }
 
     onToggleSideMenu = (isClose = null) => {
         let { isSideMenuOpen } = this.state
