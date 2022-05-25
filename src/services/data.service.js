@@ -2,15 +2,15 @@
 import { utilService } from './util.service'
 
 const imgUrls = [
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273708/kq1ugldfmbcqpptvwvyh.png',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273708/v0mqdvbqxh6czdrgrysb.png',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273709/a4vbuuwexsllef1sa2p6.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273605/mqnhc7cgcivlgohi2w2m.png',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273605/tx1lfdili2uxlnyyinio.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643297323/vgunmxwzitxpvttyxyyh.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643633719/yxdyw5lmajrgmme9caye.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643539821/nkuvj56egafth7w7npyd.jpg',
-    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643539695/wxf2jpeck7fmiugyxp1f.jpg',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273708/Prello/v0mqdvbqxh6czdrgrysb.png',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273605/Prello/mqnhc7cgcivlgohi2w2m.png',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273708/Prello/kq1ugldfmbcqpptvwvyh.png',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647273605/Prello/mu8ogvgnrquikhpiykxy.png',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1647431111/Prello/vr03jv7bgekucyzborjv.jpg',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643297323/Prello/vgunmxwzitxpvttyxyyh.jpg',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643539821/Prello/nkuvj56egafth7w7npyd.jpg',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643539695/Prello/wxf2jpeck7fmiugyxp1f.jpg',
+    'https://res.cloudinary.com/dnft2vfvz/image/upload/v1643539605/Prello/cqbnsiv8ad3r75daemsa.jpg',
 ]
 const colors = [
     '#0079BF',

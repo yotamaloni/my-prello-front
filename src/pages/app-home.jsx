@@ -28,7 +28,7 @@ export class AppHome extends React.Component {
                         </div>
 
                     </div>
-                    <img src="https://res.cloudinary.com/dnft2vfvz/image/upload/v1646567068/sdvwput4a2qynrqsffm2.png" alt="Image not found" />
+                    <img src="https://res.cloudinary.com/dnft2vfvz/image/upload/v1646567068/Prello/sdvwput4a2qynrqsffm2.png" alt="Image not found" />
 
                 </div>
 
