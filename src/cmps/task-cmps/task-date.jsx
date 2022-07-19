@@ -8,31 +8,18 @@ import { updateBoard } from '../../store/board.action.js'
 
 class _TaskDate extends React.Component {
 
-    state = {
-        isDateCheckbox: '',
-    }
-
-    componentDidMount() {
-        this.setDateCheckBox()
-    }
-
-    setDateCheckBox = () => {
-        const { task } = this.props
-        const isDateCheckbox = task.dueDate?.completed
-        this.setState({ isDateCheckbox })
-    }
-
     onToggleDateCheckbox = () => {
         const isDateCheckbox = !(this.state.isDateCheckbox)
         this.setState({ isDateCheckbox })
         const { task, board } = this.props
         task.dueDate.completed = isDateCheckbox
-        this.props.updateBoard({ ...board })
+        this.props.updateBoard({ ...board }, { ...task })
     }
 
     render() {
         const { task, dueDate } = this.props
-        const { isDateCheckbox } = this.state
+        const isDateCheckbox = task.dueDate?.completed
+
         let isOverDue = false
         if (task.dueDate) {
             isOverDue = !isDateCheckbox && task.dueDate.time < Date.now()

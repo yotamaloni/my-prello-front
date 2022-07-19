@@ -14,9 +14,10 @@ class _RemoveModal extends React.Component {
 
     removeTask = () => {
         const { task, group, board } = this.props
+        task.isRemoved = true
         const taskIdx = group.tasks.findIndex(currTask => currTask.id === task.id)
         group.tasks.splice(taskIdx, 1)
-        this.props.updateBoard({ ...board })
+        this.props.updateBoard({ ...board }, { ...task })
     }
 
     render() {

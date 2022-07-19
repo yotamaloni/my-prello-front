@@ -46,7 +46,7 @@ class _MembersModal extends React.Component {
             else taskMembers = [member]
         }
         task.members = taskMembers
-        this.props.updateBoard({ ...board })
+        this.props.updateBoard({ ...board },{...task})
     }
 
     render() {

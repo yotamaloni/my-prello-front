@@ -76,7 +76,7 @@ class _AttachmentModal extends React.Component {
         }
         if (task.attachments) task.attachments.push(attachment)
         else task.attachments = [attachment]
-        this.props.updateBoard({ ...board })
+        this.props.updateBoard({ ...board }, { ...task })
         this.setState({ link: '' })
     }
 

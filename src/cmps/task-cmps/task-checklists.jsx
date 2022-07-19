@@ -12,31 +12,32 @@ function _TaskChecklists(props) {
         const { task, board } = props
         const checklistIdx = task.checklists.findIndex((currChecklist => currChecklist.id === checklistId))
         task.checklists.splice(checklistIdx, 1)
-        props.updateBoard({ ...board })
+        props.updateBoard({ ...board }, { ...task })
     }
 
     function onAddItemToChecklist(itemTitle, checklist) {
-        const { board, updateBoard } = props
+        const { board, updateBoard, task } = props
         const itemToAdd = {
             id: utilService.makeId(),
             title: itemTitle,
             isMarked: false
         }
         checklist.items.push(itemToAdd)
-        updateBoard({ ...board })
+        updateBoard({ ...board }, { ...task })
     }
 
     function onRemoveItemFromChecklist(itemId, checklist) {
-        const { board, updateBoard } = props
+        const { board, updateBoard, task } = props
         const itemIdx = checklist.items.findIndex(item => item.id === itemId)
         checklist.items.splice(itemIdx, 1)
-        updateBoard({ ...board })
+        updateBoard({ ...board }, { ...task })
 
     }
     function onToggleItemMark(item) {
+        const { task } = props
         item.isMarked = !item.isMarked
         const { board, updateBoard } = props
-        updateBoard({ ...board })
+        updateBoard({ ...board }, { ...task })
     }
 
     const { task } = props

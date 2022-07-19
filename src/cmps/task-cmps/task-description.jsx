@@ -26,7 +26,7 @@ class _TaskDescription extends React.Component {
         if (!txt) return
         const { board, task } = this.props
         task.description = txt
-        this.props.updateBoard({ ...board })
+        this.props.updateBoard({ ...board }, { ...task })
     }
 
     render() {

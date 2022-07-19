@@ -24,10 +24,19 @@ class _TaskDetails extends React.Component {
   componentDidMount() {
     this.setTask()
     socketService.on('task-update', (task) => {
-  })
+      const { taskId, boardId } = this.props.match.params
+      if (task.id === taskId) {
+        if (task.isRemoved) {
+          const { board } = this.props
+          this.props.history.push(`/board/${boardId}`)
+        }
+        this.setState({ task })
+      }
+    })
   }
 
   componentWillUnmount() {
+    socketService.off('task-update')
     const { modal } = this.props
     if (modal) this.props.setModal(null)
   }

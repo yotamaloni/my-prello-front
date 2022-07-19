@@ -19,7 +19,7 @@ class _CoverModal extends React.Component {
             task.style.backgroundColor = color
         }
         task.style.imgUrl = null
-        this.props.updateBoard({ ...board })
+        this.props.updateBoard({ ...board }, { ...task })
     }
 
     setImgCover = async (ev) => {
@@ -32,7 +32,7 @@ class _CoverModal extends React.Component {
                 task.style.imgUrl = imgUrl
             }
             task.style.backgroundColor = null
-            this.props.updateBoard({ ...board })
+            this.props.updateBoard({ ...board }, { ...task })
         } catch (err) {
             console.log('Cant get img', err);
         }
@@ -40,7 +40,7 @@ class _CoverModal extends React.Component {
     removeCover = () => {
         const { task, board } = this.props
         task.style = null
-        this.props.updateBoard({ ...board })
+        this.props.updateBoard({ ...board }, { ...task })
     }
     render() {
         const colors = [

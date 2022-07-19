@@ -32,7 +32,7 @@ class _DateModal extends React.Component {
         else {
             task.dueDate = { time: timeInMill, completed: false }
         }
-        this.props.updateBoard({ ...board })
+        this.props.updateBoard({ ...board }, { ...task })
         this.props.closeModal()
     }
 

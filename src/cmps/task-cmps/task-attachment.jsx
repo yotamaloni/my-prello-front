@@ -14,7 +14,7 @@ function _TaskAttachment(props) {
         const { task, board } = props
         const attachmentIdx = task.attachments.findIndex((currAttachment => currAttachment.id === attachmentId))
         task.attachments.splice(attachmentIdx, 1)
-        props.updateBoard({ ...board })
+        props.updateBoard({ ...board }, { ...task })
     }
     function onSetModal() {
         props.setModal({ type: 'attachment' })

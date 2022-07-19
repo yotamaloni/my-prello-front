@@ -33,7 +33,7 @@ class _ChecklistModal extends React.Component {
         if (task.checklists) task.checklists.push(checklist)
         else task.checklists = [checklist]
         this.props.closeModal()
-        this.props.updateBoard({ ...board })
+        this.props.updateBoard({ ...board }, { ...task })
     };
 
 
