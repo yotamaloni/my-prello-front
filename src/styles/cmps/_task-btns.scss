@@ -2,6 +2,7 @@
   .config-title {
     align-self: flex-start;
   }
+
   .task-btn {
     color: $clr4;
     position: relative;
@@ -10,13 +11,16 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    > * {
+
+    >* {
       margin-inline-start: 8px;
     }
+
     margin-bottom: 8px;
     border-radius: 3px;
     background-color: #091e420a;
     transition: 0.2s;
+
     &.delete {
       background-color: #b04632;
       color: #fff;
@@ -26,6 +30,7 @@
   .task-btn:hover {
     background-color: #d4d4d4;
   }
+
   .task-btn.delete:hover {
     background-color: #c06c6c;
   }
@@ -36,61 +41,77 @@
     align-self: center;
     justify-content: center;
     text-transform: capitalize;
+
     &::before {
-      font-family: icons;
+      font-family: 'Material Icons Outlined';
       margin-inline-end: 5px;
     }
+
     &.members {
+
       &::before {
+
         content: '\e7ff';
       }
     }
+
     &.labels {
       &::before {
         content: '\e867';
         transform: rotate(-135deg);
       }
     }
+
     &.checklist {
       &::before {
         content: '\e834';
       }
     }
+
     &.date {
       &::before {
         content: '\e8b5';
       }
     }
+
     &.attachment {
       &::before {
         content: '\e226';
         transform: rotate(-135deg);
       }
     }
+
     &.cover {
       &::before {
         content: '\e40b';
+
       }
     }
+
     &.archive {
       &::before {
         content: '\e1a1';
       }
     }
+
     &.remove {
       color: #fff;
+
       &::before {
         content: '\e15b';
       }
     }
   }
 }
+
 @media (max-width: $break-narrow) {
   .task-btns {
     width: 100%;
-    > * {
+
+    >* {
       width: 100%;
     }
+
     .task-btn {
       width: 100%;
       min-width: 168px;
