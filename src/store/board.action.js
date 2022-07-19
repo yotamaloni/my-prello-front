@@ -47,4 +47,3 @@ export function setBoardInReducer(board) {
     dispatch({ type: "SET_BOARD", board });
   };
 }
-

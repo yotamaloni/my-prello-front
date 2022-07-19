@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import { updateBoard } from '../store/board.action.js'
 
 import { TaskPreviewInfo } from './task-preview-info.jsx'
-import { AttachmentSharp } from '@mui/icons-material'
 
 class _TaskPreview extends React.Component {
     state = {

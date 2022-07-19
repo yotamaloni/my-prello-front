@@ -28,7 +28,7 @@ class _TaskDetails extends React.Component {
   }
 
   setTask = () => {
-    const { groupId, taskId } = this.props.match.params
+    const { groupId, taskId, boardId } = this.props.match.params
     const { board } = this.props
     const group = board.groups.find((currGroup => currGroup.id === groupId))
     const task = group.tasks.find((currTask => currTask.id === taskId))
