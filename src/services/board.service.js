@@ -39,9 +39,12 @@ async function getBoardById(boardId) {
   return board;
 }
 
-async function saveBoard(board) {
+async function saveBoard(board, task = null) {
   await httpService.put(`board/${board._id}`, board);
   socketService.emit("board-update", board);
+  if (task) {
+    socketService.emit("task-update", task);
+  }
   return board;
 }
 

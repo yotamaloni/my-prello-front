@@ -62,13 +62,12 @@
 
   .task-list {
     min-height: 1px;
-    overflow-y: hidden;
+    overflow-y: auto;
     overflow-x: hidden;
     max-height: calc(100vh - 290px);
-    &:hover{
-      overflow-y: auto;
-
-    }
+    // &:hover{
+    //   overflow-y: auto;
+    // }
   }
 
   .group-title {
@@ -96,6 +95,15 @@
     .task-list {
       min-height: 1px;
       max-height: calc(100vh - 220px);
+      min-height: 1px;
+      overflow-y: hidden;
+      overflow-x: hidden;
+      max-height: calc(100vh - 290px);
+      &:hover{
+        overflow-y: auto;
+      }
     }
   }
 }
+
+

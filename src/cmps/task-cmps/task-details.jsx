@@ -2,6 +2,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { socketService } from '../../services/socket.service.js';
+
 import { updateBoard, setModal } from '../../store/board.action.js'
 
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
@@ -21,7 +23,10 @@ class _TaskDetails extends React.Component {
 
   componentDidMount() {
     this.setTask()
+    socketService.on('task-update', (task) => {
+  })
   }
+
   componentWillUnmount() {
     const { modal } = this.props
     if (modal) this.props.setModal(null)

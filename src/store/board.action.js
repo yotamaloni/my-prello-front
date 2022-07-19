@@ -19,10 +19,10 @@ export function loadBoard(boardId) {
   };
 }
 
-export function updateBoard(board) {
+export function updateBoard(board, task = null) {
   return async (dispatch) => {
     try {
-      await boardService.saveBoard(board);
+      await boardService.saveBoard(board, task);
       dispatch({ type: "SET_BOARD", board });
     } catch (err) {
       console.log("Cannot update board", err);

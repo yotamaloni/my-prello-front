@@ -30,7 +30,7 @@ class _LabelsModal extends React.Component {
         }
         const { task, board } = this.props
         task.labels = labels
-        this.props.updateBoard({ ...board })
+        this.props.updateBoard({ ...board }, task)
     }
 
     handleChange = ({ target }) => {
